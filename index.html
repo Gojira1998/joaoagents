@@ -224,7 +224,7 @@ footer p{margin:6px 0}
 
     <div class="vencido" id="vencido" hidden>
       <b>Os três caíram.</b>
-      Os itens que você usou estão na primeira caixa, de graça.
+      Os itens que você usou estão na caixa das 5 skills, de graça.
       <br><a class="bt" href="#materiais">Pegar os itens</a>
     </div>
   </div>
@@ -238,6 +238,23 @@ footer p{margin:6px 0}
 
     <div class="caixas">
       <!-- MATERIAL NOVO: copie um <article class="caixa" data-slug="..."> inteiro, cole ACIMA do primeiro e troque o data-slug (a-nome-do-material), a linha "de", o título, o resumo e o conteúdo da div "dentro". -->
+      <article class="caixa" data-slug="a-5-plugins">
+        <div class="cabeca">
+          <img class="px" src="assets/bau-fechado.png" alt="">
+          <div><p class="de">Reel 2, palavra PLUGIN</p><h3>Os 5 plugins pra parar de bater limite no Claude</h3></div>
+        </div>
+        <p class="resumo">O que cada um faz, o link oficial e o primeiro passo pra começar.</p>
+        <button class="bt abrir" type="button">Abrir esta caixa</button>
+        <div class="dentro" hidden>
+          <p>Confira sempre o repositório oficial antes de instalar. Comece por um só e teste por alguns dias.</p>
+          <details open><summary>OmniRoute</summary><div><p>Um gateway gratuito de código aberto: você usa um endereço só e ele reparte o trabalho entre vários provedores de IA, inclusive opções grátis. É o que ajuda quando o limite de um acaba.</p><p>Link oficial: <a href="https://github.com/cheaper-inference/OmniRoute" target="_blank" rel="noopener">github.com/cheaper-inference/OmniRoute</a></p><p><b>Primeiro passo:</b> siga a instalação do README do projeto.</p></div></details>
+          <details><summary>Claude Mem</summary><div><p>Guarda o que o Claude fez em cada sessão e traz o que importa de volta na próxima, pra você não explicar tudo de novo.</p><p>Link oficial: <a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener">github.com/thedotmack/claude-mem</a></p><p><b>Primeiro passo:</b> siga a instalação do README do projeto.</p></div></details>
+          <details><summary>Headroom</summary><div><p>Comprime logs, arquivos e saídas de ferramentas antes de chegarem ao modelo. Menos texto enviado significa menos consumo do seu limite. O percentual de economia é do próprio projeto, eu não medi.</p><p>Link oficial: <a href="https://github.com/headroomlabs-ai/headroom" target="_blank" rel="noopener">github.com/headroomlabs-ai/headroom</a></p><p><b>Primeiro passo:</b> siga a instalação do README do projeto.</p></div></details>
+          <details><summary>Claude Code Setup</summary><div><p>Plugin oficial da Anthropic. Ele analisa o seu projeto e recomenda automações sob medida: hooks, skills, servidores MCP e subagentes.</p><p>Link oficial: <a href="https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-code-setup" target="_blank" rel="noopener">github.com/anthropics/claude-plugins-official</a>, pasta claude-code-setup.</p><p><b>Primeiro passo:</b> siga a instalação do README e peça pra ele analisar o seu projeto.</p></div></details>
+          <details><summary>Task Observer</summary><div><p>Observa como você usa suas skills e sugere melhorias nelas. Nada muda sem a sua aprovação. É o menos conhecido da lista.</p><p>Link oficial: <a href="https://github.com/rebelytics/one-skill-to-rule-them-all" target="_blank" rel="noopener">github.com/rebelytics/one-skill-to-rule-them-all</a></p><p><b>Primeiro passo:</b> <code>npx skills add rebelytics/one-skill-to-rule-them-all --skill task-observer</code></p></div></details>
+        </div>
+      </article>
+
       <article class="caixa" data-slug="a-5-skills">
         <div class="cabeca">
           <img class="px" src="assets/bau-fechado.png" alt="">
@@ -255,12 +272,6 @@ footer p{margin:6px 0}
         </div>
       </article>
 
-      <article class="caixa breve">
-        <div class="cabeca">
-          <img class="px" src="assets/bau-fechado.png" alt="">
-          <div><p class="de" style="color:#9fb4ee">Reel 2, palavra PLUGIN</p><h3>Os 5 plugins pra parar de bater limite no Claude. A caixa abre no dia em que o vídeo sair</h3></div>
-        </div>
-      </article>
     </div>
 
     <form id="form-lead" novalidate hidden>
