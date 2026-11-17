@@ -238,6 +238,27 @@ footer p{margin:6px 0}
 
     <div class="caixas">
       <!-- MATERIAL NOVO: copie um <article class="caixa" data-slug="..."> inteiro, cole ACIMA do primeiro e troque o data-slug (a-nome-do-material), a linha "de", o título, o resumo e o conteúdo da div "dentro". -->
+      <article class="caixa" data-slug="a-guilda">
+        <div class="cabeca">
+          <img class="px" src="assets/bau-fechado.png" alt="">
+          <div><p class="de">Post da guilda, palavra GUILDA</p><h3>Kit da Guilda: 3 skills e 6 prompts pra quem está começando</h3></div>
+        </div>
+        <p class="resumo">Três skills pra começar o seu time de agentes e seis prompts pra colar no Claude Code, cada um com o primeiro passo.</p>
+        <button class="bt abrir" type="button">Abrir esta caixa</button>
+        <div class="dentro" hidden>
+          <p>Comece por uma skill e um prompt. Confira sempre o repositório oficial antes de instalar.</p>
+          <details open><summary>Skill 1: find-skills</summary><div><p>Você descreve o que quer fazer e ela procura, no ecossistema aberto de skills, uma que já resolva. Evita você montar do zero o que já existe.</p><p>Link oficial: <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener">github.com/vercel-labs/skills</a>, pasta find-skills.</p><p><b>Primeiro passo:</b> <code>npx skills add vercel-labs/skills --skill find-skills</code> e depois pergunte: "existe uma skill pra organizar minhas planilhas?"</p></div></details>
+          <details><summary>Skill 2: Karpathy Guidelines</summary><div><p>Um plugin com regras simples de comportamento pro Claude: pensar antes de codar, fazer o mínimo necessário, mexer só no que foi pedido e dizer como vai conferir o resultado. Reduz aqueles erros de agente que sai alterando o que não devia.</p><p>Link oficial: <a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">github.com/multica-ai/andrej-karpathy-skills</a></p><p><b>Primeiro passo:</b> no Claude Code, <code>/plugin marketplace add forrestchang/andrej-karpathy-skills</code> e depois <code>/plugin install andrej-karpathy-skills@karpathy-skills</code></p></div></details>
+          <details><summary>Skill 3: grill-me</summary><div><p>Antes de executar um plano, o Claude te entrevista, uma pergunta por vez, até vocês dois terem a mesma ideia do que precisa ser feito. É ótima pra não gastar limite construindo a coisa errada.</p><p>Link oficial: <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">github.com/mattpocock/skills</a>, pasta skills/productivity/grill-me.</p><p><b>Primeiro passo:</b> siga a instalação do README e diga: "me entreviste sobre o meu plano de [seu plano]".</p></div></details>
+          <details><summary>Prompt 1: criar o seu primeiro agente</summary><div><p>Copie, troque o que está entre colchetes e cole no Claude Code:</p><p><code>Quero criar um agente que cuida de [tarefa que se repete, ex.: responder orçamentos]. Antes de criar, me faça até 5 perguntas, uma por vez, sobre como eu faço essa tarefa hoje. Depois crie o agente como um arquivo na pasta .claude/agents com nome, descrição de quando usar e instruções claras do que ele faz e do que NÃO faz.</code></p></div></details>
+          <details><summary>Prompt 2: o arquivo de memória do projeto</summary><div><p><code>Leia esta pasta e crie um arquivo CLAUDE.md na raiz com: o que é este projeto, como se chama cada pasta, as regras que devo seguir sempre e o que nunca deve ser alterado. Máximo de 40 linhas, em português, sem enrolação.</code></p></div></details>
+          <details><summary>Prompt 3: plano antes de executar</summary><div><p><code>Não escreva nem altere nada ainda. Quero [objetivo]. Me entregue um plano em passos numerados, o que cada passo muda, o que pode dar errado e como vamos conferir que deu certo. Espere eu dizer "pode fazer" pra começar.</code></p></div></details>
+          <details><summary>Prompt 4: transformar tarefa repetida em skill</summary><div><p><code>Eu faço esta tarefa toda semana: [descreva em 3 frases]. Transforme isso numa skill: pergunte o que faltar, escreva o SKILL.md com quando usar, passo a passo e um exemplo de entrada e saída, e me diga em qual pasta salvar.</code></p></div></details>
+          <details><summary>Prompt 5: revisar o que o agente fez</summary><div><p><code>Releia o que você acabou de fazer como se fosse outra pessoa revisando. Liste o que pode estar errado, o que você supôs sem confirmar e o que eu devo conferir com os meus próprios olhos antes de usar. Seja direto, sem elogiar o próprio trabalho.</code></p></div></details>
+          <details><summary>Prompt 6: economizar limite</summary><div><p><code>A partir de agora, responda curto, sem repetir o que eu já disse e sem listar opções que eu não pedi. Se a tarefa for grande, divida em partes e me pergunte antes de começar a próxima. Quando a conversa ficar longa, me avise e resuma o essencial pra eu abrir uma sessão nova.</code></p></div></details>
+        </div>
+      </article>
+
       <article class="caixa" data-slug="a-serie">
         <div class="cabeca">
           <img class="px" src="assets/bau-fechado.png" alt="">
