@@ -28,7 +28,7 @@ a{color:inherit} .cx{max-width:560px;margin:0 auto;padding:0 var(--margem)}
 /* topo */
 .topo{position:relative;min-height:100svh;color:#fff;display:flex;flex-direction:column;overflow:hidden;background:var(--ceu-alto)}
 .topo .arte{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 100%;transform:scale(var(--z,1.02));transform-origin:60% 100%;will-change:transform}
-.topo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,20,51,.62) 0%,rgba(13,20,51,.28) 34%,rgba(13,20,51,0) 58%);pointer-events:none}
+.topo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,20,51,.7) 0%,rgba(13,20,51,.45) 40%,rgba(13,20,51,0) 64%);pointer-events:none}
 .barra{position:relative;z-index:2;display:flex;align-items:center;gap:12px;padding:18px var(--margem) 0}
 .barra img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.85)}
 .barra b{font-family:var(--titulo);font-weight:700;font-size:17px;letter-spacing:-.01em;display:block;line-height:1.1}
@@ -40,6 +40,9 @@ a{color:inherit} .cx{max-width:560px;margin:0 auto;padding:0 var(--margem)}
 .bt{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--titulo);font-weight:700;font-size:19px;letter-spacing:-.01em;color:#fff;background:var(--brasa);border:0;border-radius:16px;padding:17px 24px;text-decoration:none;cursor:pointer;box-shadow:0 6px 0 var(--brasa-esc),0 18px 30px -10px rgba(217,61,26,.7);transition:transform .12s,box-shadow .12s}
 .bt:active{transform:translateY(4px);box-shadow:0 2px 0 var(--brasa-esc),0 8px 14px -8px rgba(217,61,26,.7)}
 .bt[disabled]{opacity:.7;cursor:wait}
+.chamada .novo{display:inline-block;margin-bottom:16px;font-family:var(--titulo);font-weight:700;font-size:14px;letter-spacing:.02em;color:#1b1406;background:#f4c24f;padding:7px 14px;border-radius:999px;box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
+.chamada p{text-shadow:0 2px 14px rgba(13,20,51,.75)}
+#kit-guilda{scroll-margin-top:24px}
 .chamada small{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:500;color:#fff;background:rgba(13,20,51,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px}
 
 /* seções */
@@ -157,6 +160,7 @@ footer p{margin:6px 0}
 @media (min-width:760px) and (max-width:1060px){ .barra,.chamada{padding-left:var(--margem)} .chamada{padding-right:calc(410px + var(--margem))} }
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .quem .rob,.estrelas i,.chefao img,.dor.caiu .item,.caixa .cabeca img.abre{animation:none} .topo .arte{transform:none} }
 </style>
+<link rel="stylesheet" href="lutadores.css">
 </head>
 <body>
 
@@ -168,12 +172,50 @@ footer p{margin:6px 0}
     <a href="https://www.instagram.com/joaoagents.ia/" target="_blank" rel="noopener">Instagram</a>
   </div>
   <div class="chamada">
-    <h1>Bote a IA pra fazer o trabalho chato do seu negócio.</h1>
-    <p>Eu explico como se fosse um jogo. Cada reel é uma fase, e o item de cada fase você pega aqui.</p>
-    <a class="bt" href="#materiais">Pegar as 5 skills do Claude</a><br>
-    <small>Grátis. Abre na hora, nesta página.</small>
+    <span class="novo">Novo reel: a minha guilda de agentes</span>
+    <h1>Monte o seu time de agentes de IA.</h1>
+    <p>Cada reel deixa um material grátis aqui. Comece pelo prompt do seu primeiro agente.</p>
+    <a class="bt" href="#kit-guilda">Pegar o prompt do 1º agente</a><br>
+    <small>Grátis. Vem junto com 3 skills e mais 5 prompts.</small>
   </div>
 </header>
+
+<!-- TELA DE SELEÇÃO (início): ep. 1 da conta A. Dados em lutadores.js, visual em lutadores.css, código em tela-selecao.js. -->
+<section class="selecao" id="lutadores">
+  <div class="cx">
+    <span class="ep">Ep. 1: Tela de Seleção</span>
+    <h2 class="h2">Você virou lutador?</h2>
+    <p class="sub">Quem comentou no reel virou um lutador do fliperama. Cada poder é um plugin de verdade.</p>
+    <div class="busca">
+      <label for="busca-at">Ache o seu lutador pelo @</label>
+      <div class="campo-at"><span aria-hidden="true">@</span><input id="busca-at" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="seu.usuario" enterkeyhint="search"></div>
+      <p class="resp" aria-live="polite"></p>
+    </div>
+    <ul class="grade" aria-label="Lutadores"></ul>
+    <p class="cabe"><b>Não dá pra caber todo mundo na luta. Aqui cabe.</b> É só procurar o seu @.</p>
+    <div class="ficha" hidden aria-live="polite">
+      <div class="palco"><img src="" alt=""></div>
+      <div class="info">
+        <p class="nome"></p>
+        <p class="classe"></p>
+        <dl>
+          <dt>Especial</dt><dd><span class="esp"></span></dd>
+          <dt>Plugin</dt><dd class="plugin"></dd>
+          <dt>Nível</dt><dd><span class="nv"></span> <span class="nvt"></span></dd>
+          <dt>Estreia</dt><dd class="estreia"></dd>
+        </dl>
+        <button class="bt card" type="button">Baixar card pro story</button>
+        <p class="dica">Posta no story e marca a @joaoagents.ia. Comentando de novo nos próximos episódios, o seu lutador sobe de nível.</p>
+        <button class="fechar" type="button">Voltar pra grade</button>
+      </div>
+    </div>
+    <div class="entrar">
+      <b>Quer entrar na próxima luta?</b>
+      <p>Comenta <strong>LUTADOR</strong> e a tarefa chata que você queria que a IA fizesse por você. Ela vira o seu golpe especial, e o seu lutador estreia no próximo episódio.</p>
+    </div>
+  </div>
+</section>
+<!-- TELA DE SELEÇÃO (fim) -->
 
 <section class="quem">
   <div class="cx">
@@ -238,10 +280,10 @@ footer p{margin:6px 0}
 
     <div class="caixas">
       <!-- MATERIAL NOVO: copie um <article class="caixa" data-slug="..."> inteiro, cole ACIMA do primeiro e troque o data-slug (a-nome-do-material), a linha "de", o título, o resumo e o conteúdo da div "dentro". -->
-      <article class="caixa" data-slug="a-guilda">
+      <article class="caixa" data-slug="a-guilda" id="kit-guilda">
         <div class="cabeca">
           <img class="px" src="assets/bau-fechado.png" alt="">
-          <div><p class="de">Post da guilda, palavra GUILDA</p><h3>Kit da Guilda: 3 skills e 6 prompts pra quem está começando</h3></div>
+          <div><p class="de">Reel e post da guilda, palavras AGENTE e GUILDA</p><h3>Kit da Guilda: 3 skills e 6 prompts pra quem está começando</h3></div>
         </div>
         <p class="resumo">Três skills pra começar o seu time de agentes e seis prompts pra colar no Claude Code, cada um com o primeiro passo.</p>
         <button class="bt abrir" type="button">Abrir esta caixa</button>
@@ -340,6 +382,8 @@ footer p{margin:6px 0}
   <img class="anda px" id="t-mago" src="assets/mago-anda-a.png" alt="">
 </div>
 
+<script src="lutadores.js"></script>
+<script src="tela-selecao.js"></script>
 <script src="leads-config.js"></script>
 <script>
 (function () {

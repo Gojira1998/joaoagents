@@ -1,0 +1,58 @@
+/* Tela de Seleção (ep. 1 da conta A): grade dos lutadores, busca por @, ficha e card de story.
+   Arquivo próprio: nada daqui mexe no resto da página. */
+.selecao{--arc:#0a0f29;--arc2:#141c47;--neon:#ff8a2a;--azul:#3fd0ff;background:radial-gradient(130% 60% at 50% 0%,#24307a 0%,var(--arc) 64%);color:#c9d3ee;position:relative;overflow:hidden}
+.selecao::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 2px,transparent 2px 4px);pointer-events:none}
+.selecao .cx{position:relative;z-index:1}
+.selecao .h2{color:#fff}
+.selecao .ep{display:inline-block;font-family:var(--titulo);font-weight:700;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--arc);background:var(--ouro);border-radius:8px;padding:5px 10px;margin-bottom:14px}
+.selecao .sub{color:#c9d3ee}
+.busca{margin-top:24px;position:relative}
+.busca label{display:block;font-weight:700;font-size:14.5px;color:#fff;margin-bottom:8px}
+.busca .campo-at{display:flex;align-items:center;background:#fff;border-radius:14px;border:2px solid transparent;transition:border-color .15s}
+.busca .campo-at:focus-within{border-color:var(--neon)}
+.busca .campo-at span{font-family:var(--titulo);font-weight:800;font-size:20px;color:var(--brasa);padding:0 4px 0 15px}
+.busca input{flex:1;min-width:0;font:inherit;font-size:17px;color:var(--tinta);padding:14px 14px 14px 2px;border:0;background:transparent;border-radius:14px}
+.busca input:focus{outline:none}
+.busca .resp{min-height:22px;margin:10px 0 0;font-size:15px;color:#fff}
+.busca .resp b{color:var(--ouro)}
+.grade{list-style:none;margin:18px 0 0;padding:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#1b2350;border:3px solid #3a4378;border-radius:18px;box-shadow:inset 0 0 0 2px #0a0f29,0 24px 40px -24px rgba(0,0,0,.8)}
+.grade li{min-width:0}
+.grade button{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;border-radius:10px;-webkit-tap-highlight-color:transparent}
+.grade .ret{display:block;position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#2b3672,#151c45);border:2px solid var(--neon);box-shadow:0 0 0 1px #0a0f29}
+.grade .ret img{display:block;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+.grade .at{display:block;margin-top:4px;font-size:11px;line-height:1.2;font-weight:700;color:#dfe6ff;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grade button:hover .ret,.grade button:focus-visible .ret{border-color:var(--azul);box-shadow:0 0 0 2px var(--azul),0 0 18px rgba(63,208,255,.55)}
+.grade button:focus-visible{outline:none}
+.grade li.some{display:none}
+.grade li.acha .ret{border-color:var(--ouro);box-shadow:0 0 0 2px var(--ouro),0 0 20px rgba(255,197,61,.6);animation:acha 1s steps(2) 3}
+@keyframes acha{50%{box-shadow:0 0 0 2px var(--ouro),0 0 4px rgba(255,197,61,.2)}}
+.grade .vazio .ret{border-style:dashed;border-color:rgba(255,255,255,.28);display:grid;place-items:center;font-family:var(--titulo);font-weight:800;font-size:28px;color:rgba(255,255,255,.5)}
+.grade .vazio .ret b{animation:pisca 1.2s steps(2) infinite}
+.grade .vazio .at{color:rgba(255,255,255,.55);font-weight:500}
+.cabe{margin:18px 0 0;font-size:15px;color:#c9d3ee}
+.cabe b{color:#fff}
+
+.ficha{margin-top:22px;background:#fff;color:var(--texto);border-radius:var(--raio);overflow:hidden;box-shadow:0 30px 50px -28px rgba(0,0,0,.9)}
+.ficha .palco{position:relative;height:300px;background:url(assets/tela-selecao-fundo.jpg) 50% 6%/cover;display:flex;align-items:flex-end;justify-content:center}
+.ficha .palco::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,15,41,0) 50%,rgba(10,15,41,.55) 100%)}
+.ficha .palco img{position:relative;z-index:1;height:280px;width:auto;image-rendering:pixelated;filter:drop-shadow(0 8px 0 rgba(0,0,0,.35));animation:entra .35s cubic-bezier(.3,1.5,.5,1)}
+@keyframes entra{0%{transform:translateY(14px) scale(.94);opacity:0}}
+.ficha .info{padding:18px 20px 20px}
+.ficha .nome{font-family:var(--titulo);font-weight:800;font-size:27px;color:var(--tinta);letter-spacing:-.02em;line-height:1.05;word-break:break-word}
+.ficha .classe{margin:4px 0 0;font-weight:700;color:var(--ceu-alto);font-size:15.5px}
+.ficha dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:16px 0 0;font-size:15.5px}
+.ficha dt{font-weight:700;color:var(--tinta)}
+.ficha dd{margin:0}
+.ficha .esp{display:inline-block;font-family:var(--titulo);font-weight:800;letter-spacing:.02em;color:#fff;background:var(--brasa);border-radius:7px;padding:1px 8px}
+.ficha .nv{display:inline-flex;gap:4px;vertical-align:middle}
+.ficha .nv i{width:12px;height:12px;border-radius:3px;background:var(--linha)}
+.ficha .nv i.ok{background:var(--mata)}
+.ficha .bt{width:100%;margin-top:18px}
+.ficha .dica{font-size:13.5px;margin:12px 0 0}
+.ficha .fechar{margin-top:10px;width:100%;font:inherit;font-weight:700;font-size:15px;color:var(--tinta);background:transparent;border:1.5px solid var(--linha);border-radius:12px;padding:11px;cursor:pointer}
+.entrar{margin-top:22px;border:2px dashed rgba(255,255,255,.3);border-radius:var(--raio);padding:18px 20px}
+.entrar b{display:block;font-family:var(--titulo);font-size:20px;color:#fff;letter-spacing:-.01em;margin-bottom:6px}
+.entrar p{margin:0;font-size:16px}
+.entrar strong{color:var(--ouro)}
+@media (min-width:560px){ .grade .at{font-size:12px} .ficha .palco{height:360px} .ficha .palco img{height:340px} }
+@media (prefers-reduced-motion:reduce){ .grade li.acha .ret,.grade .vazio .ret b,.ficha .palco img{animation:none} }
