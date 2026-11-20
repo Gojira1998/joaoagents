@@ -32,6 +32,15 @@
     alvos.forEach(function (a) { io.observe(a); });
   } else { alvos.forEach(function (a) { a.classList.add("v"); }); }
 
+
+  // reels de amostra: o video so carrega ao tocar
+  [].slice.call(document.querySelectorAll(".reel[data-v]")).forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = document.createElement("video"); v.src = b.getAttribute("data-v"); v.controls = true; v.autoplay = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.loop = true;
+      b.innerHTML = ""; b.appendChild(v); b.style.cursor = "default"; v.play && v.play().catch(function () {});
+    }, { once: true });
+  });
+
   // caixas de material: o contato e pedido uma vez; cada caixa aberta grava o seu slug na tabela leads (Supabase, so insercao)
   var form = document.getElementById("form-lead"), msg = document.getElementById("msg-erro"), botao = form.querySelector("button");
   var caixas = [].slice.call(document.querySelectorAll(".caixa[data-slug]")), inicio = Date.now(), p = new URLSearchParams(location.search), atual = null;

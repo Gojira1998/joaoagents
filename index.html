@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>João Gabriel | Agentes de IA com Claude</title>
-<meta name="description" content="Eu monto times de agentes de IA no Claude Code e mostro o passo a passo. Pegue de graça o prompt do seu primeiro agente, skills e plugins. E, se precisar, contrate a JGA.">
+<title>João Gabriel | Agentes de IA, automação, sites e marketing</title>
+<meta name="description" content="João Gabriel, da JGA Serviços de IA: agentes de IA, automação, sites, vídeo e marketing com IA pra pequeno negócio. Veja os serviços, os trabalhos e pegue materiais grátis.">
 <meta name="theme-color" content="#17120e">
-<meta property="og:title" content="João Gabriel | Agentes de IA com Claude">
-<meta property="og:description" content="O passo a passo pra montar o seu time de agentes, com material grátis. E serviços da JGA pra quem quer isso rodando no negócio.">
-<meta property="og:image" content="assets/g/taverna.jpg">
+<meta property="og:title" content="João Gabriel | Agentes de IA, automação, sites e marketing">
+<meta property="og:description" content="Serviços de IA pro seu negócio, trabalhos reais e materiais grátis sobre agentes de IA com Claude.">
+<meta property="og:image" content="assets/t/duo-site.jpg">
 <link rel="icon" href="assets/joao.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
@@ -58,7 +58,7 @@ em{font-style:normal;color:var(--gold)}
 .hero h1{font-size:clamp(38px,11.2vw,66px);font-stretch:106%;text-transform:uppercase;line-height:.98}
 .hero h1 .w{display:inline-block;opacity:0;transform:scale(1.06) translateY(10px)}
 .js-ok .hero h1 .w{animation:pop .55s var(--ease) forwards;animation-delay:calc(var(--i)*70ms + 150ms)}
-.hero .lead{margin-top:18px;font-size:clamp(17px,4.4vw,21px);color:var(--cream);max-width:34ch;opacity:.92}
+.hero .lead{margin-top:18px;font-size:clamp(17px,4.4vw,21px);color:var(--cream);max-width:40ch;opacity:.92}
 .hero .acoes{display:flex;flex-direction:column;gap:12px;margin-top:26px}
 .hero .peq{margin-top:14px;color:var(--warm);font-size:14px}
 @keyframes pop{to{opacity:1;transform:none}}
@@ -176,16 +176,74 @@ footer .marca{font:800 15px "Archivo";color:var(--cream)}
   .dentro{animation:none}
 }
 </style>
+<style>
+/* v2: pagina de servicos */
+.nums ul{grid-template-columns:repeat(3,1fr)}
+.nums li strong{font-size:clamp(34px,10vw,60px)}
+.nums li span{font-size:14px}
+.sub+.grupo,.grupo+.grupo{margin-top:34px}
+.grupo>h3{font:800 13px/1.3 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:34px 0 4px}
+.grupo>p{color:var(--warm);font-size:15px;margin-bottom:14px}
+.servs{display:grid;gap:12px}
+.serv{background:var(--ink2);border:1px solid var(--line2);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px;transition:border-color .3s,transform .3s var(--ease)}
+.serv:hover{border-color:var(--line);transform:translateY(-3px)}
+.serv h4{font:800 20px/1.15 "Archivo";font-stretch:104%}
+.serv p{color:var(--cream);font-size:15.5px}
+.serv .pra{color:var(--warm);font-size:14.5px}
+.serv .pra b{color:var(--gold);font-weight:700}
+.serv a{margin-top:auto;padding-top:6px;color:var(--gold);font-weight:700;font-size:14.5px;text-decoration:none}
+.serv a:hover{text-decoration:underline}
+.trabs{display:grid;gap:16px;margin-top:30px}
+.trab{background:var(--ink2);border:1px solid var(--line2);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.trab .moldura{border-radius:0;border:0;border-bottom:1px solid var(--line);box-shadow:none;aspect-ratio:3/2}
+.trab .moldura::after{display:none}
+.trab .tx{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tag{font:800 11px/1 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--terra2)}
+.trab h4{font:800 19px/1.2 "Archivo"}
+.trab p{color:var(--warm);font-size:15px}
+.trab a.ver{margin-top:auto;padding-top:8px;color:var(--gold);font-weight:700;font-size:14.5px;text-decoration:none}
+.sub2{font:800 13px/1.3 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:44px 0 6px}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.reel{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1.5px solid var(--line);background:#000;padding:0;cursor:pointer;display:block}
+.reel img,.reel video{width:100%;height:100%;object-fit:cover;display:block}
+.reel .pl{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45))}
+.reel .pl i{width:46px;height:46px;border-radius:50%;background:rgba(23,18,14,.78);border:1.5px solid var(--gold);display:grid;place-items:center}
+.reel .pl i::before{content:"";margin-left:3px;border-left:13px solid var(--gold);border-block:8px solid transparent}
+.dem{margin-top:44px;display:grid;gap:18px;padding:22px;border-radius:26px;border:1.5px solid var(--line);background:linear-gradient(180deg,rgba(213,106,74,.12),rgba(213,106,74,.03))}
+.dem h3{font-size:clamp(22px,6vw,30px);font-stretch:106%;text-transform:uppercase}
+.dem p{color:var(--cream);margin-top:8px;font-size:16px}
+.dem .bt{margin-top:16px}
+.como{display:grid;gap:12px;margin-top:30px;counter-reset:p}
+.etapa{display:flex;gap:16px;background:var(--ink2);border:1px solid var(--line2);border-radius:20px;padding:20px}
+.etapa::before{counter-increment:p;content:counter(p);flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font:900 18px "Archivo"}
+.etapa h4{font:800 19px/1.2 "Archivo"}
+.etapa p{color:var(--warm);font-size:15.5px;margin-top:4px}
+.garantias{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.garantias span{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600}
+.contratar{background:var(--ink2);border-block:1px solid var(--line2)}
+.sec-alt{background:var(--ink)}
+@media (min-width:760px){
+  .servs{grid-template-columns:repeat(3,1fr)}
+  .servs.q{grid-template-columns:repeat(2,1fr)}
+  .trabs{grid-template-columns:repeat(3,1fr)}
+  .reels{grid-template-columns:repeat(6,1fr)}
+  .dem{grid-template-columns:1.1fr .9fr;align-items:center;padding:34px;gap:34px}
+  .como{grid-template-columns:1fr 1fr}
+}
+.barra nav a.lk{display:none}
+@media (min-width:900px){.barra nav a.lk{display:block}}
+</style>
 </head>
 <body>
 
 <header class="barra">
   <div class="cx">
-    <a class="eu" href="#topo"><img src="assets/joao.jpg" alt="" width="36" height="36"><b>João Gabriel</b><span>Agentes de IA</span></a>
+    <a class="eu" href="#topo"><img src="assets/joao.jpg" alt="" width="36" height="36"><b>João Gabriel</b><span>JGA Serviços de IA</span></a>
     <nav aria-label="Principal">
-      <a class="lk" href="#materiais">Materiais</a>
-      <a class="lk" href="https://www.instagram.com/joaoagents.ia/" target="_blank" rel="noopener">Instagram</a>
-      <a class="jga" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA</a>
+      <a class="lk" href="#servicos">Serviços</a>
+      <a class="lk" href="#trabalhos">Trabalhos</a>
+      <a class="lk" href="#materiais">Materiais grátis</a>
+      <a class="jga" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Site da JGA</a>
     </nav>
   </div>
 </header>
@@ -195,86 +253,143 @@ footer .marca{font:800 15px "Archivo";color:var(--cream)}
 <section class="hero" aria-labelledby="h1">
   <div class="cx">
     <div>
-      <span class="kicker rv">Feito no Claude Code</span>
-      <h1 id="h1" data-palavras>Agentes de IA que trabalham enquanto você cuida do resto</h1>
-      <p class="lead rv" style="--d:500ms">Eu monto times de agentes de IA e mostro o passo a passo nos reels. Aqui você pega o material de graça.</p>
+      <span class="kicker rv">João Gabriel · JGA Serviços de IA</span>
+      <h1 id="h1" data-palavras>IA que trabalha pelo seu negócio, do site ao atendimento</h1>
+      <p class="lead rv" style="--d:500ms">Eu crio agentes de IA, automações, sites, vídeos e marketing pra pequenas empresas de todo o Brasil. Você conta o que precisa, a gente entrega pronto.</p>
       <div class="acoes rv" style="--d:650ms">
-        <a class="bt" href="#kit-guilda">Pegar o prompt do 1º agente</a>
-        <a class="bt vaz" href="#contratar">Contratar meus serviços</a>
+        <a class="bt" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Quero contratar</a>
+        <a class="bt vaz" href="#materiais">Pegar os materiais grátis</a>
       </div>
-      <p class="peq rv" style="--d:750ms">Grátis. Vem junto com 3 skills e mais 5 prompts.</p>
+      <p class="peq rv" style="--d:750ms">Proposta por escrito, sem compromisso, antes de qualquer pagamento.</p>
     </div>
-    <div class="moldura rv" style="--d:300ms"><img src="assets/g/taverna.jpg" width="1000" height="606" alt="Escritório em 3D onde o meu time de agentes de IA trabalha, cada um na sua mesa" fetchpriority="high"></div>
+    <div class="moldura rv" style="--d:300ms"><img src="assets/t/duo-site.jpg" width="800" height="533" alt="Site institucional criado pela JGA para uma empresa de segurança do trabalho" fetchpriority="high"></div>
   </div>
 </section>
 
-<section class="nums" aria-label="Números do time de agentes">
+<section class="nums" aria-label="A JGA em números">
   <div class="cx">
-    <p class="tit rv">Num dia só, o meu time de agentes fez</p>
+    <p class="tit rv">O que a JGA entrega</p>
     <ul>
-      <li class="rv"><strong data-n="23">23</strong><span>agentes, cada um com uma função</span></li>
-      <li class="rv" style="--d:80ms"><strong data-n="16">16</strong><span>minutos de vídeo renderizados</span></li>
-      <li class="rv" style="--d:160ms"><strong data-n="673">673</strong><span>imagens conferidas</span></li>
-      <li class="rv" style="--d:240ms"><strong data-n="44">44</strong><span>comentários respondidos</span></li>
+      <li class="rv"><strong data-n="10">10</strong><span>serviços de IA</span></li>
+      <li class="rv" style="--d:80ms"><strong data-n="51">51</strong><span>estilos de vídeo animado</span></li>
+      <li class="rv" style="--d:160ms"><strong data-n="32">32</strong><span>estilos de ilustração</span></li>
     </ul>
-    <p class="fim rv">Conferir 673 imagens uma por uma levaria horas.</p>
+    <p class="fim rv">Atendimento em todo o Brasil, com conversa direto pelo WhatsApp.</p>
+  </div>
+</section>
+
+<section id="servicos" aria-labelledby="h-serv">
+  <div class="cx">
+    <span class="kicker rv">Serviços</span>
+    <h2 class="h2 rv" id="h-serv">O que eu posso fazer pela sua empresa</h2>
+    <p class="sub rv">Sua empresa precisa aparecer, explicar o que faz e atender rápido. A gente cuida do vídeo, do site e da conversa com o cliente, e você acompanha e aprova.</p>
+
+    <div class="grupo">
+      <h3 class="rv">Agentes e sistemas</h3>
+      <p class="rv">Atendimento e rotina rodando sozinhos, ajustados ao processo da sua empresa.</p>
+      <div class="servs q">
+        <article class="serv rv"><h4>Agente de IA pra WhatsApp</h4><p>Responde, qualifica e agenda pelo WhatsApp da empresa, 24 horas, sem perder cliente por demora.</p><p class="pra"><b>Pra quem:</b> negócio que recebe muita mensagem e perde venda fora do horário.</p><a href="https://gojira1998.github.io/jga-site/servicos/agente-whatsapp.html" target="_blank" rel="noopener">Saber mais</a></article>
+        <article class="serv rv" style="--d:70ms"><h4>Agente de IA de conteúdo</h4><p>Gera pauta, texto e arte pros seus canais, na identidade da marca. Você aprova antes de publicar.</p><p class="pra"><b>Pra quem:</b> quem quer o perfil sempre ativo sem depender de alguém lembrar de postar.</p><a href="https://gojira1998.github.io/jga-site/servicos/agente-conteudo.html" target="_blank" rel="noopener">Saber mais</a></article>
+        <article class="serv rv"><h4>Agente de IA de áudio</h4><p>Produz locução, podcast e conteúdo em áudio sob demanda, sem estúdio e sem agenda de terceiro.</p><p class="pra"><b>Pra quem:</b> empresa que usa áudio com frequência, como spot, episódio ou locução de vídeo.</p><a href="https://gojira1998.github.io/jga-site/servicos/agente-audio.html" target="_blank" rel="noopener">Saber mais</a></article>
+        <article class="serv rv" style="--d:70ms"><h4>Sistemas e software sob medida</h4><p>Automação e sistemas pensados pro processo específico da empresa, não um pacote genérico.</p><p class="pra"><b>Pra quem:</b> quem tem um gargalo, como pedidos espalhados, planilhas ou uma etapa interna manual.</p><a href="https://gojira1998.github.io/jga-site/servicos/sistemas-sob-medida.html" target="_blank" rel="noopener">Saber mais</a></article>
+      </div>
+    </div>
+
+    <div class="grupo">
+      <h3 class="rv">Site, conteúdo e anúncios</h3>
+      <p class="rv">Aparecer no Google, mostrar o que você faz e levar o cliente até o contato.</p>
+      <div class="servs">
+        <article class="serv rv"><h4>Sites e landing pages</h4><p>Site institucional ou página de vendas, do zero ao ar, pra representar a empresa e converter.</p><p class="pra"><b>Pra quem:</b> quem ainda não tem site, ou tem um que não passa confiança nem leva ao contato.</p><a href="https://gojira1998.github.io/jga-site/servicos/sites-e-landing-pages.html" target="_blank" rel="noopener">Saber mais</a></article>
+        <article class="serv rv" style="--d:70ms"><h4>Conteúdo e SEO</h4><p>Carrossel, blog e otimização pra buscadores, pra sua marca aparecer de forma constante.</p><p class="pra"><b>Pra quem:</b> quem quer ser encontrado no Google e no feed sem depender de inspiração de última hora.</p><a href="https://gojira1998.github.io/jga-site/servicos/conteudo-e-seo.html" target="_blank" rel="noopener">Saber mais</a></article>
+        <article class="serv rv" style="--d:140ms"><h4>Gestão de anúncios</h4><p>Campanhas no Google e no Meta Ads estruturadas, acompanhadas toda semana e ajustadas.</p><p class="pra"><b>Pra quem:</b> quem investe em anúncio e quer parar de queimar verba sem saber o que funciona.</p><a href="https://gojira1998.github.io/jga-site/servicos/gestao-de-anuncios.html" target="_blank" rel="noopener">Saber mais</a></article>
+      </div>
+    </div>
+
+    <div class="grupo">
+      <h3 class="rv">Imagem, vídeo e áudio</h3>
+      <p class="rv">Peças prontas pra publicar, sem equipe de produção e sem estúdio.</p>
+      <div class="servs">
+        <article class="serv rv"><h4>Geração de imagem</h4><p>Artes, banners e criativos no padrão visual da sua marca, sem fotógrafo ou designer pra cada peça.</p><p class="pra"><b>Pra quem:</b> loja ou empresa que precisa de peças em volume pra postar ou testar anúncio.</p><a href="https://gojira1998.github.io/jga-site/servicos/geracao-de-imagem.html" target="_blank" rel="noopener">Saber mais</a></article>
+        <article class="serv rv" style="--d:70ms"><h4>Vídeo e motion</h4><p>Vídeos publicitários, conteúdo pra redes e motion graphics, gerados e editados com IA e revisados por gente.</p><p class="pra"><b>Pra quem:</b> quem quer Reels, anúncio em vídeo ou demonstração de produto sem câmera nem edição própria.</p><a href="https://gojira1998.github.io/jga-site/servicos/video-e-motion.html" target="_blank" rel="noopener">Saber mais</a></article>
+        <article class="serv rv" style="--d:140ms"><h4>Áudio e locução</h4><p>Locução, dublagem e trilha sonora geradas por IA, em horas e não em semanas.</p><p class="pra"><b>Pra quem:</b> quem precisa de spot, narração de vídeo ou trilha sem contratar locutor nem estúdio.</p><a href="https://gojira1998.github.io/jga-site/servicos/audio-e-locucao.html" target="_blank" rel="noopener">Saber mais</a></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trabalhos" class="sec-alt" aria-labelledby="h-trab" style="border-top:1px solid var(--line2)">
+  <div class="cx">
+    <span class="kicker rv">Trabalhos</span>
+    <h2 class="h2 rv" id="h-trab">Veja o que já foi entregue</h2>
+    <p class="sub rv">Além dos vídeos, a gente faz o site, a página de vendas e o atendimento. Alguns exemplos já no ar.</p>
+
+    <div class="trabs">
+      <article class="trab rv">
+        <a class="moldura" href="https://duosst.com.br/" target="_blank" rel="noopener" aria-label="Ver o site no ar: site de empresa de segurança do trabalho"><img src="assets/t/duo-site.jpg" width="800" height="533" loading="lazy" alt="Tela do site de uma empresa de segurança do trabalho"></a>
+        <div class="tx"><span class="tag">Site institucional</span><h4>Site de empresa de segurança do trabalho</h4><p>Serviços, treinamentos de NR com compra online ou presencial, palestras e botão de WhatsApp em todas as páginas.</p><a class="ver" href="https://duosst.com.br/" target="_blank" rel="noopener">Ver o site no ar</a></div>
+      </article>
+      <article class="trab rv" style="--d:80ms">
+        <a class="moldura" href="https://duosst.com.br/outubro-rosa/" target="_blank" rel="noopener" aria-label="Ver a página no ar: página de campanha com venda direta"><img src="assets/t/duo-campanha.jpg" width="800" height="533" loading="lazy" alt="Tela de uma página de campanha com venda direta"></a>
+        <div class="tx"><span class="tag">Landing page</span><h4>Página de campanha com venda direta</h4><p>Uma página só para vender uma palestra em vídeo: a oferta, o preço, a garantia de 7 dias e o botão de compra.</p><a class="ver" href="https://duosst.com.br/outubro-rosa/" target="_blank" rel="noopener">Ver a página no ar</a></div>
+      </article>
+      <article class="trab rv" style="--d:160ms">
+        <div class="moldura"><img src="assets/t/aliment-loja.jpg" width="800" height="533" loading="lazy" alt="Tela de um site e catálogo para loja de produtos naturais"></div>
+        <div class="tx"><span class="tag">Site e catálogo</span><h4>Site e catálogo para loja de produtos naturais</h4><p>Produtos por categoria, blog e atendimento direto pelo WhatsApp, com identidade em tons de verde e bege.</p></div>
+      </article>
+    </div>
+
+    <h3 class="sub2 rv">Vídeos animados feitos pela JGA</h3>
+    <p class="sub rv">Reels de amostra, produzidos com IA e código, em estilos diferentes. Toque num quadro pra assistir.</p>
+    <div class="reels">
+      <button class="reel rv" type="button" data-v="assets/r/reel-01-risograph.mp4" aria-label="Assistir reel de amostra no estilo risograph"><img src="assets/r/reel-01-risograph.jpg" width="360" height="640" loading="lazy" alt="Quadro de reel no estilo risograph"><span class="pl"><i></i></span></button>
+      <button class="reel rv" style="--d:60ms" type="button" data-v="assets/r/reel-02-colagem.mp4" aria-label="Assistir reel de amostra no estilo colagem de papel"><img src="assets/r/reel-02-colagem.jpg" width="360" height="640" loading="lazy" alt="Quadro de reel no estilo colagem de papel"><span class="pl"><i></i></span></button>
+      <button class="reel rv" style="--d:120ms" type="button" data-v="assets/r/reel-03-lowpoly.mp4" aria-label="Assistir reel de amostra no estilo low poly"><img src="assets/r/reel-03-lowpoly.jpg" width="360" height="640" loading="lazy" alt="Quadro de reel no estilo low poly"><span class="pl"><i></i></span></button>
+      <button class="reel rv" type="button" data-v="assets/r/reel-04-tipografia.mp4" aria-label="Assistir reel de amostra com tipografia cinética"><img src="assets/r/reel-04-tipografia.jpg" width="360" height="640" loading="lazy" alt="Quadro de reel com tipografia cinética"><span class="pl"><i></i></span></button>
+      <button class="reel rv" style="--d:60ms" type="button" data-v="assets/r/reel-05-checagem.mp4" aria-label="Assistir reel de amostra de checagem de fatos"><img src="assets/r/reel-05-checagem.jpg" width="360" height="640" loading="lazy" alt="Quadro de reel de checagem de fatos"><span class="pl"><i></i></span></button>
+      <button class="reel rv" style="--d:120ms" type="button" data-v="assets/r/reel-06-camadas.mp4" aria-label="Assistir reel de amostra em camadas"><img src="assets/r/reel-06-camadas.jpg" width="360" height="640" loading="lazy" alt="Quadro de reel em camadas"><span class="pl"><i></i></span></button>
+    </div>
+
+    <div class="dem rv">
+      <div>
+        <span class="kicker">Demonstração ao vivo</span>
+        <h3>Eu uso o que vendo</h3>
+        <p>Tenho um escritório de agentes de IA que toca a minha própria rotina: conteúdo, clientes, revisão e pesquisa, cada agente com uma função. Num dia só ele renderizou 16 minutos de vídeo, conferiu 673 imagens e respondeu 44 comentários.</p>
+        <a class="bt vaz" href="https://www.instagram.com/joaoagents.ia/" target="_blank" rel="noopener">Ver no Instagram</a>
+      </div>
+      <div class="moldura"><img src="assets/g/taverna.jpg" width="1000" height="606" loading="lazy" alt="Escritório em 3D onde o meu time de agentes de IA trabalha, cada um na sua mesa"></div>
+    </div>
   </div>
 </section>
 
 <section id="como" aria-labelledby="h-como">
   <div class="cx">
-    <span class="kicker rv">Como funciona</span>
-    <h2 class="h2 rv" id="h-como">Um time, não uma ferramenta</h2>
-    <p class="sub rv">Cada agente é um arquivo de instruções com uma função só. Juntos eles tocam a rotina sem eu ficar em cima.</p>
-
-    <div class="passos">
-      <article class="passo rv">
-        <div class="txt">
-          <span class="n">01</span>
-          <h3>1 agente = 1 função</h3>
-          <p>Escrita num arquivo de instruções, que diz quando o agente entra e o que ele faz e não faz.</p>
-          <pre class="codigo" aria-label="Exemplo de arquivo de agente"><b>.claude/agents/sala-revisao.md</b>
----
-name: sala-revisao
-description: revisar roteiro, legenda,
-  vídeo e site antes de chegar ao João.
----
-Você é o setor Revisão: o último
-filtro de qualidade.</pre>
-        </div>
-      </article>
-
-      <article class="passo rv" style="--d:80ms">
-        <div class="moldura"><img src="assets/g/mapa2d.jpg" width="1000" height="702" loading="lazy" alt="Mapa do escritório com todas as salas, uma para cada setor"></div>
-        <div class="txt">
-          <span class="n">02</span>
-          <h3>Cada sala, um setor</h3>
-          <p>Redes sociais, clientes, revisão, pesquisa. Cada área tem o seu agente, e eu sei quem cuida do quê.</p>
-        </div>
-      </article>
-
-      <article class="passo rv">
-        <div class="moldura"><img src="assets/g/geral3d.jpg" width="1000" height="606" loading="lazy" alt="Visão geral do escritório com as salas lado a lado"></div>
-        <div class="txt">
-          <span class="n">03</span>
-          <h3>Pega, faz e entrega</h3>
-          <p>Eu deixo o pedido no mural e o setor certo pega, faz e entrega. Quando precisa de ajuda, ele chama outro setor.</p>
-        </div>
-      </article>
-
-      <article class="passo rv" style="--d:80ms">
-        <div class="moldura"><img src="assets/g/conselho.jpg" width="1000" height="606" loading="lazy" alt="Sala do conselho, onde os agentes se reúnem"></div>
-        <div class="txt">
-          <span class="n">04</span>
-          <h3>Conselho 2x por dia</h3>
-          <p>Às 12h e às 20h eles se reúnem, conferem e cobram o que travou, e me entregam um resumo.</p>
-        </div>
-      </article>
+    <span class="kicker rv">Como contratar</span>
+    <h2 class="h2 rv" id="h-como">Simples, por escrito e sem surpresa</h2>
+    <div class="como">
+      <div class="etapa rv"><div><h4>Você chama no WhatsApp</h4><p>Conta em poucas palavras o que a sua empresa precisa. Eu faço as perguntas que faltam sobre público, prazo e onde o material vai ser usado.</p></div></div>
+      <div class="etapa rv" style="--d:70ms"><div><h4>Você recebe a proposta</h4><p>Escopo, prazo e investimento por escrito, antes de qualquer pagamento. Cada proposta é sob medida, sem pacote fechado.</p></div></div>
+      <div class="etapa rv"><div><h4>Produzimos com IA e revisão humana</h4><p>Cada entrega passa por curadoria humana antes de chegar até você.</p></div></div>
+      <div class="etapa rv" style="--d:70ms"><div><h4>Entrega e ajuste</h4><p>Você recebe pronto pra publicar ou já rodando, com espaço pra ajuste até bater com o que precisa.</p></div></div>
     </div>
+    <div class="garantias rv">
+      <span>Site e domínio no seu nome</span>
+      <span>Você não precisa entender de tecnologia</span>
+      <span>Atendimento em todo o Brasil</span>
+    </div>
+  </div>
+</section>
 
-    <div class="regra rv">
-      <h3>A regra: só volta pra mim o que só eu faço</h3>
-      <p>Publicar, enviar e pagar ficam comigo. O resto é do time. É assim que um dia rende como se tivesse mais gente.</p>
+<section class="contratar" id="contratar" aria-labelledby="h-ctr">
+  <div class="cx">
+    <div class="cartao rv">
+      <span class="kicker">JGA Serviços de IA</span>
+      <h2 class="h2" id="h-ctr">Quer contratar meus serviços?</h2>
+      <p class="sub">Conte o que a sua empresa precisa e receba uma proposta sem compromisso. Pode começar pelo site da JGA ou direto pelo WhatsApp.</p>
+      <div class="acoes" style="margin-top:24px">
+        <a class="bt" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Ver o site da JGA</a>
+        <a class="bt vaz" href="https://wa.me/5531998234864?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20do%20%40joaoagents.ia%20e%20quero%20falar%20sobre%20IA%20no%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+      <p class="peq">Atendimento em todo o Brasil. A conversa toda acontece pelo WhatsApp.</p>
     </div>
   </div>
 </section>
@@ -377,44 +492,12 @@ filtro de qualidade.</pre>
   </div>
 </section>
 
-<section class="sobre" aria-labelledby="h-sobre">
-  <div class="cx">
-    <img class="foto rv" src="assets/joao.jpg" width="96" height="96" loading="lazy" alt="João Gabriel">
-    <div>
-      <span class="kicker rv">Quem fala aqui</span>
-      <h2 class="h2 rv" id="h-sobre">João Gabriel</h2>
-      <p class="rv">Eu sou o João, da JGA, em Sete Lagoas, Minas. Faço site, automação e agente de IA pra pequeno negócio.</p>
-      <p class="rv">Esta página é minha. O que está aqui eu uso no meu dia a dia ou testei antes de mostrar. O Claude é a IA que trabalha comigo.</p>
-    </div>
-  </div>
-</section>
-
-<section class="contratar" id="contratar" aria-labelledby="h-ctr">
-  <div class="cx">
-    <div class="cartao rv">
-      <span class="kicker">JGA Serviços de IA</span>
-      <h2 class="h2" id="h-ctr">Quer contratar meus serviços?</h2>
-      <p class="sub">A JGA monta isso pro seu negócio: você conta o que precisa e recebe a proposta por escrito, com escopo, prazo e investimento, antes de qualquer pagamento.</p>
-      <ul class="chips">
-        <li>Agentes de IA</li>
-        <li>Sites e landing pages</li>
-        <li>Vídeo e motion</li>
-        <li>Atendimento e automação</li>
-      </ul>
-      <div class="acoes">
-        <a class="bt" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Conhecer a JGA</a>
-        <a class="bt vaz" href="https://wa.me/5531998234864?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20do%20%40joaoagents.ia%20e%20quero%20falar%20sobre%20IA%20no%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Chamar no WhatsApp</a>
-      </div>
-      <p class="peq">Atendimento em todo o Brasil.</p>
-    </div>
-  </div>
-</section>
 
 </main>
 
 <footer>
   <div class="cx">
-    <p class="marca">Uma página de João Gabriel, da <a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA Serviços de IA</a></p>
+    <p class="marca">João Gabriel, da <a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA Serviços de IA</a></p>
     <p><a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Site da JGA</a> · <a href="https://www.instagram.com/joaoagents.ia/" target="_blank" rel="noopener">@joaoagents.ia no Instagram</a></p>
     <p>JGA Serviços de IA, João Gabriel Alves, Sete Lagoas, MG</p>
     <p><a href="https://gojira1998.github.io/jga-site/privacidade.html" target="_blank" rel="noopener">Política de privacidade</a></p>
