@@ -102,4 +102,37 @@
       botao.disabled = false; botao.textContent = "Abrir o material";
     });
   });
+
+  // lista de espera da mentoria: mesma tabela leads (post_slug marca a origem; a resposta vai junto no campo origem)
+  var fe = document.getElementById("form-espera");
+  if (fe) {
+    var me = document.getElementById("msg-espera"), be = fe.querySelector("button"), ini2 = Date.now();
+    fe.addEventListener("submit", function (ev) {
+      ev.preventDefault(); me.textContent = "";
+      var f = new FormData(fe); if (f.get("site_url")) return;
+      var nome = (f.get("nome") || "").trim(), email = (f.get("email") || "").trim().toLowerCase(), wa = (f.get("whatsapp") || "").replace(/\D/g, ""), quer = f.get("quer");
+      if (Date.now() - ini2 < 3000) { me.textContent = "Aguarde um instante e envie de novo."; return; }
+      if (nome.length < 2) { me.textContent = "Escreva o seu nome."; return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) { me.textContent = "Confira o e-mail."; return; }
+      if (wa && (wa.length < 10 || wa.length > 13)) { me.textContent = "Confira o WhatsApp, com DDD. Exemplo: 31 99999-9999. Ou deixe em branco."; return; }
+      if (!quer) { me.textContent = "Escolha o que você mais quer aprender."; return; }
+      if (!f.get("consentimento")) { me.textContent = "Marque a caixa de aceite para entrar."; return; }
+      var cfg = window.JGA_LEADS || {};
+      if (!cfg.url || !cfg.anonKey) { me.textContent = "A lista está em ajuste. Tente de novo mais tarde."; return; }
+      var ref = "direto"; try { if (document.referrer) ref = new URL(document.referrer).hostname; } catch (e) {}
+      be.disabled = true; be.textContent = "Enviando...";
+      fetch(cfg.url.replace(/\/$/, "") + "/rest/v1/" + (cfg.tabela || "leads"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "apikey": cfg.anonKey, "Authorization": "Bearer " + cfg.anonKey, "Prefer": "return=minimal" },
+        // a tabela exige whatsapp com 10 a 13 digitos: sem WhatsApp vai 0000000000 (= nao informado)
+        body: JSON.stringify({ nome: nome, whatsapp: wa || "0000000000", email: email, post_slug: "lista-espera-mentoria", mentoria: true, consentimento: true, origem: ("quer: " + quer + " | " + (p.get("utm_source") || ref)).slice(0, 120) })
+      }).then(function (r) {
+        if (!r.ok && r.status !== 409) throw new Error("status " + r.status);
+        document.getElementById("lista-espera").classList.add("enviado");
+        document.getElementById("ok-espera").focus({ preventScroll: true });
+      }).catch(function () {
+        me.textContent = "Não consegui enviar agora. Tente de novo em instantes."; be.disabled = false; be.textContent = "Entrar na lista de espera";
+      });
+    });
+  }
 })();

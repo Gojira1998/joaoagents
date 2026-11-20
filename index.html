@@ -50,6 +50,10 @@ em{font-style:normal;color:var(--gold)}
 .barra nav a{font:700 13px/1 "Archivo";letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--cream);padding:10px 12px;border-radius:999px}
 .barra nav a.jga{border:1.5px solid var(--gold);color:var(--gold)}
 .barra nav a.lk{display:none}
+.barra nav a.esp{color:var(--gold)}
+.barra nav a.esp .mais{display:none}
+@media(max-width:480px){.barra nav{gap:0}.barra nav a{padding:10px 7px;white-space:nowrap;font-size:11.5px}.barra .eu b{font-size:14px}.barra .cx{gap:6px}.barra nav a.esp{margin-left:10px}}
+@media(min-width:481px){.barra nav a.esp .mais{display:inline}}
 
 /* hero */
 .hero{padding:96px 0 40px;position:relative;overflow:hidden}
@@ -128,6 +132,31 @@ p>code:only-child{display:block;padding:12px;white-space:pre-wrap}
 .aceite a{color:var(--gold)}
 #msg-erro{color:#ff9a7e;font-size:14px;min-height:0}
 .nota{color:var(--warm);font-size:13px}
+
+/* lista de espera */
+.espera{background:var(--ink2);border-block:1px solid var(--line2);position:relative;overflow:hidden}
+.espera::before{content:"";position:absolute;inset:-30% -20% auto auto;width:70%;height:90%;background:radial-gradient(closest-side,rgba(244,194,79,.14),transparent 70%);pointer-events:none}
+.espera .cx{position:relative;display:grid;gap:28px}
+.espera ul{list-style:none;display:grid;gap:12px;margin-top:22px}
+.espera li{display:flex;gap:12px;align-items:flex-start;font-weight:600;color:var(--cream)}
+.espera li::before{content:"";flex:none;width:12px;height:12px;margin-top:7px;border-radius:3px;background:var(--gold);box-shadow:0 0 0 3px rgba(244,194,79,.2)}
+.espera .peq{margin-top:18px;color:var(--warm);font-size:14px}
+#form-espera{padding:22px 20px;border-radius:24px;background:var(--ink3);border:1.5px solid rgba(244,194,79,.55);display:grid;gap:14px}
+#form-espera>b{font:800 18px/1.2 "Archivo";font-stretch:106%;text-transform:uppercase}
+#form-espera fieldset{border:0;display:grid;gap:8px}
+#form-espera legend{font-weight:600;font-size:14px;color:var(--warm);margin-bottom:6px}
+.opc{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line2);background:#0f0b08;font-weight:600;font-size:15.5px;cursor:pointer;transition:border-color .2s,background .2s}
+.opc:hover{border-color:var(--line)}
+.opc input{width:20px;height:20px;accent-color:var(--terra);flex:none}
+.opc:has(input:checked){border-color:var(--gold);background:rgba(244,194,79,.08)}
+.opc:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:2px}
+#msg-espera{color:#ff9a7e;font-size:14px}
+.ok-espera{display:none;padding:26px 22px;border-radius:24px;border:1.5px solid var(--gold);background:var(--ink3)}
+.ok-espera h3{font-size:26px;text-transform:uppercase;font-stretch:106%;color:var(--gold);margin-bottom:10px}
+.ok-espera p{color:var(--cream)}
+.espera.enviado #form-espera{display:none}
+.espera.enviado .ok-espera{display:block}
+@media(min-width:860px){.espera .cx{grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}}
 
 /* sobre */
 .sobre .cx{display:grid;gap:22px}
@@ -243,6 +272,7 @@ footer .marca{font:800 15px "Archivo";color:var(--cream)}
       <a class="lk" href="#servicos">Serviços</a>
       <a class="lk" href="#trabalhos">Trabalhos</a>
       <a class="lk" href="#materiais">Materiais grátis</a>
+      <a class="esp" href="#lista-espera">Lista<span class="mais"> de espera</span></a>
       <a class="en" style="font-size:12px;color:var(--warm)" href="en/" hreflang="en" lang="en">English</a>
       <a class="jga" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Site da JGA</a>
     </nav>
@@ -376,6 +406,46 @@ footer .marca{font:800 15px "Archivo";color:var(--cream)}
       <span>Site e domínio no seu nome</span>
       <span>Você não precisa entender de tecnologia</span>
       <span>Atendimento em todo o Brasil</span>
+    </div>
+  </div>
+</section>
+
+<section class="espera" id="lista-espera" aria-labelledby="h-esp">
+  <div class="cx">
+    <div class="rv">
+      <span class="kicker">Lista de espera</span>
+      <h2 class="h2" id="h-esp">Aprenda a criar com IA</h2>
+      <p class="sub">Estou preparando uma mentoria pra quem quer criar com IA do zero. Entre na lista e receba as informações antes de todo mundo.</p>
+      <ul>
+        <li>Animação com IA: do roteiro ao vídeo pronto, sem saber desenhar.</li>
+        <li>Agentes de IA: montar o seu time de agentes pra trabalhar por você.</li>
+        <li>Conteúdo e vídeos: criar com constância, no seu estilo.</li>
+      </ul>
+      <p class="peq">Vagas e data anunciadas primeiro pra lista. Entrar não custa nada e não te obriga a nada.</p>
+    </div>
+    <div class="rv" style="--d:120ms">
+      <form id="form-espera" novalidate>
+        <b>Quero entrar na lista</b>
+        <label class="campo">Seu nome<input name="nome" type="text" autocomplete="name" required></label>
+        <label class="campo">E-mail<input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+        <label class="campo">WhatsApp com DDD (opcional)<input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="31 99999-9999"></label>
+        <fieldset>
+          <legend>O que você mais quer aprender?</legend>
+          <label class="opc"><input type="radio" name="quer" value="animacao com IA" required>Animação com IA</label>
+          <label class="opc"><input type="radio" name="quer" value="agentes de IA">Agentes de IA</label>
+          <label class="opc"><input type="radio" name="quer" value="conteudo e videos">Conteúdo e vídeos</label>
+          <label class="opc"><input type="radio" name="quer" value="vender produtos digitais">Vender produtos digitais</label>
+        </fieldset>
+        <input class="oculto" name="site_url" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="aceite"><input type="checkbox" name="consentimento" required><span>Aceito receber avisos da JGA sobre a mentoria por e-mail e WhatsApp, e concordo com a <a href="https://gojira1998.github.io/jga-site/privacidade.html" target="_blank" rel="noopener">política de privacidade</a>. Posso sair quando quiser.</span></label>
+        <button class="bt" type="submit">Entrar na lista de espera</button>
+        <p id="msg-espera" role="alert"></p>
+      </form>
+      <div class="ok-espera" id="ok-espera" role="status" tabindex="-1">
+        <h3>Você está na lista</h3>
+        <p>Pronto, seu nome entrou. Quando as vagas e a data saírem, você recebe o aviso primeiro. Enquanto isso, os materiais grátis abaixo já estão liberados.</p>
+        <p style="margin-top:16px"><a class="bt vaz" href="#materiais">Ver os materiais grátis</a></p>
+      </div>
     </div>
   </div>
 </section>
