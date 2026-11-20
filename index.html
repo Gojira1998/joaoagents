@@ -3,290 +3,298 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>João Gabriel | IA e automação pro seu negócio</title>
-<meta name="description" content="Skills, agentes e automação com IA explicados de um jeito que dá pra usar. Pegue de graça as 5 skills do Claude que eu mais uso.">
-<meta property="og:title" content="As 5 skills do Claude que eu mais uso">
-<meta property="og:description" content="Cada uma com pra que serve, link oficial e o primeiro passo. Grátis.">
-<meta property="og:image" content="assets/hero.jpg">
+<title>João Gabriel | Agentes de IA com Claude</title>
+<meta name="description" content="Eu monto times de agentes de IA no Claude Code e mostro o passo a passo. Pegue de graça o prompt do seu primeiro agente, skills e plugins. E, se precisar, contrate a JGA.">
+<meta name="theme-color" content="#17120e">
+<meta property="og:title" content="João Gabriel | Agentes de IA com Claude">
+<meta property="og:description" content="O passo a passo pra montar o seu time de agentes, com material grátis. E serviços da JGA pra quem quer isso rodando no negócio.">
+<meta property="og:image" content="assets/g/taverna.jpg">
 <link rel="icon" href="assets/joao.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ceu-alto:#2b66b2; --ceu:#5ea4df; --noite:#0d1433; --tinta:#131a3a; --nuvem:#f3f7fc; --linha:#dbe4f0;
-  --brasa:#ff5630; --brasa-esc:#d93d1a; --ouro:#ffc53d; --mata:#178f5f; --texto:#3b4566;
-  --titulo:"Bricolage Grotesque",system-ui,sans-serif; --corpo:"DM Sans",system-ui,sans-serif;
-  --raio:22px; --margem:clamp(20px,5.5vw,34px);
+  --ink:#17120e; --ink2:#1f1812; --ink3:#291f17; --cream:#eadfc6; --warm:#b3a58c; --terra:#d56a4a; --terra2:#e07a58; --gold:#f4c24f;
+  --line:rgba(244,194,79,.28); --line2:rgba(234,223,198,.12); --ease:cubic-bezier(.2,.7,.2,1);
 }
-*{box-sizing:border-box} html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;font-family:var(--corpo);color:var(--texto);background:var(--nuvem);font-size:17px;line-height:1.55;padding-bottom:64px;overflow-x:hidden}
-img{max-width:100%;display:block} .px{image-rendering:pixelated;image-rendering:crisp-edges}
-h1,h2,h3{font-family:var(--titulo);color:var(--tinta);margin:0;letter-spacing:-.025em;line-height:1.02}
-a{color:inherit} .cx{max-width:560px;margin:0 auto;padding:0 var(--margem)}
-:focus-visible{outline:3px solid var(--ouro);outline-offset:3px;border-radius:8px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:68px;-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--cream);font:400 17px/1.55 "Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+.cx{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-weight:800;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+.kicker{display:inline-block;font:800 12px/1 "Archivo";font-stretch:112%;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.h2{font-size:clamp(30px,7.4vw,52px);font-stretch:108%;text-transform:uppercase;margin-bottom:12px}
+.sub{color:var(--warm);max-width:60ch;font-size:clamp(16px,4.2vw,19px)}
+section{padding:68px 0}
+em{font-style:normal;color:var(--gold)}
 
-/* topo */
-.topo{position:relative;min-height:100svh;color:#fff;display:flex;flex-direction:column;overflow:hidden;background:var(--ceu-alto)}
-.topo .arte{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 100%;transform:scale(var(--z,1.02));transform-origin:60% 100%;will-change:transform}
-.topo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,20,51,.7) 0%,rgba(13,20,51,.45) 40%,rgba(13,20,51,0) 64%);pointer-events:none}
-.barra{position:relative;z-index:2;display:flex;align-items:center;gap:12px;padding:18px var(--margem) 0}
-.barra img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.85)}
-.barra b{font-family:var(--titulo);font-weight:700;font-size:17px;letter-spacing:-.01em;display:block;line-height:1.1}
-.barra span{font-size:13.5px;opacity:.86}
-.barra a{margin-left:auto;font-size:14px;font-weight:700;text-decoration:none;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.chamada{position:relative;z-index:2;padding:clamp(28px,7vh,64px) var(--margem) 0;max-width:620px}
-.chamada h1{color:#fff;font-weight:800;font-size:clamp(42px,12.4vw,74px);text-wrap:balance}
-.chamada p{font-size:18.5px;line-height:1.45;margin:18px 0 26px;max-width:30ch;color:rgba(255,255,255,.94);text-wrap:pretty}
-.bt{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--titulo);font-weight:700;font-size:19px;letter-spacing:-.01em;color:#fff;background:var(--brasa);border:0;border-radius:16px;padding:17px 24px;text-decoration:none;cursor:pointer;box-shadow:0 6px 0 var(--brasa-esc),0 18px 30px -10px rgba(217,61,26,.7);transition:transform .12s,box-shadow .12s}
-.bt:active{transform:translateY(4px);box-shadow:0 2px 0 var(--brasa-esc),0 8px 14px -8px rgba(217,61,26,.7)}
-.bt[disabled]{opacity:.7;cursor:wait}
-.chamada .novo{display:inline-block;margin-bottom:16px;font-family:var(--titulo);font-weight:700;font-size:14px;letter-spacing:.02em;color:#1b1406;background:#f4c24f;padding:7px 14px;border-radius:999px;box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
-.chamada p{text-shadow:0 2px 14px rgba(13,20,51,.75)}
-#kit-guilda{scroll-margin-top:24px}
-.chamada small{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:500;color:#fff;background:rgba(13,20,51,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px}
+/* botoes: pilula terracota com borda dourada, como o CTA do reel */
+.bt{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 20px;border-radius:999px;border:2px solid var(--gold);background:var(--terra);color:#fff7ea;font:800 15px/1.15 "Archivo";font-stretch:104%;letter-spacing:.02em;text-align:center;text-transform:uppercase;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .25s var(--ease),background .2s,box-shadow .25s}
+.bt:hover{background:var(--terra2);transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.55)}
+.bt:active{transform:translateY(0) scale(.98)}
+.bt.vaz{background:transparent;color:var(--gold)}
+.bt.vaz:hover{background:rgba(244,194,79,.1)}
+.bt:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.bt[disabled]{opacity:.6;cursor:wait}
 
-/* seções */
-section{padding:clamp(56px,13vw,92px) 0}
-.h2{font-weight:800;font-size:clamp(33px,9.2vw,50px);text-wrap:balance}
-.sub{font-size:18px;margin:14px 0 0;max-width:34ch;text-wrap:pretty}
+/* barra */
+.barra{position:fixed;inset:0 0 auto 0;z-index:30;background:rgba(23,18,14,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line2)}
+.barra .cx{display:flex;align-items:center;gap:12px;height:60px}
+.barra .eu{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.barra .eu img{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);image-rendering:pixelated}
+.barra .eu b{font-weight:800;font-size:15px;white-space:nowrap}
+.barra .eu span{display:none;color:var(--warm);font-size:13px}
+.barra nav{margin-left:auto;display:flex;align-items:center;gap:6px}
+.barra nav a{font:700 13px/1 "Archivo";letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--cream);padding:10px 12px;border-radius:999px}
+.barra nav a.jga{border:1.5px solid var(--gold);color:var(--gold)}
+.barra nav a.lk{display:none}
 
-.quem{background:#fff}
-.quem .palco{position:relative;height:210px;border-radius:var(--raio);background:linear-gradient(180deg,#6fb2ea 0%,#a9d8f6 62%,#3fae6a 62%,#2f8f55 100%);overflow:hidden;margin-bottom:26px}
-.quem .palco::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22px;background:repeating-linear-gradient(90deg,#8a5a34 0 22px,#7a4d2c 22px 24px)}
-.quem .mago{position:absolute;left:50%;bottom:20px;height:176px;width:auto;transform:translateX(-64%)}
-.quem .rob{position:absolute;left:50%;bottom:20px;height:104px;width:auto;transform:translateX(52%);animation:pulinho 1.6s steps(2,jump-none) infinite}
-@keyframes pulinho{50%{transform:translateX(52%) translateY(-8px)}}
-.quem p{margin:14px 0 0}
-.quem strong{color:var(--tinta)}
+/* hero */
+.hero{padding:96px 0 40px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -30% auto -30%;height:80%;background:radial-gradient(closest-side,rgba(213,106,74,.22),transparent 70%);pointer-events:none}
+.hero .cx{position:relative;display:grid;gap:30px}
+.hero h1{font-size:clamp(38px,11.2vw,66px);font-stretch:106%;text-transform:uppercase;line-height:.98}
+.hero h1 .w{display:inline-block;opacity:0;transform:scale(1.06) translateY(10px)}
+.js-ok .hero h1 .w{animation:pop .55s var(--ease) forwards;animation-delay:calc(var(--i)*70ms + 150ms)}
+.hero .lead{margin-top:18px;font-size:clamp(17px,4.4vw,21px);color:var(--cream);max-width:34ch;opacity:.92}
+.hero .acoes{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.hero .peq{margin-top:14px;color:var(--warm);font-size:14px}
+@keyframes pop{to{opacity:1;transform:none}}
+.moldura{position:relative;border-radius:26px;overflow:hidden;border:1.5px solid rgba(244,194,79,.55);box-shadow:0 18px 50px rgba(0,0,0,.6);background:#000;aspect-ratio:1000/606}
+.moldura img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 6s var(--ease)}
+.moldura.v img{transform:scale(1)}
+.moldura::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.38) 100%)}
+.hero .moldura{aspect-ratio:1000/606}
 
-.dores{background:var(--nuvem)}
-.placar{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-weight:700;font-size:15px;color:var(--tinta);background:#fff;border:1.5px solid var(--linha);border-radius:999px;padding:8px 14px}
-.placar i{width:12px;height:12px;border-radius:3px;background:var(--linha);transition:background .3s}
-.placar i.ok{background:var(--mata)}
-.dor{display:grid;grid-template-columns:clamp(92px,27vw,150px) 1fr;gap:clamp(10px,3vw,22px);align-items:center;margin-top:26px}
-.dor:nth-of-type(even){grid-template-columns:1fr clamp(92px,27vw,150px)}
-.dor:nth-of-type(even) .chefao{order:2}
-.chefao{border:0;background:none;padding:0;cursor:pointer;display:grid;justify-items:center;gap:6px;font:inherit;-webkit-tap-highlight-color:transparent}
-.chefao img{width:100%;height:auto;filter:drop-shadow(0 10px 0 rgba(19,26,58,.12));animation:flutua 2.2s steps(4,jump-none) infinite;transition:filter .4s,transform .4s,opacity .4s}
-.dor:nth-of-type(2) .chefao img{animation-delay:-.7s} .dor:nth-of-type(3) .chefao img{animation-delay:-1.3s}
-@keyframes flutua{50%{transform:translateY(-9px)}}
-.chefao:hover img,.chefao:focus-visible img{animation:treme .35s steps(2) infinite}
-@keyframes treme{50%{transform:translateX(5px) rotate(4deg)}}
-.vida{width:78%;height:9px;border-radius:5px;background:#d5ddeb;overflow:hidden}
-.vida b{display:block;height:100%;width:100%;background:var(--brasa);transition:width .5s steps(5)}
-.dor.caiu .vida b{width:0}
-.dor.caiu .chefao{cursor:default}
-.dor.caiu .chefao img{animation:none;transform:rotate(82deg) translateX(14%) scale(.86);filter:grayscale(1) drop-shadow(0 0 0 transparent);opacity:.5}
-.dor.golpe .chefao img{animation:golpe .45s steps(3) 1}
-@keyframes golpe{0%{filter:brightness(4)}50%{transform:translateX(-10px);filter:brightness(1)}100%{filter:brightness(4)}}
-.fala{background:#fff;border:1.5px solid var(--linha);border-radius:var(--raio);padding:18px;box-shadow:0 14px 30px -22px rgba(19,26,58,.5)}
-.fala h3{font-weight:700;font-size:21px;line-height:1.12;letter-spacing:-.02em}
-.fala p{margin:8px 0 0;font-size:16px}
-.golpear{margin-top:14px;font-family:var(--titulo);font-weight:700;font-size:15.5px;color:#fff;background:var(--tinta);border:0;border-radius:12px;padding:12px 16px;cursor:pointer;box-shadow:0 4px 0 #05081a;transition:transform .1s,box-shadow .1s}
-.golpear:active{transform:translateY(3px);box-shadow:0 1px 0 #05081a}
-.fala .item{display:block;margin-top:14px;padding:12px 14px;border-radius:13px;background:#e3f5ec;color:#0f5b3b;font-size:15.5px;font-weight:500}
-.fala .item b{font-weight:700}
-.js .dor:not(.caiu) .item{display:none}
-.dor.caiu .golpear{display:none}
-.dor.caiu .item{animation:surge .4s cubic-bezier(.3,1.5,.5,1)}
-@keyframes surge{0%{transform:scale(.9);opacity:0}}
-.vencido{margin-top:28px;background:var(--tinta);color:#c9d3ee;border-radius:var(--raio);padding:20px}
-.vencido b{display:block;font-family:var(--titulo);font-size:22px;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
-.vencido .bt{margin-top:14px;font-size:17px;padding:14px 20px}
+/* numeros */
+.nums{padding:44px 0;background:var(--ink2);border-block:1px solid var(--line2)}
+.nums .tit{font:800 13px/1.5 "Archivo";font-stretch:112%;letter-spacing:.16em;text-transform:uppercase;color:var(--warm);margin-bottom:22px}
+.nums ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:22px 16px}
+.nums li strong{display:block;font:900 clamp(40px,12vw,64px)/1 "Archivo";font-stretch:100%;color:var(--gold);font-variant-numeric:tabular-nums}
+.nums li span{display:block;margin-top:6px;color:var(--cream);font-size:15px;line-height:1.3}
+.nums .fim{margin-top:24px;color:var(--warm);font-size:15px}
 
-.materiais{background:radial-gradient(120% 40% at 50% 0%,#2a3a86 0%,var(--noite) 62%);color:#c9d3ee;position:relative;overflow:hidden}
-.materiais .h2{color:#fff}
-.estrelas i{position:absolute;width:4px;height:4px;background:#fff;opacity:.5;animation:pisca 2.4s steps(2) infinite}
-@keyframes pisca{50%{opacity:.12}}
-.caixas{position:relative;z-index:1;display:grid;gap:18px;margin-top:30px}
-.caixa{background:#fff;color:var(--texto);border-radius:var(--raio);padding:20px}
-.caixa .cabeca{display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:center}
-.caixa .cabeca img{width:84px}
-.caixa .cabeca img.abre{animation:abre .5s cubic-bezier(.3,1.6,.5,1)}
-@keyframes abre{0%{transform:scale(.8) rotate(-4deg)}100%{transform:none}}
-.caixa .de{font-size:14px;font-weight:700;color:var(--ceu-alto);margin:0}
-.caixa.aberta .de{color:var(--mata)}
-.caixa h3{font-weight:700;font-size:23px;line-height:1.1;margin-top:4px}
-.caixa .resumo{margin:14px 0 16px;font-size:16.5px}
-.caixa .bt{width:100%}
-.caixa .aviso{color:#c0261a;font-weight:700;font-size:14.5px;margin:12px 0 0}
-.caixa.breve{background:transparent;border:2px dashed rgba(255,255,255,.3);color:#c9d3ee}
-.caixa.breve h3{color:#fff;font-size:20px}
-.caixa.breve .cabeca img{opacity:.55;filter:grayscale(.6)}
-form{margin-top:4px;padding-top:16px;border-top:1.5px solid var(--linha)}
-form>b{display:block;font-family:var(--titulo);font-size:19px;color:var(--tinta);margin-bottom:14px;letter-spacing:-.01em}
-label.campo{display:block;font-weight:700;font-size:14.5px;color:var(--tinta);margin-bottom:14px}
-label.campo input{display:block;width:100%;margin-top:6px;font:inherit;font-weight:400;font-size:17px;color:var(--tinta);padding:14px 15px;border-radius:13px;border:1.5px solid var(--linha);background:var(--nuvem)}
-label.campo input:focus{outline:none;border-color:var(--ceu-alto);background:#fff}
-.aceite{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:13.5px;line-height:1.4;margin:4px 0 18px}
-.aceite input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--brasa)}
-#msg-erro{color:#c0261a;font-weight:700;font-size:14.5px;min-height:20px;margin:12px 0 0}
-.nota{font-size:13.5px;margin:12px 0 0}
-.oculto{position:absolute;left:-9999px}
-[hidden]{display:none!important}
-.dentro{margin-top:4px;border-top:1.5px solid var(--linha);padding-top:16px}
-.dentro>p{margin:0 0 6px;font-weight:500;color:var(--tinta)}
-details{border-bottom:1.5px solid var(--linha)}
-details:last-of-type{border-bottom:0}
-summary{list-style:none;cursor:pointer;padding:15px 0;font-family:var(--titulo);font-weight:700;font-size:19px;color:var(--tinta);display:flex;justify-content:space-between;align-items:center;gap:12px}
+/* como funciona */
+.passos{display:grid;gap:18px;margin-top:34px}
+.passo{background:var(--ink2);border:1px solid var(--line2);border-radius:24px;overflow:hidden}
+.passo .txt{padding:22px 22px 24px}
+.passo .n{font:900 13px/1 "Archivo";font-stretch:112%;letter-spacing:.14em;color:var(--terra2)}
+.passo h3{font-size:clamp(22px,6vw,28px);font-stretch:106%;text-transform:uppercase;margin:8px 0 8px}
+.passo p{color:var(--warm);font-size:16px}
+.passo .moldura{border-radius:0;border:0;border-bottom:1px solid var(--line);box-shadow:none;aspect-ratio:1000/606}
+.codigo{margin:16px 0 0;padding:16px;border-radius:16px;background:#0f0b08;border:1px solid var(--line);font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--cream);overflow-x:auto;white-space:pre}
+.codigo b{color:var(--gold);font-weight:600}
+.regra{margin-top:18px;padding:24px;border-radius:24px;border:1.5px solid var(--line);background:linear-gradient(180deg,rgba(213,106,74,.14),rgba(213,106,74,.04))}
+.regra h3{font-size:clamp(22px,6vw,30px);font-stretch:106%;text-transform:uppercase}
+.regra p{margin-top:8px;color:var(--cream)}
+
+/* materiais */
+.mat{background:linear-gradient(180deg,var(--ink) 0,var(--ink3) 100%);border-top:1px solid var(--line2)}
+.caixas{display:grid;gap:16px;margin-top:30px}
+.caixa{background:var(--ink2);border:1px solid var(--line2);border-radius:24px;padding:20px;transition:border-color .3s}
+.caixa.aberta{border-color:var(--line)}
+.cabeca{display:flex;gap:14px;align-items:flex-start}
+.ic{flex:none;width:46px;height:46px;border-radius:14px;border:1.5px solid var(--line);background:rgba(244,194,79,.08) center/22px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f4c24f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3C/svg%3E")}
+.caixa.aberta .ic{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f4c24f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 7.5-2'/%3E%3C/svg%3E")}
+.caixa.aberta .ic.abre{animation:pop .5s var(--ease)}
+.cabeca .de{font:800 11px/1 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cabeca h3{font-size:clamp(19px,5.2vw,24px);font-stretch:102%;line-height:1.12}
+.caixa .resumo{margin:14px 0 16px;color:var(--warm);font-size:16px}
+.caixa .abrir{width:100%}
+.dentro{margin-top:16px;border-top:1px solid var(--line2);padding-top:14px;animation:entra .5s var(--ease)}
+.dentro>p{color:var(--warm);font-size:15px;margin-bottom:12px}
+@keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+details{border:1px solid var(--line2);border-radius:14px;margin-top:8px;background:rgba(0,0,0,.18)}
+summary{cursor:pointer;list-style:none;padding:14px 44px 14px 16px;font-weight:700;font-size:16px;position:relative}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-weight:500;font-size:26px;line-height:1;color:var(--brasa)}
-details[open] summary::after{content:"\2212"}
-details div{padding:0 0 16px;font-size:16px}
-details div p{margin:0 0 10px}
-details code{background:var(--nuvem);border:1px solid var(--linha);border-radius:8px;padding:2px 7px;font-size:14.5px;word-break:break-word}
-details a{color:var(--ceu-alto);font-weight:700}
-.zap{position:relative;z-index:1;display:block;margin-top:26px;color:#fff;font-weight:700}
+summary::after{content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:22px;font-weight:500;transition:transform .25s}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details>div{padding:0 16px 16px;font-size:15.5px}
+details p{margin-top:10px;color:var(--cream)}
+details a{color:var(--gold);word-break:break-word}
+code{font:13.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0f0b08;border:1px solid var(--line2);border-radius:8px;padding:2px 6px;word-break:break-word;color:var(--cream)}
+p>code:only-child{display:block;padding:12px;white-space:pre-wrap}
+.aviso{margin:10px 0;color:#ff9a7e;font-size:14px}
+#form-lead{margin-top:16px;padding:20px;border-radius:20px;background:var(--ink3);border:1.5px solid var(--line);display:grid;gap:14px}
+#form-lead>b{font:800 18px/1.2 "Archivo";font-stretch:106%;text-transform:uppercase}
+.campo{display:grid;gap:6px;font-weight:600;font-size:14px;color:var(--warm)}
+.campo input{font:400 17px "Archivo";min-height:50px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line2);background:#0f0b08;color:var(--cream)}
+.campo input:focus{border-color:var(--gold)}
+.oculto{position:absolute;left:-9999px;opacity:0}
+.aceite{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--warm);line-height:1.45}
+.aceite input{flex:none;width:22px;height:22px;margin-top:1px;accent-color:var(--terra)}
+.aceite a{color:var(--gold)}
+#msg-erro{color:#ff9a7e;font-size:14px;min-height:0}
+.nota{color:var(--warm);font-size:13px}
 
-footer{background:var(--noite);color:#8f9bc2;text-align:center;font-size:14px;padding:30px var(--margem) 98px;margin-bottom:-64px}
-footer a{color:#fff;font-weight:700;text-decoration:none}
-footer p{margin:6px 0}
+/* sobre */
+.sobre .cx{display:grid;gap:22px}
+.sobre .foto{width:96px;height:96px;border-radius:24px;border:1.5px solid var(--line);image-rendering:pixelated}
+.sobre p{color:var(--cream);max-width:58ch;margin-top:12px}
 
-/* trilha fixa: o mago anda até o baú conforme a página rola */
-.trilha{position:fixed;left:0;right:0;bottom:0;height:56px;z-index:20;background:linear-gradient(180deg,rgba(13,20,51,0) 0,rgba(13,20,51,.0) 40%);pointer-events:none}
-.trilha .chao{position:absolute;left:0;right:0;bottom:0;height:20px;background:repeating-linear-gradient(90deg,#3fae6a 0 14px,#37a060 14px 28px);border-top:4px solid #2f8f55;box-shadow:0 -10px 24px rgba(13,20,51,.18)}
-.trilha .anda{position:absolute;bottom:16px;left:0;height:44px;width:auto;will-change:transform}
-.trilha .alvo{position:absolute;bottom:16px;right:12px;height:30px;width:auto}
+/* contratar */
+.contratar{background:var(--ink2);border-block:1px solid var(--line2)}
+.cartao{position:relative;overflow:hidden;border-radius:28px;border:1.5px solid rgba(244,194,79,.55);padding:30px 22px;background:radial-gradient(120% 90% at 100% 0,rgba(213,106,74,.28),transparent 60%),var(--ink)}
+.cartao .h2{margin-bottom:14px}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px}
+.chips li{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;color:var(--cream)}
+.cartao .acoes{display:flex;flex-direction:column;gap:12px}
+.cartao .peq{margin-top:16px;color:var(--warm);font-size:14px}
+
+footer{padding:40px 0 56px;color:var(--warm);font-size:14px}
+footer .cx{display:grid;gap:10px}
+footer a{color:var(--cream);text-decoration-color:var(--line)}
+footer .marca{font:800 15px "Archivo";color:var(--cream)}
+
+/* reveal ao rolar */
+.js-ok .rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0ms)}
+.js-ok .rv.v{opacity:1;transform:none}
 
 @media (min-width:760px){
   body{font-size:18px}
-  .topo{min-height:0;background:radial-gradient(90% 120% at 80% 100%,#2f4fb0 0%,var(--noite) 70%)}
-  .topo::after{display:none}
-  .topo .arte{inset:auto;top:92px;bottom:64px;right:max(var(--margem),calc(50% - 500px));width:390px;height:auto;border-radius:28px;object-position:58% 100%;transform:none;box-shadow:0 30px 60px -24px rgba(0,0,0,.7)}
-  .barra{max-width:1000px;margin:0 auto;width:100%;padding-left:0;padding-right:0}
-  .chamada{margin:0 auto;width:100%;max-width:1000px;padding:70px 440px 120px 0}
-  .chamada h1{font-size:clamp(44px,5.4vw,66px)}
+  .barra .eu span{display:block}
+  .barra nav a.lk{display:block}
+  section{padding:96px 0}
+  .hero{padding:130px 0 70px}
+  .hero .cx{grid-template-columns:.9fr 1.1fr;align-items:center;gap:48px}
+  .hero .acoes{flex-direction:row;flex-wrap:wrap}
+  .nums ul{grid-template-columns:repeat(4,1fr)}
+  .passos{grid-template-columns:1fr 1fr}
+  .passo.largo{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}
+  .passo.largo .moldura{border-bottom:0;border-left:1px solid var(--line);aspect-ratio:auto;min-height:100%;order:2}
+  .caixas{grid-template-columns:1fr 1fr;align-items:start}
+  .sobre .cx{grid-template-columns:auto 1fr;gap:34px;align-items:start}
+  .cartao{padding:52px 48px}
+  .cartao .acoes{flex-direction:row;flex-wrap:wrap}
 }
-@media (min-width:760px) and (max-width:1060px){ .barra,.chamada{padding-left:var(--margem)} .chamada{padding-right:calc(410px + var(--margem))} }
-@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .quem .rob,.estrelas i,.chefao img,.dor.caiu .item,.caixa .cabeca img.abre{animation:none} .topo .arte{transform:none} }
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js-ok .rv,.hero h1 .w{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+  .moldura img{transform:none;transition:none}
+  .dentro{animation:none}
+}
 </style>
-<link rel="stylesheet" href="lutadores.css">
 </head>
 <body>
 
-<header class="topo">
-  <img class="arte px" src="assets/hero.jpg" alt="Paisagem em pixel art: o João, vestido de mago, e um robô laranja numa colina, com itens de jogo flutuando">
-  <div class="barra">
-    <img src="assets/joao.jpg" alt="">
-    <div><b>João Gabriel</b><span>IA e automação</span></div>
-    <a href="https://www.instagram.com/joaoagents.ia/" target="_blank" rel="noopener">Instagram</a>
-  </div>
-  <div class="chamada">
-    <span class="novo">Novo reel: a minha guilda de agentes</span>
-    <h1>Monte o seu time de agentes de IA.</h1>
-    <p>Cada reel deixa um material grátis aqui. Comece pelo prompt do seu primeiro agente.</p>
-    <a class="bt" href="#kit-guilda">Pegar o prompt do 1º agente</a><br>
-    <small>Grátis. Vem junto com 3 skills e mais 5 prompts.</small>
+<header class="barra">
+  <div class="cx">
+    <a class="eu" href="#topo"><img src="assets/joao.jpg" alt="" width="36" height="36"><b>João Gabriel</b><span>Agentes de IA</span></a>
+    <nav aria-label="Principal">
+      <a class="lk" href="#materiais">Materiais</a>
+      <a class="lk" href="https://www.instagram.com/joaoagents.ia/" target="_blank" rel="noopener">Instagram</a>
+      <a class="jga" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA</a>
+    </nav>
   </div>
 </header>
 
-<!-- TELA DE SELEÇÃO (início): ep. 1 da conta A. Dados em lutadores.js, visual em lutadores.css, código em tela-selecao.js. -->
-<section class="selecao" id="lutadores">
-  <div class="cx">
-    <span class="ep">Ep. 1: Tela de Seleção</span>
-    <h2 class="h2">Você virou lutador?</h2>
-    <p class="sub">Quem comentou no reel virou um lutador do fliperama. Cada poder é um plugin de verdade.</p>
-    <div class="busca">
-      <label for="busca-at">Ache o seu lutador pelo @</label>
-      <div class="campo-at"><span aria-hidden="true">@</span><input id="busca-at" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="seu.usuario" enterkeyhint="search"></div>
-      <p class="resp" aria-live="polite"></p>
-    </div>
-    <ul class="grade" aria-label="Lutadores"></ul>
-    <p class="cabe"><b>Não dá pra caber todo mundo na luta. Aqui cabe.</b> É só procurar o seu @.</p>
-    <div class="ficha" hidden aria-live="polite">
-      <div class="palco"><img src="" alt=""></div>
-      <div class="info">
-        <p class="nome"></p>
-        <p class="classe"></p>
-        <dl>
-          <dt>Especial</dt><dd><span class="esp"></span></dd>
-          <dt>Plugin</dt><dd class="plugin"></dd>
-          <dt>Nível</dt><dd><span class="nv"></span> <span class="nvt"></span></dd>
-          <dt>Estreia</dt><dd class="estreia"></dd>
-        </dl>
-        <button class="bt card" type="button">Baixar card pro story</button>
-        <p class="dica">Posta no story e marca a @joaoagents.ia. Comentando de novo nos próximos episódios, o seu lutador sobe de nível.</p>
-        <button class="fechar" type="button">Voltar pra grade</button>
-      </div>
-    </div>
-    <div class="entrar">
-      <b>Quer entrar na próxima luta?</b>
-      <p>Comenta <strong>LUTADOR</strong> e a tarefa chata que você queria que a IA fizesse por você. Ela vira o seu golpe especial, e o seu lutador estreia no próximo episódio.</p>
-    </div>
-  </div>
-</section>
-<!-- TELA DE SELEÇÃO (fim) -->
+<main id="topo">
 
-<section class="quem">
+<section class="hero" aria-labelledby="h1">
   <div class="cx">
-    <div class="palco" aria-hidden="true">
-      <img class="mago px" src="assets/mago-frente.png" alt="">
-      <img class="rob px" src="assets/opus-a.png" alt="">
+    <div>
+      <span class="kicker rv">Feito no Claude Code</span>
+      <h1 id="h1" data-palavras>Agentes de IA que trabalham enquanto você cuida do resto</h1>
+      <p class="lead rv" style="--d:500ms">Eu monto times de agentes de IA e mostro o passo a passo nos reels. Aqui você pega o material de graça.</p>
+      <div class="acoes rv" style="--d:650ms">
+        <a class="bt" href="#kit-guilda">Pegar o prompt do 1º agente</a>
+        <a class="bt vaz" href="#contratar">Contratar meus serviços</a>
+      </div>
+      <p class="peq rv" style="--d:750ms">Grátis. Vem junto com 3 skills e mais 5 prompts.</p>
     </div>
-    <h2 class="h2">Quem está do outro lado</h2>
-    <p>Eu sou o <strong>João Gabriel</strong>, da JGA, em Sete Lagoas, Minas. Faço site, automação e agente de IA pra pequeno negócio.</p>
-    <p>Esta página é minha. O que está aqui eu uso no meu dia a dia ou testei antes de mostrar. Eu conto em forma de jogo porque assim cabe num reel e dá pra entender sem ser programador.</p>
-    <p>O Claude é a IA que trabalha comigo. Ele aparece em todo vídeo, cada vez de um jeito: já foi robô, e no próximo vira o golpe especial.</p>
+    <div class="moldura rv" style="--d:300ms"><img src="assets/g/taverna.jpg" width="1000" height="606" alt="Escritório em 3D onde o meu time de agentes de IA trabalha, cada um na sua mesa" fetchpriority="high"></div>
   </div>
 </section>
 
-<section class="dores">
+<section class="nums" aria-label="Números do time de agentes">
   <div class="cx">
-    <h2 class="h2">Três chefões que derrubam quem usa IA</h2>
-    <p class="sub">Reconhece algum? Toque no chefão pra ver o item que derrota ele.</p>
-    <div class="placar" aria-live="polite"><span id="placar-txt">0 de 3 derrotados</span><i></i><i></i><i></i></div>
+    <p class="tit rv">Num dia só, o meu time de agentes fez</p>
+    <ul>
+      <li class="rv"><strong data-n="23">23</strong><span>agentes, cada um com uma função</span></li>
+      <li class="rv" style="--d:80ms"><strong data-n="16">16</strong><span>minutos de vídeo renderizados</span></li>
+      <li class="rv" style="--d:160ms"><strong data-n="673">673</strong><span>imagens conferidas</span></li>
+      <li class="rv" style="--d:240ms"><strong data-n="44">44</strong><span>comentários respondidos</span></li>
+    </ul>
+    <p class="fim rv">Conferir 673 imagens uma por uma levaria horas.</p>
+  </div>
+</section>
 
-    <div class="dor">
-      <button class="chefao" type="button" aria-label="Derrotar: A IA que esquece tudo"><img class="px" src="assets/bicho.png" alt="Chefão em pixel art: uma bola escura e zangada"><span class="vida" aria-hidden="true"><b></b></span></button>
-      <div class="fala">
-        <h3>A IA que esquece tudo</h3>
-        <p>Toda conversa nova começa do zero. Você explica de novo o seu jeito de escrever, as regras do cliente, o passo a passo.</p>
-        <button class="golpear" type="button">Usar o item nele</button>
-        <span class="item"><b>O que derrota:</b> uma skill. É uma pasta com instruções que o Claude só abre quando a tarefa pede.</span>
-      </div>
-    </div>
-    <div class="dor">
-      <button class="chefao" type="button" aria-label="Derrotar: O texto com cara de robô"><img class="px" src="assets/modelo.png" alt="Chefão em pixel art: uma folha de jornal com pernas"><span class="vida" aria-hidden="true"><b></b></span></button>
-      <div class="fala">
-        <h3>O texto com cara de robô</h3>
-        <p>Você pede um post e volta aquele texto liso, cheio de mania de IA. Ninguém acredita, e dá trabalho reescrever.</p>
-        <button class="golpear" type="button">Usar o item nele</button>
-        <span class="item"><b>O que derrota:</b> a skill que caça essas manias e deixa o texto com a sua voz.</span>
-      </div>
-    </div>
-    <div class="dor">
-      <button class="chefao" type="button" aria-label="Derrotar: A tarefa que volta toda semana"><img class="px" src="assets/chefe.png" alt="Chefão em pixel art: um golem de pedra"><span class="vida" aria-hidden="true"><b></b></span></button>
-      <div class="fala">
-        <h3>A tarefa que volta toda semana</h3>
-        <p>Aquela coisa que você faz sempre do mesmo jeito e ninguém automatizou. Ela come horas que eram do seu negócio.</p>
-        <button class="golpear" type="button">Usar o item nele</button>
-        <span class="item"><b>O que derrota:</b> criar a sua própria skill. Você explica uma vez, e o Claude não esquece mais.</span>
-      </div>
+<section id="como" aria-labelledby="h-como">
+  <div class="cx">
+    <span class="kicker rv">Como funciona</span>
+    <h2 class="h2 rv" id="h-como">Um time, não uma ferramenta</h2>
+    <p class="sub rv">Cada agente é um arquivo de instruções com uma função só. Juntos eles tocam a rotina sem eu ficar em cima.</p>
+
+    <div class="passos">
+      <article class="passo rv">
+        <div class="txt">
+          <span class="n">01</span>
+          <h3>1 agente = 1 função</h3>
+          <p>Escrita num arquivo de instruções, que diz quando o agente entra e o que ele faz e não faz.</p>
+          <pre class="codigo" aria-label="Exemplo de arquivo de agente"><b>.claude/agents/sala-revisao.md</b>
+---
+name: sala-revisao
+description: revisar roteiro, legenda,
+  vídeo e site antes de chegar ao João.
+---
+Você é o setor Revisão: o último
+filtro de qualidade.</pre>
+        </div>
+      </article>
+
+      <article class="passo rv" style="--d:80ms">
+        <div class="moldura"><img src="assets/g/mapa2d.jpg" width="1000" height="702" loading="lazy" alt="Mapa do escritório com todas as salas, uma para cada setor"></div>
+        <div class="txt">
+          <span class="n">02</span>
+          <h3>Cada sala, um setor</h3>
+          <p>Redes sociais, clientes, revisão, pesquisa. Cada área tem o seu agente, e eu sei quem cuida do quê.</p>
+        </div>
+      </article>
+
+      <article class="passo rv">
+        <div class="moldura"><img src="assets/g/geral3d.jpg" width="1000" height="606" loading="lazy" alt="Visão geral do escritório com as salas lado a lado"></div>
+        <div class="txt">
+          <span class="n">03</span>
+          <h3>Pega, faz e entrega</h3>
+          <p>Eu deixo o pedido no mural e o setor certo pega, faz e entrega. Quando precisa de ajuda, ele chama outro setor.</p>
+        </div>
+      </article>
+
+      <article class="passo rv" style="--d:80ms">
+        <div class="moldura"><img src="assets/g/conselho.jpg" width="1000" height="606" loading="lazy" alt="Sala do conselho, onde os agentes se reúnem"></div>
+        <div class="txt">
+          <span class="n">04</span>
+          <h3>Conselho 2x por dia</h3>
+          <p>Às 12h e às 20h eles se reúnem, conferem e cobram o que travou, e me entregam um resumo.</p>
+        </div>
+      </article>
     </div>
 
-    <div class="vencido" id="vencido" hidden>
-      <b>Os três caíram.</b>
-      Os itens que você usou estão na caixa das 5 skills, de graça.
-      <br><a class="bt" href="#materiais">Pegar os itens</a>
+    <div class="regra rv">
+      <h3>A regra: só volta pra mim o que só eu faço</h3>
+      <p>Publicar, enviar e pagar ficam comigo. O resto é do time. É assim que um dia rende como se tivesse mais gente.</p>
     </div>
   </div>
 </section>
 
-<section class="materiais" id="materiais">
-  <div class="estrelas" aria-hidden="true"></div>
+<section class="mat" id="materiais" aria-labelledby="h-mat">
+  <span id="lutadores" aria-hidden="true"></span>
   <div class="cx">
-    <h2 class="h2">Os materiais dos reels</h2>
-    <p class="sub">Cada reel deixa uma caixa aqui. Você deixa o contato uma vez só, e as próximas abrem com um toque.</p>
+    <span class="kicker rv">Material grátis</span>
+    <h2 class="h2 rv" id="h-mat">Os materiais dos reels</h2>
+    <p class="sub rv">Cada reel deixa um material aqui. Você deixa o contato uma vez só, e os próximos abrem com um toque.</p>
 
     <div class="caixas">
       <!-- MATERIAL NOVO: copie um <article class="caixa" data-slug="..."> inteiro, cole ACIMA do primeiro e troque o data-slug (a-nome-do-material), a linha "de", o título, o resumo e o conteúdo da div "dentro". -->
-      <article class="caixa" data-slug="a-guilda" id="kit-guilda">
+<article class="caixa" data-slug="a-guilda" id="kit-guilda">
         <div class="cabeca">
-          <img class="px" src="assets/bau-fechado.png" alt="">
-          <div><p class="de">Reel e post da guilda, palavras AGENTE e GUILDA</p><h3>Kit da Guilda: 3 skills e 6 prompts pra quem está começando</h3></div>
+          <span class="ic" aria-hidden="true"></span>
+          <div><p class="de">Palavras AGENTE e GUILDA</p><h3>Kit da Guilda: 3 skills e 6 prompts pra quem está começando</h3></div>
         </div>
         <p class="resumo">Três skills pra começar o seu time de agentes e seis prompts pra colar no Claude Code, cada um com o primeiro passo.</p>
-        <button class="bt abrir" type="button">Abrir esta caixa</button>
+        <button class="bt abrir" type="button">Abrir este material</button>
         <div class="dentro" hidden>
           <p>Comece por uma skill e um prompt. Confira sempre o repositório oficial antes de instalar.</p>
           <details open><summary>Skill 1: find-skills</summary><div><p>Você descreve o que quer fazer e ela procura, no ecossistema aberto de skills, uma que já resolva. Evita você montar do zero o que já existe.</p><p>Link oficial: <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener">github.com/vercel-labs/skills</a>, pasta find-skills.</p><p><b>Primeiro passo:</b> <code>npx skills add vercel-labs/skills --skill find-skills</code> e depois pergunte: "existe uma skill pra organizar minhas planilhas?"</p></div></details>
@@ -303,11 +311,11 @@ footer p{margin:6px 0}
 
       <article class="caixa" data-slug="a-serie">
         <div class="cabeca">
-          <img class="px" src="assets/bau-fechado.png" alt="">
-          <div><p class="de">Reel 3, palavra SÉRIE</p><h3>Série de desenho sem câmera: o passo a passo</h3></div>
+          <span class="ic" aria-hidden="true"></span>
+          <div><p class="de">Palavra SÉRIE</p><h3>Série de desenho sem câmera: o passo a passo</h3></div>
         </div>
         <p class="resumo">O caminho que eu uso na série dos goblins: roteiro, voz, imagens, animação em código e o truque que faz o pessoal comentar.</p>
-        <button class="bt abrir" type="button">Abrir esta caixa</button>
+        <button class="bt abrir" type="button">Abrir este material</button>
         <div class="dentro" hidden>
           <p>Faça um episódio curto primeiro (uns 60 segundos). Confira as condições de cada ferramenta na sua conta antes de começar.</p>
           <details open><summary>1. Roteiro com o Claude</summary><div><p>Funciona no app do Claude. Copie, troque o que está entre colchetes e cole:</p><p><code>Você é roteirista de uma série curta pro Instagram (reel vertical de 60 a 80 segundos). Série: [nome e mundo da série]. Personagens fixos: [nome e jeito de cada um]. O episódio anterior terminou assim: [resumo]. Personagens novos deste episódio, de quem comentou no último: [@ e o que cada pessoa pediu]. Escreva a narração em texto corrido, no máximo 180 palavras, nesta ordem: 1) um fato com número real (ex.: quantos seguidores a conta tinha ontem e tem hoje); 2) o evento da noite; 3) os personagens novos entrando, cada um com uma tarefa; 4) um problema que cresce; 5) uma pista ou reviravolta; 6) "comenta o personagem que você quer ser e segue a conta"; 7) uma frase de teaser do próximo episódio. Depois, faça a lista de cenas: o que aparece na tela em cada frase.</code></p></div></details>
@@ -320,11 +328,11 @@ footer p{margin:6px 0}
 
       <article class="caixa" data-slug="a-5-plugins">
         <div class="cabeca">
-          <img class="px" src="assets/bau-fechado.png" alt="">
-          <div><p class="de">Reel 2, palavra PLUGIN</p><h3>Os 5 plugins pra parar de bater limite no Claude</h3></div>
+          <span class="ic" aria-hidden="true"></span>
+          <div><p class="de">Palavra PLUGIN</p><h3>Os 5 plugins pra parar de bater limite no Claude</h3></div>
         </div>
         <p class="resumo">O que cada um faz, o link oficial e o primeiro passo pra começar.</p>
-        <button class="bt abrir" type="button">Abrir esta caixa</button>
+        <button class="bt abrir" type="button">Abrir este material</button>
         <div class="dentro" hidden>
           <p>Confira sempre o repositório oficial antes de instalar. Comece por um só e teste por alguns dias.</p>
           <details open><summary>OmniRoute</summary><div><p>Um gateway gratuito de código aberto: você usa um endereço só e ele reparte o trabalho entre vários provedores de IA, inclusive opções grátis. É o que ajuda quando o limite de um acaba.</p><p>Link oficial: <a href="https://github.com/cheaper-inference/OmniRoute" target="_blank" rel="noopener">github.com/cheaper-inference/OmniRoute</a></p><p><b>Primeiro passo:</b> siga a instalação do README do projeto.</p></div></details>
@@ -337,11 +345,11 @@ footer p{margin:6px 0}
 
       <article class="caixa" data-slug="a-5-skills">
         <div class="cabeca">
-          <img class="px" src="assets/bau-fechado.png" alt="">
-          <div><p class="de">Reel 1, palavra SKILL</p><h3>As 5 skills do Claude que eu mais uso</h3></div>
+          <span class="ic" aria-hidden="true"></span>
+          <div><p class="de">Palavra SKILL</p><h3>As 5 skills do Claude que eu mais uso</h3></div>
         </div>
         <p class="resumo">Pra que serve cada uma, o link oficial e o primeiro passo pra começar.</p>
-        <button class="bt abrir" type="button">Abrir esta caixa</button>
+        <button class="bt abrir" type="button">Abrir este material</button>
         <div class="dentro" hidden>
           <p>Comece por uma só e use por uma semana antes de pegar a próxima.</p>
           <details open><summary>humanizer</summary><div><p>Tira o jeito de texto de robô do que o Claude escreve. Use no fim, com o texto já pronto.</p><p>Link oficial: <a href="https://github.com/blader/humanizer" target="_blank" rel="noopener">github.com/blader/humanizer</a></p><p><b>Primeiro passo:</b> <code>npx skills add blader/humanizer</code></p></div></details>
@@ -352,6 +360,7 @@ footer p{margin:6px 0}
         </div>
       </article>
 
+    
     </div>
 
     <form id="form-lead" novalidate hidden>
@@ -361,131 +370,58 @@ footer p{margin:6px 0}
       <label class="campo">Celular com DDD<input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="31 99999-9999" required></label>
       <input class="oculto" name="site_url" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="aceite"><input type="checkbox" name="consentimento" required><span>Aceito receber conteúdo e ofertas da JGA por WhatsApp e e-mail, e concordo com a <a href="https://gojira1998.github.io/jga-site/privacidade.html" target="_blank" rel="noopener">política de privacidade</a>. Posso sair quando quiser.</span></label>
-      <button class="bt" type="submit">Abrir a caixa</button>
+      <button class="bt" type="submit">Abrir o material</button>
       <p id="msg-erro" role="alert"></p>
-      <p class="nota">Seus dados ficam só com a JGA. É uma vez só: as próximas caixas abrem com um toque.</p>
+      <p class="nota">Seus dados ficam só com a JGA. É uma vez só: os próximos materiais abrem com um toque.</p>
     </form>
-
-    <a class="zap" href="https://wa.me/5531998234864?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20do%20%40joaoagents.ia%20e%20quero%20falar%20sobre%20IA%20no%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Quer isso rodando no seu negócio? Me chame no WhatsApp</a>
   </div>
 </section>
 
+<section class="sobre" aria-labelledby="h-sobre">
+  <div class="cx">
+    <img class="foto rv" src="assets/joao.jpg" width="96" height="96" loading="lazy" alt="João Gabriel">
+    <div>
+      <span class="kicker rv">Quem fala aqui</span>
+      <h2 class="h2 rv" id="h-sobre">João Gabriel</h2>
+      <p class="rv">Eu sou o João, da JGA, em Sete Lagoas, Minas. Faço site, automação e agente de IA pra pequeno negócio.</p>
+      <p class="rv">Esta página é minha. O que está aqui eu uso no meu dia a dia ou testei antes de mostrar. O Claude é a IA que trabalha comigo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contratar" id="contratar" aria-labelledby="h-ctr">
+  <div class="cx">
+    <div class="cartao rv">
+      <span class="kicker">JGA Serviços de IA</span>
+      <h2 class="h2" id="h-ctr">Quer contratar meus serviços?</h2>
+      <p class="sub">A JGA monta isso pro seu negócio: você conta o que precisa e recebe a proposta por escrito, com escopo, prazo e investimento, antes de qualquer pagamento.</p>
+      <ul class="chips">
+        <li>Agentes de IA</li>
+        <li>Sites e landing pages</li>
+        <li>Vídeo e motion</li>
+        <li>Atendimento e automação</li>
+      </ul>
+      <div class="acoes">
+        <a class="bt" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Conhecer a JGA</a>
+        <a class="bt vaz" href="https://wa.me/5531998234864?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20do%20%40joaoagents.ia%20e%20quero%20falar%20sobre%20IA%20no%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+      <p class="peq">Atendimento em todo o Brasil.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
 <footer>
-  <p><a href="https://www.instagram.com/joaoagents.ia/" target="_blank" rel="noopener">@joaoagents.ia no Instagram</a></p>
-  <p>JGA Serviços de IA, João Gabriel Alves, Sete Lagoas, MG</p>
-  <p><a href="https://gojira1998.github.io/jga-site/privacidade.html" target="_blank" rel="noopener" style="font-weight:500;text-decoration:underline">Política de privacidade</a></p>
+  <div class="cx">
+    <p class="marca">Uma página de João Gabriel, da <a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA Serviços de IA</a></p>
+    <p><a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Site da JGA</a> · <a href="https://www.instagram.com/joaoagents.ia/" target="_blank" rel="noopener">@joaoagents.ia no Instagram</a></p>
+    <p>JGA Serviços de IA, João Gabriel Alves, Sete Lagoas, MG</p>
+    <p><a href="https://gojira1998.github.io/jga-site/privacidade.html" target="_blank" rel="noopener">Política de privacidade</a></p>
+  </div>
 </footer>
 
-<div class="trilha" aria-hidden="true">
-  <div class="chao"></div>
-  <img class="alvo px" id="t-bau" src="assets/bau-fechado.png" alt="">
-  <img class="anda px" id="t-mago" src="assets/mago-anda-a.png" alt="">
-</div>
-
-<script src="lutadores.js"></script>
-<script src="tela-selecao.js"></script>
 <script src="leads-config.js"></script>
-<script>
-(function () {
-  var calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // estrelas da seção do baú
-  var ceu = document.querySelector(".estrelas");
-  for (var i = 0; i < 26; i++) { var s = document.createElement("i"); s.style.left = (Math.sin(i * 12.9) * .5 + .5) * 100 + "%"; s.style.top = (Math.sin(i * 78.2) * .5 + .5) * 70 + "%"; s.style.animationDelay = (i % 7) * .3 + "s"; ceu.appendChild(s); }
-
-  // o mago anda pela trilha conforme a rolagem; a arte do topo se afasta devagar
-  var mago = document.getElementById("t-mago"), tBau = document.getElementById("t-bau"), arte = document.querySelector(".topo .arte"), alvo = document.getElementById("materiais");
-  var quadro = 0, ultimo = -1, aberto = false;
-  function passo() {
-    var fim = alvo.offsetTop - innerHeight * .45, p = Math.max(0, Math.min(1, scrollY / Math.max(1, fim)));
-    var larg = innerWidth - 12 - 34 - 40, x = 8 + p * larg;
-    var q = Math.floor(scrollY / 26) % 2;
-    if (p >= 1) { if (mago.dataset.f !== "v") { mago.src = "assets/mago-vitoria.png"; mago.dataset.f = "v"; } }
-    else if (q !== quadro || mago.dataset.f === "v") { quadro = q; mago.src = q ? "assets/mago-anda-b.png" : "assets/mago-anda-a.png"; mago.dataset.f = "a"; }
-    mago.style.transform = "translateX(" + x + "px)" + (scrollY < ultimo ? " scaleX(-1)" : "");
-    if (!calmo) arte.style.setProperty("--z", (1.02 + Math.min(scrollY, innerHeight) / innerHeight * .1).toFixed(3));
-    ultimo = scrollY;
-  }
-  addEventListener("scroll", passo, { passive: true }); addEventListener("resize", passo); passo();
-
-  // chefões: tocar no chefão (ou no botão) gasta a vida dele e mostra o item que resolve
-  document.documentElement.classList.add("js");
-  var dores = [].slice.call(document.querySelectorAll(".dor")), marcas = document.querySelectorAll(".placar i"), caidos = 0;
-  dores.forEach(function (d) {
-    function bater() {
-      if (d.classList.contains("caiu")) return;
-      d.classList.add("golpe");
-      setTimeout(function () {
-        d.classList.remove("golpe"); d.classList.add("caiu"); marcas[caidos].classList.add("ok"); caidos++;
-        document.getElementById("placar-txt").textContent = caidos + " de 3 derrotados";
-        if (caidos === dores.length) document.getElementById("vencido").hidden = false;
-      }, calmo ? 0 : 430);
-    }
-    d.querySelector(".chefao").addEventListener("click", bater); d.querySelector(".golpear").addEventListener("click", bater);
-  });
-
-  // caixas de material: o contato é pedido uma vez; cada caixa aberta grava o seu slug na tabela leads (Supabase, só inserção)
-  var form = document.getElementById("form-lead"), msg = document.getElementById("msg-erro"), botao = form.querySelector("button");
-  var caixas = [].slice.call(document.querySelectorAll(".caixa[data-slug]")), inicio = Date.now(), p = new URLSearchParams(location.search), atual = null;
-  var local = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
-  function guarda(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
-  function contato() { try { return JSON.parse(guarda("jga_contato") || "null"); } catch (e) { return null; } }
-  function abrir(cx, festa) {
-    cx.classList.add("aberta"); cx.querySelector(".dentro").hidden = false; cx.querySelector(".abrir").hidden = true;
-    var im = cx.querySelector(".cabeca img"); im.src = "assets/bau-aberto.png"; if (festa && !calmo) im.classList.add("abre");
-    if (form.parentNode === cx) { form.hidden = true; document.querySelector(".materiais .cx").appendChild(form); }
-    tBau.src = "assets/bau-aberto.png";
-    if (festa) cx.scrollIntoView({ behavior: calmo ? "auto" : "smooth", block: "start" });
-  }
-  function pedir(cx) {
-    atual = cx; msg.textContent = ""; cx.querySelector(".abrir").hidden = true;
-    caixas.forEach(function (o) { if (o !== cx && !o.classList.contains("aberta")) o.querySelector(".abrir").hidden = false; });
-    cx.insertBefore(form, cx.querySelector(".dentro")); form.hidden = false;
-  }
-  function gravar(c, slug) {
-    var cfg = window.JGA_LEADS || {};
-    if (!cfg.url || !cfg.anonKey) return Promise.reject(new Error("config"));
-    return fetch(cfg.url.replace(/\/$/, "") + "/rest/v1/" + (cfg.tabela || "leads"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "apikey": cfg.anonKey, "Authorization": "Bearer " + cfg.anonKey, "Prefer": "return=minimal" },
-      body: JSON.stringify({ nome: c.nome, whatsapp: c.whatsapp, email: c.email, post_slug: slug, mentoria: false, consentimento: true, origem: (p.get("utm_source") || document.referrer || "direto").slice(0, 120) })
-    }).then(function (r) { if (!r.ok && r.status !== 409) throw new Error("status " + r.status); guarda("jga_lead_" + slug, "1"); });
-  }
-  caixas.forEach(function (cx) {
-    var slug = cx.getAttribute("data-slug"), b = cx.querySelector(".abrir");
-    if (guarda("jga_lead_" + slug) === "1" || (p.get("preview") === "1" && local)) { abrir(cx, false); return; }
-    b.addEventListener("click", function () {
-      var c = contato(); if (!c) { pedir(cx); return; }
-      var av = cx.querySelector(".aviso"); if (av) av.remove();
-      b.disabled = true; b.textContent = "Abrindo...";
-      gravar(c, slug).then(function () { abrir(cx, true); }).catch(function () {
-        b.disabled = false; b.textContent = "Abrir esta caixa";
-        var a = document.createElement("p"); a.className = "aviso"; a.setAttribute("role", "alert"); a.textContent = "Não consegui abrir agora. Tente de novo em instantes."; cx.insertBefore(a, cx.querySelector(".dentro"));
-      });
-    });
-  });
-  var primeira = caixas.filter(function (cx) { return !cx.classList.contains("aberta"); })[0];
-  if (primeira && !contato()) pedir(primeira);
-  function erro(t) { msg.textContent = t || ""; }
-  form.addEventListener("submit", function (ev) {
-    ev.preventDefault(); erro("");
-    var f = new FormData(form);
-    if (f.get("site_url") || !atual) return;
-    if (Date.now() - inicio < 3000) { erro("Aguarde um instante e envie de novo."); return; }
-    var c = { nome: (f.get("nome") || "").trim(), whatsapp: (f.get("whatsapp") || "").replace(/\D/g, ""), email: (f.get("email") || "").trim().toLowerCase() };
-    if (c.nome.length < 2) { erro("Escreva o seu nome."); return; }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(c.email)) { erro("Confira o e-mail."); return; }
-    if (c.whatsapp.length < 10 || c.whatsapp.length > 13) { erro("Confira o celular, com DDD. Exemplo: 31 99999-9999."); return; }
-    if (!f.get("consentimento")) { erro("Marque a caixa de aceite para abrir."); return; }
-    if (p.get("teste") === "1" && local) { erro("Modo teste: tudo validado, nada foi enviado."); return; }
-    botao.disabled = true; botao.textContent = "Abrindo...";
-    gravar(c, atual.getAttribute("data-slug")).then(function () {
-      guarda("jga_contato", JSON.stringify(c)); botao.disabled = false; botao.textContent = "Abrir a caixa"; abrir(atual, true);
-    }).catch(function (e) {
-      erro(e.message === "config" ? "O cadastro está em ajuste. Me chame no WhatsApp que eu libero pra você." : "Não consegui enviar agora. Tente de novo ou me chame no WhatsApp.");
-      botao.disabled = false; botao.textContent = "Abrir a caixa";
-    });
-  });
-})();
-</script>
+<script src="pagina.js"></script>
 </body>
 </html>
