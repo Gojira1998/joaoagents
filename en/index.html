@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Agent Office Kit: build a 3D office of AI agents with Claude</title>
+<meta name="description" content="A step by step kit for beginners: guide, master prompt, 10 agent templates, a live 3D office and a skills list for Claude Code. $19.">
+<meta name="theme-color" content="#17120e">
+<meta property="og:title" content="AI Agent Office Kit: build a 3D office of AI agents with Claude">
+<meta property="og:description" content="One agent per job, one dispatcher and a live 3D office that shows who is working. Step by step, for beginners. $19.">
+<meta property="og:image" content="assets/office-1.jpg">
+<link rel="icon" href="../assets/joao.jpg">
+<link rel="alternate" hreflang="pt-BR" href="../">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#17120e; --ink2:#1f1812; --ink3:#291f17; --cream:#eadfc6; --warm:#b3a58c; --terra:#d56a4a; --terra2:#e07a58; --gold:#f4c24f;
+  --line:rgba(244,194,79,.28); --line2:rgba(234,223,198,.12); --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:68px;-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--cream);font:400 17px/1.55 "Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+.cx{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-weight:800;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+.kicker{display:inline-block;font:800 12px/1 "Archivo";font-stretch:112%;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.h2{font-size:clamp(30px,7.4vw,52px);font-stretch:108%;text-transform:uppercase;margin-bottom:12px}
+.sub{color:var(--warm);max-width:60ch;font-size:clamp(16px,4.2vw,19px)}
+section{padding:68px 0}
+em{font-style:normal;color:var(--gold)}
+
+/* botoes: pilula terracota com borda dourada, como o CTA do reel */
+.bt{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 20px;border-radius:999px;border:2px solid var(--gold);background:var(--terra);color:#fff7ea;font:800 15px/1.15 "Archivo";font-stretch:104%;letter-spacing:.02em;text-align:center;text-transform:uppercase;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .25s var(--ease),background .2s,box-shadow .25s}
+.bt:hover{background:var(--terra2);transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.55)}
+.bt:active{transform:translateY(0) scale(.98)}
+.bt.vaz{background:transparent;color:var(--gold)}
+.bt.vaz:hover{background:rgba(244,194,79,.1)}
+.bt:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.bt[disabled]{opacity:.6;cursor:wait}
+
+/* barra */
+.barra{position:fixed;inset:0 0 auto 0;z-index:30;background:rgba(23,18,14,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line2)}
+.barra .cx{display:flex;align-items:center;gap:12px;height:60px}
+.barra .eu{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.barra .eu img{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);image-rendering:pixelated}
+.barra .eu b{font-weight:800;font-size:15px;white-space:nowrap}
+.barra .eu span{display:none;color:var(--warm);font-size:13px}
+.barra nav{margin-left:auto;display:flex;align-items:center;gap:6px}
+.barra nav a{font:700 13px/1 "Archivo";letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--cream);padding:10px 12px;border-radius:999px}
+.barra nav a.jga{border:1.5px solid var(--gold);color:var(--gold)}
+.barra nav a.lk{display:none}
+
+/* hero */
+.hero{padding:96px 0 40px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -30% auto -30%;height:80%;background:radial-gradient(closest-side,rgba(213,106,74,.22),transparent 70%);pointer-events:none}
+.hero .cx{position:relative;display:grid;gap:30px}
+.hero h1{font-size:clamp(38px,11.2vw,66px);font-stretch:106%;text-transform:uppercase;line-height:.98}
+.hero h1 .w{display:inline-block;opacity:0;transform:scale(1.06) translateY(10px)}
+.js-ok .hero h1 .w{animation:pop .55s var(--ease) forwards;animation-delay:calc(var(--i)*70ms + 150ms)}
+.hero .lead{margin-top:18px;font-size:clamp(17px,4.4vw,21px);color:var(--cream);max-width:40ch;opacity:.92}
+.hero .acoes{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.hero .peq{margin-top:14px;color:var(--warm);font-size:14px}
+@keyframes pop{to{opacity:1;transform:none}}
+.moldura{position:relative;border-radius:26px;overflow:hidden;border:1.5px solid rgba(244,194,79,.55);box-shadow:0 18px 50px rgba(0,0,0,.6);background:#000;aspect-ratio:1000/606}
+.moldura img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 6s var(--ease)}
+.moldura.v img{transform:scale(1)}
+.moldura::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.38) 100%)}
+.hero .moldura{aspect-ratio:1000/606}
+
+/* numeros */
+.nums{padding:44px 0;background:var(--ink2);border-block:1px solid var(--line2)}
+.nums .tit{font:800 13px/1.5 "Archivo";font-stretch:112%;letter-spacing:.16em;text-transform:uppercase;color:var(--warm);margin-bottom:22px}
+.nums ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:22px 16px}
+.nums li strong{display:block;font:900 clamp(40px,12vw,64px)/1 "Archivo";font-stretch:100%;color:var(--gold);font-variant-numeric:tabular-nums}
+.nums li span{display:block;margin-top:6px;color:var(--cream);font-size:15px;line-height:1.3}
+.nums .fim{margin-top:24px;color:var(--warm);font-size:15px}
+
+/* como funciona */
+.passos{display:grid;gap:18px;margin-top:34px}
+.passo{background:var(--ink2);border:1px solid var(--line2);border-radius:24px;overflow:hidden}
+.passo .txt{padding:22px 22px 24px}
+.passo .n{font:900 13px/1 "Archivo";font-stretch:112%;letter-spacing:.14em;color:var(--terra2)}
+.passo h3{font-size:clamp(22px,6vw,28px);font-stretch:106%;text-transform:uppercase;margin:8px 0 8px}
+.passo p{color:var(--warm);font-size:16px}
+.passo .moldura{border-radius:0;border:0;border-bottom:1px solid var(--line);box-shadow:none;aspect-ratio:1000/606}
+.codigo{margin:16px 0 0;padding:16px;border-radius:16px;background:#0f0b08;border:1px solid var(--line);font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--cream);overflow-x:auto;white-space:pre}
+.codigo b{color:var(--gold);font-weight:600}
+.regra{margin-top:18px;padding:24px;border-radius:24px;border:1.5px solid var(--line);background:linear-gradient(180deg,rgba(213,106,74,.14),rgba(213,106,74,.04))}
+.regra h3{font-size:clamp(22px,6vw,30px);font-stretch:106%;text-transform:uppercase}
+.regra p{margin-top:8px;color:var(--cream)}
+
+/* materiais */
+.mat{background:linear-gradient(180deg,var(--ink) 0,var(--ink3) 100%);border-top:1px solid var(--line2)}
+.caixas{display:grid;gap:16px;margin-top:30px}
+.caixa{background:var(--ink2);border:1px solid var(--line2);border-radius:24px;padding:20px;transition:border-color .3s}
+.caixa.aberta{border-color:var(--line)}
+.cabeca{display:flex;gap:14px;align-items:flex-start}
+.ic{flex:none;width:46px;height:46px;border-radius:14px;border:1.5px solid var(--line);background:rgba(244,194,79,.08) center/22px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f4c24f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3C/svg%3E")}
+.caixa.aberta .ic{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f4c24f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 7.5-2'/%3E%3C/svg%3E")}
+.caixa.aberta .ic.abre{animation:pop .5s var(--ease)}
+.cabeca .de{font:800 11px/1 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cabeca h3{font-size:clamp(19px,5.2vw,24px);font-stretch:102%;line-height:1.12}
+.caixa .resumo{margin:14px 0 16px;color:var(--warm);font-size:16px}
+.caixa .abrir{width:100%}
+.dentro{margin-top:16px;border-top:1px solid var(--line2);padding-top:14px;animation:entra .5s var(--ease)}
+.dentro>p{color:var(--warm);font-size:15px;margin-bottom:12px}
+@keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+details{border:1px solid var(--line2);border-radius:14px;margin-top:8px;background:rgba(0,0,0,.18)}
+summary{cursor:pointer;list-style:none;padding:14px 44px 14px 16px;font-weight:700;font-size:16px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:22px;font-weight:500;transition:transform .25s}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details>div{padding:0 16px 16px;font-size:15.5px}
+details p{margin-top:10px;color:var(--cream)}
+details a{color:var(--gold);word-break:break-word}
+code{font:13.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0f0b08;border:1px solid var(--line2);border-radius:8px;padding:2px 6px;word-break:break-word;color:var(--cream)}
+p>code:only-child{display:block;padding:12px;white-space:pre-wrap}
+.aviso{margin:10px 0;color:#ff9a7e;font-size:14px}
+#form-lead{margin-top:16px;padding:20px;border-radius:20px;background:var(--ink3);border:1.5px solid var(--line);display:grid;gap:14px}
+#form-lead>b{font:800 18px/1.2 "Archivo";font-stretch:106%;text-transform:uppercase}
+.campo{display:grid;gap:6px;font-weight:600;font-size:14px;color:var(--warm)}
+.campo input{font:400 17px "Archivo";min-height:50px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line2);background:#0f0b08;color:var(--cream)}
+.campo input:focus{border-color:var(--gold)}
+.oculto{position:absolute;left:-9999px;opacity:0}
+.aceite{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--warm);line-height:1.45}
+.aceite input{flex:none;width:22px;height:22px;margin-top:1px;accent-color:var(--terra)}
+.aceite a{color:var(--gold)}
+#msg-erro{color:#ff9a7e;font-size:14px;min-height:0}
+.nota{color:var(--warm);font-size:13px}
+
+/* sobre */
+.sobre .cx{display:grid;gap:22px}
+.sobre .foto{width:96px;height:96px;border-radius:24px;border:1.5px solid var(--line);image-rendering:pixelated}
+.sobre p{color:var(--cream);max-width:58ch;margin-top:12px}
+
+/* contratar */
+.contratar{background:var(--ink2);border-block:1px solid var(--line2)}
+.cartao{position:relative;overflow:hidden;border-radius:28px;border:1.5px solid rgba(244,194,79,.55);padding:30px 22px;background:radial-gradient(120% 90% at 100% 0,rgba(213,106,74,.28),transparent 60%),var(--ink)}
+.cartao .h2{margin-bottom:14px}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px}
+.chips li{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;color:var(--cream)}
+.cartao .acoes{display:flex;flex-direction:column;gap:12px}
+.cartao .peq{margin-top:16px;color:var(--warm);font-size:14px}
+
+footer{padding:40px 0 56px;color:var(--warm);font-size:14px}
+footer .cx{display:grid;gap:10px}
+footer a{color:var(--cream);text-decoration-color:var(--line)}
+footer .marca{font:800 15px "Archivo";color:var(--cream)}
+
+/* reveal ao rolar */
+.js-ok .rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0ms)}
+.js-ok .rv.v{opacity:1;transform:none}
+
+@media (min-width:760px){
+  body{font-size:18px}
+  .barra .eu span{display:block}
+  .barra nav a.lk{display:block}
+  section{padding:96px 0}
+  .hero{padding:130px 0 70px}
+  .hero .cx{grid-template-columns:.9fr 1.1fr;align-items:center;gap:48px}
+  .hero .acoes{flex-direction:row;flex-wrap:wrap}
+  .nums ul{grid-template-columns:repeat(4,1fr)}
+  .passos{grid-template-columns:1fr 1fr}
+  .passo.largo{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}
+  .passo.largo .moldura{border-bottom:0;border-left:1px solid var(--line);aspect-ratio:auto;min-height:100%;order:2}
+  .caixas{grid-template-columns:1fr 1fr;align-items:start}
+  .sobre .cx{grid-template-columns:auto 1fr;gap:34px;align-items:start}
+  .cartao{padding:52px 48px}
+  .cartao .acoes{flex-direction:row;flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js-ok .rv,.hero h1 .w{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+  .moldura img{transform:none;transition:none}
+  .dentro{animation:none}
+}
+
+/* v2: pagina de servicos */
+.nums ul{grid-template-columns:repeat(3,1fr)}
+.nums li strong{font-size:clamp(34px,10vw,60px)}
+.nums li span{font-size:14px}
+.sub+.grupo,.grupo+.grupo{margin-top:34px}
+.grupo>h3{font:800 13px/1.3 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:34px 0 4px}
+.grupo>p{color:var(--warm);font-size:15px;margin-bottom:14px}
+.servs{display:grid;gap:12px}
+.serv{background:var(--ink2);border:1px solid var(--line2);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px;transition:border-color .3s,transform .3s var(--ease)}
+.serv:hover{border-color:var(--line);transform:translateY(-3px)}
+.serv h4{font:800 20px/1.15 "Archivo";font-stretch:104%}
+.serv p{color:var(--cream);font-size:15.5px}
+.serv .pra{color:var(--warm);font-size:14.5px}
+.serv .pra b{color:var(--gold);font-weight:700}
+.serv a{margin-top:auto;padding-top:6px;color:var(--gold);font-weight:700;font-size:14.5px;text-decoration:none}
+.serv a:hover{text-decoration:underline}
+.trabs{display:grid;gap:16px;margin-top:30px}
+.trab{background:var(--ink2);border:1px solid var(--line2);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.trab .moldura{border-radius:0;border:0;border-bottom:1px solid var(--line);box-shadow:none;aspect-ratio:3/2}
+.trab .moldura::after{display:none}
+.trab .tx{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tag{font:800 11px/1 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--terra2)}
+.trab h4{font:800 19px/1.2 "Archivo"}
+.trab p{color:var(--warm);font-size:15px}
+.trab a.ver{margin-top:auto;padding-top:8px;color:var(--gold);font-weight:700;font-size:14.5px;text-decoration:none}
+.sub2{font:800 13px/1.3 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:44px 0 6px}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.reel{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1.5px solid var(--line);background:#000;padding:0;cursor:pointer;display:block}
+.reel img,.reel video{width:100%;height:100%;object-fit:cover;display:block}
+.reel .pl{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45))}
+.reel .pl i{width:46px;height:46px;border-radius:50%;background:rgba(23,18,14,.78);border:1.5px solid var(--gold);display:grid;place-items:center}
+.reel .pl i::before{content:"";margin-left:3px;border-left:13px solid var(--gold);border-block:8px solid transparent}
+.dem{margin-top:44px;display:grid;gap:18px;padding:22px;border-radius:26px;border:1.5px solid var(--line);background:linear-gradient(180deg,rgba(213,106,74,.12),rgba(213,106,74,.03))}
+.dem h3{font-size:clamp(22px,6vw,30px);font-stretch:106%;text-transform:uppercase}
+.dem p{color:var(--cream);margin-top:8px;font-size:16px}
+.dem .bt{margin-top:16px}
+.como{display:grid;gap:12px;margin-top:30px;counter-reset:p}
+.etapa{display:flex;gap:16px;background:var(--ink2);border:1px solid var(--line2);border-radius:20px;padding:20px}
+.etapa::before{counter-increment:p;content:counter(p);flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font:900 18px "Archivo"}
+.etapa h4{font:800 19px/1.2 "Archivo"}
+.etapa p{color:var(--warm);font-size:15.5px;margin-top:4px}
+.garantias{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.garantias span{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600}
+.contratar{background:var(--ink2);border-block:1px solid var(--line2)}
+.sec-alt{background:var(--ink)}
+@media (min-width:760px){
+  .servs{grid-template-columns:repeat(3,1fr)}
+  .servs.q{grid-template-columns:repeat(2,1fr)}
+  .trabs{grid-template-columns:repeat(3,1fr)}
+  .reels{grid-template-columns:repeat(6,1fr)}
+  .dem{grid-template-columns:1.1fr .9fr;align-items:center;padding:34px;gap:34px}
+  .como{grid-template-columns:1fr 1fr}
+}
+.barra nav a.lk{display:none}
+@media (min-width:900px){.barra nav a.lk{display:block}}
+
+.barra nav a.lk{display:none}
+.barra nav a.pt{font-size:12px;padding:9px 10px;color:var(--warm)}
+.barra nav a.bt{white-space:nowrap;min-height:40px;padding:0 14px;font-size:12px;box-shadow:none}
+.price{display:inline-block;margin-top:18px;font:900 clamp(40px,11vw,60px)/1 "Archivo";color:var(--gold)}
+.price small{font:600 14px "Archivo";color:var(--warm);margin-left:8px}
+.hero .acoes{margin-top:18px}
+.cards{display:grid;gap:12px;margin-top:30px}
+.card{background:var(--ink2);border:1px solid var(--line2);border-radius:20px;padding:20px}
+.card .n{font:900 13px/1 "Archivo";letter-spacing:.14em;color:var(--terra2)}
+.card h3{font-size:21px;font-stretch:104%;margin:8px 0 6px;line-height:1.15}
+.card p{color:var(--warm);font-size:15.5px}
+.prints{display:grid;gap:14px;margin-top:30px}
+.prints .moldura{aspect-ratio:1280/800}
+.prints .moldura img{transform:none}
+.prints figcaption{color:var(--warm);font-size:14px;margin-top:8px}
+.vid{display:grid;gap:22px;align-items:center;margin-top:30px}
+.vbtn{position:relative;display:block;width:100%;max-width:340px;margin:0 auto;aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:1.5px solid rgba(244,194,79,.55);background:#000;padding:0;cursor:pointer;box-shadow:0 18px 50px rgba(0,0,0,.6)}
+.vbtn img,.vbtn video{width:100%;height:100%;object-fit:cover;display:block}
+.vbtn .pl{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.5))}
+.vbtn .pl i{width:68px;height:68px;border-radius:50%;background:rgba(23,18,14,.8);border:2px solid var(--gold);display:grid;place-items:center}
+.vbtn .pl i::before{content:"";margin-left:5px;border-left:19px solid var(--gold);border-block:12px solid transparent}
+.vid p{color:var(--cream)}
+.lista{list-style:none;display:grid;gap:10px;margin-top:20px}
+.lista li{padding:14px 16px;border:1px solid var(--line2);border-radius:14px;background:var(--ink2);font-size:15.5px;color:var(--cream)}
+.lista li b{color:var(--gold)}
+.faq{margin-top:26px}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 20px}
+.aviso2{color:var(--warm);font-size:13px;margin-top:14px;max-width:70ch}
+@media (min-width:760px){
+ .barra nav a.lk{display:block}
+ .cards{grid-template-columns:repeat(3,1fr)}
+ .prints{grid-template-columns:1fr 1fr;align-items:start}
+ .vid{grid-template-columns:340px 1fr;gap:48px}
+}
+</style>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','29119682187686587');fbq('track','PageView');fbq('track','ViewContent',{content_name:'AI Agent Office Kit',content_type:'product',value:19,currency:'USD'});
+</script>
+</head>
+<body>
+<header class="barra"><div class="cx">
+  <a class="eu" href="#topo"><img src="../assets/joao.jpg" alt="" width="36" height="36"><b>João Gabriel</b><span>JGA AI Services</span></a>
+  <nav aria-label="Main">
+    <a class="lk" href="#inside">What is inside</a>
+    <a class="lk" href="#faq">FAQ</a>
+    <a class="pt" href="../" hreflang="pt-BR" lang="pt-BR">Português</a>
+    <a class="bt" href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener">Get it $19</a>
+  </nav>
+</div></header>
+<main id="topo">
+<section class="hero"><div class="cx">
+  <div>
+    <span class="kicker rv">For Claude Code</span>
+    <h1 id="h1" data-palavras>Build a 3D office of AI agents with Claude</h1>
+    <p class="lead rv" style="--d:500ms">One agent per job. One dispatcher. A live 3D office that shows who is working. Step by step, for beginners.</p>
+    <div class="rv" style="--d:600ms"><span class="price">$19<small>one time</small></span></div>
+    <div class="acoes rv" style="--d:650ms">
+      <a class="bt" href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener">Get the kit for $19</a>
+      <a class="bt vaz" href="#video">Watch it in action</a>
+    </div>
+    <p class="peq rv" style="--d:750ms">Instant download. About 90 minutes to build. Works with Claude Code.</p>
+  </div>
+  <div class="moldura rv" style="--d:300ms"><img src="assets/office-1.jpg" width="1280" height="800" alt="The 3D office with one room per AI agent: Marketing, Research, Content, Sales, Planner and more" fetchpriority="high"></div>
+</div></section>
+
+<section class="nums"><div class="cx">
+  <p class="tit rv">The problem and the fix</p>
+  <p class="sub rv">You open Claude, ask for something, get an answer, and tomorrow you explain everything again. One chat does everything, so it does everything a little bit wrong.</p>
+  <p class="sub rv" style="margin-top:14px;color:var(--cream)">Give each job its own agent. Marketing writes hooks. Research finds facts with sources. Review checks everything before it leaves. A dispatcher sends the work to the right one, a memory keeps your rules, and a 3D office shows you the whole team at work.</p>
+</div></section>
+
+<section id="inside" aria-labelledby="h-in"><div class="cx">
+  <span class="kicker rv">What is inside</span>
+  <h2 class="h2 rv" id="h-in">5 things in one download</h2>
+  <div class="cards">
+    <article class="card rv"><span class="n">01</span><h3>The Guide</h3><p>20 pages, numbered steps, real screenshots. Install Claude Code, create agents, set up the dispatcher and memory, open the 3D office.</p></article>
+    <article class="card rv" style="--d:70ms"><span class="n">02</span><h3>The Office Prompt</h3><p>Paste it once. Answer 5 questions. Claude builds your whole office.</p></article>
+    <article class="card rv" style="--d:140ms"><span class="n">03</span><h3>10 Agent Templates</h3><p>Marketing, research, content, sales, review, analytics, support, operations, planner, builder.</p></article>
+    <article class="card rv"><span class="n">04</span><h3>The 3D Office</h3><p>Opens with a double click. Agents type, wave and celebrate as they work.</p></article>
+    <article class="card rv" style="--d:70ms"><span class="n">05</span><h3>The Skills List</h3><p>19 skills and plugins with install commands, author links and licenses.</p></article>
+    <article class="card rv" style="--d:140ms;border-color:var(--line)"><span class="n">WHO IT IS FOR</span><h3>Beginners welcome</h3><p>Creators, freelancers and small business owners. If you can copy and paste, you can build it.</p></article>
+  </div>
+  <div class="rv" style="margin-top:26px"><a class="bt" href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener">Get the kit for $19</a></div>
+</div></section>
+
+<section id="how" class="sec-alt" style="border-top:1px solid var(--line2)"><div class="cx">
+  <span class="kicker rv">How it works</span>
+  <h2 class="h2 rv">3 steps</h2>
+  <div class="como">
+    <div class="etapa rv"><div><h4>Paste the Office Prompt</h4><p>In an empty folder.</p></div></div>
+    <div class="etapa rv" style="--d:70ms"><div><h4>Tell Claude about your business</h4><p>5 short answers.</p></div></div>
+    <div class="etapa rv" style="--d:140ms"><div><h4>Open the 3D office</h4><p>Give your first job to the team.</p></div></div>
+  </div>
+  <div class="prints">
+    <figure class="rv"><div class="moldura"><img src="assets/office-3.jpg" width="1280" height="800" loading="lazy" alt="A Sales agent waiting for approval in its own room of the 3D office"></div><figcaption>An agent waits for your OK. The orange dot means it needs you.</figcaption></figure>
+    <figure class="rv" style="--d:80ms"><div class="moldura"><img src="assets/office-2.jpg" width="1280" height="800" loading="lazy" alt="The Research agent working at its desk"></div><figcaption>Research at work.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="video" aria-labelledby="h-v"><div class="cx">
+  <span class="kicker rv">See it live</span>
+  <h2 class="h2 rv" id="h-v">Watch the office work</h2>
+  <div class="vid">
+    <button class="vbtn rv" type="button" id="vbtn" aria-label="Play the video"><img src="assets/kit-video.jpg" width="540" height="960" alt="Video: the 3D office changing colors as agents work"><span class="pl"><i></i></span></button>
+    <div class="rv">
+      <p>Rooms change color as agents move from working, to waiting for you, to done. You always know who needs you.</p>
+      <ul class="lista">
+        <li><b>Agents prepare.</b> You press publish, send or pay.</li>
+        <li><b>A Review agent</b> checks facts and tone first.</li>
+        <li><b>No invented numbers.</b> Every agent writes "no source" when it has none.</li>
+        <li><b>Plain text files</b> you can read and change.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="contratar"><div class="cx">
+  <div class="cartao rv">
+    <span class="kicker">Meet your team</span>
+    <h2 class="h2">Build your agent office in an afternoon</h2>
+    <p class="sub">Guide, master prompt, 10 agents, live 3D office and skills list. $19, one time.</p>
+    <ul class="chips"><li>Instant download</li><li>About 90 minutes</li><li>Windows and Mac</li><li>No coding needed</li></ul>
+    <div class="acoes"><a class="bt" href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener">Get the kit for $19</a></div>
+    <p class="peq">You need your own Claude account that supports Claude Code, Python 3 and a browser. Claude is not included.</p>
+  </div>
+</div></section>
+
+<section id="faq" aria-labelledby="h-faq"><div class="cx">
+  <span class="kicker rv">FAQ</span>
+  <h2 class="h2 rv" id="h-faq">Quick answers</h2>
+  <div class="faq rv">
+    <details><summary>Do I need to code?</summary><div><p>No. The guide explains each step and the prompt does the heavy work.</p></div></details>
+    <details><summary>Does it work on Windows and Mac?</summary><div><p>Yes. Commands for both are in the guide.</p></div></details>
+    <details><summary>Is Claude included?</summary><div><p>No. You need your own Claude account that supports Claude Code.</p></div></details>
+    <details><summary>Are the skills included?</summary><div><p>The list links to each author's page with install steps and the license. We do not resell other people's work.</p></div></details>
+    <details><summary>Will it make me money?</summary><div><p>The kit saves time organizing your work. We do not promise income or results.</p></div></details>
+    <details><summary>Can I change the agents?</summary><div><p>Yes. They are plain text files made to be edited.</p></div></details>
+    <details><summary>What if I get stuck?</summary><div><p>The guide has a troubleshooting page, and you can message us on Gumroad.</p></div></details>
+  </div>
+  <p class="aviso2">This kit is independent and is not affiliated with Anthropic. Claude is a trademark of Anthropic.</p>
+</div></section>
+</main>
+<footer><div class="cx">
+  <span class="marca">João Gabriel · JGA AI Services</span>
+  <div class="links"><a href="../" hreflang="pt-BR" lang="pt-BR">Versão em português</a><a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA website</a><a href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener">AI Agent Office Kit on Gumroad</a></div>
+</div></footer>
+<script>
+(function(){
+  var calmo=matchMedia("(prefers-reduced-motion: reduce)").matches, raiz=document.documentElement;
+  if(!calmo) raiz.classList.add("js-ok");
+  var h1=document.querySelector("[data-palavras]");
+  if(h1&&!calmo){var d={"3d":1,"agents":1},i=0;h1.innerHTML=h1.textContent.split(" ").map(function(w){var k=w.toLowerCase().replace(/[^a-z0-9]/g,"");return '<span class="w" style="--i:'+(i++)+(d[k]?";color:var(--gold)":"")+'">'+w+"</span>"}).join(" ")}
+  var alvos=[].slice.call(document.querySelectorAll(".rv, .moldura"));
+  if("IntersectionObserver" in window&&!calmo){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("v");io.unobserve(e.target)}})},{threshold:.15,rootMargin:"0px 0px -6% 0px"});alvos.forEach(function(a){io.observe(a)})}
+  else alvos.forEach(function(a){a.classList.add("v")});
+  var vb=document.getElementById("vbtn");
+  vb.addEventListener("click",function(){var v=document.createElement("video");v.src="assets/kit-video.mp4";v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute("playsinline","");v.loop=true;vb.innerHTML="";vb.appendChild(v);vb.style.cursor="default";v.play&&v.play().catch(function(){})},{once:true});
+})();
+</script>
+</body></html>
