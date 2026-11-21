@@ -267,6 +267,36 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px}
  .prints{grid-template-columns:1fr 1fr;align-items:start}
  .vid{grid-template-columns:340px 1fr;gap:48px}
 }
+.campo{display:grid;gap:6px;font-weight:600;font-size:14px;color:var(--warm)}
+.campo input{font:400 17px "Archivo";min-height:50px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line2);background:#0f0b08;color:var(--cream)}
+.campo input:focus{border-color:var(--gold)}
+.oculto{position:absolute;left:-9999px;opacity:0}
+.aceite{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--warm);line-height:1.45}
+.aceite input{flex:none;width:22px;height:22px;margin-top:1px;accent-color:var(--terra)}
+.aceite a{color:var(--gold)}
+.espera{background:var(--ink2);border-block:1px solid var(--line2);position:relative;overflow:hidden}
+.espera::before{content:"";position:absolute;inset:-30% -20% auto auto;width:70%;height:90%;background:radial-gradient(closest-side,rgba(244,194,79,.14),transparent 70%);pointer-events:none}
+.espera .cx{position:relative;display:grid;gap:28px}
+.espera ul{list-style:none;display:grid;gap:12px;margin-top:22px}
+.espera li{display:flex;gap:12px;align-items:flex-start;font-weight:600;color:var(--cream)}
+.espera li::before{content:"";flex:none;width:12px;height:12px;margin-top:7px;border-radius:3px;background:var(--gold);box-shadow:0 0 0 3px rgba(244,194,79,.2)}
+.espera .peq{margin-top:18px;color:var(--warm);font-size:14px}
+#form-espera{padding:22px 20px;border-radius:24px;background:var(--ink3);border:1.5px solid rgba(244,194,79,.55);display:grid;gap:14px}
+#form-espera>b{font:800 18px/1.2 "Archivo";font-stretch:106%;text-transform:uppercase}
+#form-espera fieldset{border:0;display:grid;gap:8px}
+#form-espera legend{font-weight:600;font-size:14px;color:var(--warm);margin-bottom:6px}
+.opc{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line2);background:#0f0b08;font-weight:600;font-size:15.5px;cursor:pointer;transition:border-color .2s,background .2s}
+.opc:hover{border-color:var(--line)}
+.opc input{width:20px;height:20px;accent-color:var(--terra);flex:none}
+.opc:has(input:checked){border-color:var(--gold);background:rgba(244,194,79,.08)}
+.opc:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:2px}
+#msg-espera{color:#ff9a7e;font-size:14px}
+.ok-espera{display:none;padding:26px 22px;border-radius:24px;border:1.5px solid var(--gold);background:var(--ink3)}
+.ok-espera h3{font-size:26px;text-transform:uppercase;font-stretch:106%;color:var(--gold);margin-bottom:10px}
+.ok-espera p{color:var(--cream)}
+.espera.enviado #form-espera{display:none}
+.espera.enviado .ok-espera{display:block}
+@media(min-width:860px){.espera .cx{grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -279,6 +309,7 @@ fbq('init','2676980966056593');fbq('track','PageView');fbq('track','ViewContent'
   <nav aria-label="Main">
     <a class="lk" href="#inside">What is inside</a>
     <a class="lk" href="#faq">FAQ</a>
+    <a class="lk" href="#waitlist" style="color:var(--gold)">Waitlist</a>
     <a class="pt" href="../" hreflang="pt-BR" lang="pt-BR">Português</a>
     <a class="bt" href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener">Get it $19</a>
   </nav>
@@ -350,6 +381,47 @@ fbq('init','2676980966056593');fbq('track','PageView');fbq('track','ViewContent'
   </div>
 </div></section>
 
+<span id="lista-espera" aria-hidden="true"></span>
+<section class="espera" id="waitlist" aria-labelledby="h-esp">
+  <div class="cx">
+    <div class="rv">
+      <span class="kicker">Waitlist</span>
+      <h2 class="h2" id="h-esp">Learn to create with AI like this</h2>
+      <p class="sub">I am preparing a mentorship for people who want to create with AI from scratch. Join the waitlist and get the details before everyone else.</p>
+      <ul>
+        <li>AI animation: from script to finished video, no drawing skills needed.</li>
+        <li>AI agents: build your own team of agents that works for you.</li>
+        <li>Content and digital products: create consistently, in your own style.</li>
+      </ul>
+      <p class="peq">Seats and dates announced to the waitlist first. Joining is free and commits you to nothing.</p>
+    </div>
+    <div class="rv" style="--d:120ms">
+      <form id="form-espera" novalidate>
+        <b>Join the waitlist</b>
+        <label class="campo">Your name<input name="nome" type="text" autocomplete="name" required></label>
+        <label class="campo">Email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+        <label class="campo">WhatsApp or phone, with country code (optional)<input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 555 123 4567"></label>
+        <fieldset>
+          <legend>What do you want to learn most?</legend>
+          <label class="opc"><input type="radio" name="quer" value="AI animation" required>AI animation</label>
+          <label class="opc"><input type="radio" name="quer" value="AI agents">AI agents</label>
+          <label class="opc"><input type="radio" name="quer" value="content and videos">Content and videos</label>
+          <label class="opc"><input type="radio" name="quer" value="selling digital products">Selling digital products</label>
+        </fieldset>
+        <input class="oculto" name="site_url" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="aceite"><input type="checkbox" name="consentimento" required><span>I agree to receive updates from JGA about the mentorship by email and WhatsApp, and I accept the <a href="https://gojira1998.github.io/jga-site/privacidade.html" target="_blank" rel="noopener">privacy policy</a>. I can unsubscribe anytime.</span></label>
+        <button class="bt" type="submit">Join the waitlist</button>
+        <p id="msg-espera" role="alert"></p>
+      </form>
+      <div class="ok-espera" id="ok-espera" role="status" tabindex="-1">
+        <h3>You are on the list</h3>
+        <p>Done, your name is in. When seats and dates are out, you hear first.</p>
+        <p style="margin-top:16px"><a class="bt vaz" href="#topo">Back to the kit</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="contratar"><div class="cx">
   <div class="cartao rv">
     <span class="kicker">Meet your team</span>
@@ -391,6 +463,40 @@ fbq('init','2676980966056593');fbq('track','PageView');fbq('track','ViewContent'
   else alvos.forEach(function(a){a.classList.add("v")});
   var vb=document.getElementById("vbtn");
   vb.addEventListener("click",function(){var v=document.createElement("video");v.src="assets/kit-video.mp4";v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute("playsinline","");v.loop=true;vb.innerHTML="";vb.appendChild(v);vb.style.cursor="default";v.play&&v.play().catch(function(){})},{once:true});
+})();
+</script>
+<script src="../leads-config.js"></script>
+<script>
+(function(){
+  var fe=document.getElementById("form-espera"); if(!fe) return;
+  var me=document.getElementById("msg-espera"), be=fe.querySelector("button"), ini=Date.now(), p=new URLSearchParams(location.search);
+  var sec=document.getElementById("waitlist");
+  if(location.hash==="#lista-espera") setTimeout(function(){sec.scrollIntoView()},50);
+  window.addEventListener("hashchange",function(){if(location.hash==="#lista-espera")sec.scrollIntoView()});
+  fe.addEventListener("submit",function(ev){
+    ev.preventDefault(); me.textContent="";
+    var f=new FormData(fe); if(f.get("site_url")) return;
+    var nome=(f.get("nome")||"").trim(), email=(f.get("email")||"").trim().toLowerCase(), wa=(f.get("whatsapp")||"").replace(/\D/g,""), quer=f.get("quer");
+    if(Date.now()-ini<3000){me.textContent="Wait a second and send again.";return}
+    if(nome.length<2){me.textContent="Enter your name.";return}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)){me.textContent="Check your email.";return}
+    if(wa&&(wa.length<10||wa.length>13)){me.textContent="Check the phone number (10 to 13 digits, with country code), or leave it blank.";return}
+    if(!quer){me.textContent="Pick what you want to learn most.";return}
+    if(!f.get("consentimento")){me.textContent="Tick the box to join.";return}
+    var cfg=window.JGA_LEADS||{};
+    if(!cfg.url||!cfg.anonKey){me.textContent="The list is being set up. Try again later.";return}
+    var ref="direct"; try{if(document.referrer)ref=new URL(document.referrer).hostname}catch(e){}
+    be.disabled=true; be.textContent="Sending...";
+    fetch(cfg.url.replace(/\/$/,"")+"/rest/v1/"+(cfg.tabela||"leads"),{
+      method:"POST",
+      headers:{"Content-Type":"application/json","apikey":cfg.anonKey,"Authorization":"Bearer "+cfg.anonKey,"Prefer":"return=minimal"},
+      body:JSON.stringify({nome:nome,whatsapp:wa||"0000000000",email:email,post_slug:"waitlist-mentorship-en",mentoria:true,consentimento:true,origem:("quer: "+quer+" | "+(p.get("utm_source")||ref)).slice(0,120)})
+    }).then(function(r){
+      if(!r.ok&&r.status!==409) throw new Error("status "+r.status);
+      sec.classList.add("enviado"); document.getElementById("ok-espera").focus({preventScroll:true});
+      if(window.fbq) fbq("track","Lead",{content_name:"waitlist-mentorship-en"});
+    }).catch(function(){me.textContent="Could not send right now. Please try again in a moment.";be.disabled=false;be.textContent="Join the waitlist"});
+  });
 })();
 </script>
 </body></html>
