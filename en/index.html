@@ -297,10 +297,25 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px}
 .espera.enviado #form-espera{display:none}
 .espera.enviado .ok-espera{display:block}
 @media(min-width:860px){.espera .cx{grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}}
+
+/* aviso de cookies */
+.ck{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--ink2);border-top:2px solid var(--gold);box-shadow:0 -12px 36px rgba(0,0,0,.55);padding:16px 0 calc(16px + env(safe-area-inset-bottom))}
+.ck[hidden]{display:none}
+.ck .cx{display:grid;gap:12px}
+.ck p{font-size:15px;line-height:1.5;color:var(--cream)}
+.ck a{color:var(--gold)}
+.ck .bs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ck .bt{min-height:48px;padding:0 14px;box-shadow:none}
+body.ck-on{padding-bottom:var(--ckh,190px)}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--cream);text-decoration:underline;text-decoration-color:var(--line);cursor:pointer}
+@media(min-width:760px){.ck .cx{grid-template-columns:1fr auto;align-items:center;gap:28px}.ck .bs{min-width:320px}}
 </style>
 <script>
+window.jgaPixel=function(){
+if(window.jgaPixelOn)return;window.jgaPixelOn=1;
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','2676980966056593');fbq('track','PageView');fbq('track','ViewContent',{content_name:'AI Agent Office Kit',content_type:'product',value:19,currency:'USD'});
+};
 </script>
 </head>
 <body>
@@ -450,8 +465,8 @@ fbq('init','2676980966056593');fbq('track','PageView');fbq('track','ViewContent'
 </main>
 <footer><div class="cx">
   <span class="marca">João Gabriel · JGA AI Services</span>
-  <div class="links"><a href="../" hreflang="pt-BR" lang="pt-BR">Versão em português</a><a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA website</a><a href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener">AI Agent Office Kit on Gumroad</a><a href="privacy/">Privacy Policy</a></div>
-  <span>Independent kit, not affiliated with Anthropic. This page uses the Meta Pixel to measure ads, see the <a href="privacy/">Privacy Policy</a>.</span>
+  <div class="links"><a href="../" hreflang="pt-BR" lang="pt-BR">Versão em português</a><a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA website</a><a href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener">AI Agent Office Kit on Gumroad</a><a href="privacy/">Privacy Policy</a><button type="button" class="linkbtn" id="ck-set">Cookie settings</button></div>
+  <span>Independent kit, not affiliated with Anthropic. This page loads the Meta Pixel to measure ads only if you accept cookies, see the <a href="privacy/">Privacy Policy</a>.</span>
 </div></footer>
 <script>
 (function(){
@@ -498,6 +513,26 @@ fbq('init','2676980966056593');fbq('track','PageView');fbq('track','ViewContent'
       if(window.fbq) fbq("track","Lead",{content_name:"waitlist-mentorship-en"});
     }).catch(function(){me.textContent="Could not send right now. Please try again in a moment.";be.disabled=false;be.textContent="Join the waitlist"});
   });
+})();
+</script>
+<div class="ck" id="ck" role="region" aria-label="Cookie consent" hidden><div class="cx">
+  <p>We use the Meta Pixel to measure our ads. It only loads if you accept. The page works the same if you decline. <a href="privacy/">Privacy Policy</a></p>
+  <div class="bs"><button type="button" class="bt" id="ck-no">Decline</button><button type="button" class="bt" id="ck-ok">Accept</button></div>
+</div></div>
+<script>
+(function(){
+  var K="jga_cookie_consent",bar=document.getElementById("ck"),b=document.body;
+  function get(){try{return localStorage.getItem(K)}catch(e){return null}}
+  function set(v){try{localStorage.setItem(K,v)}catch(e){}}
+  function show(){bar.hidden=false;b.classList.add("ck-on");b.style.setProperty("--ckh",bar.offsetHeight+"px");(document.getElementById("ck-ok")).focus({preventScroll:true})}
+  function hide(){bar.hidden=true;b.classList.remove("ck-on")}
+  var v=get();
+  if(v==="yes")window.jgaPixel();else if(v!=="no")show();
+  document.getElementById("ck-ok").addEventListener("click",function(){set("yes");hide();window.jgaPixel()});
+  document.getElementById("ck-no").addEventListener("click",function(){set("no");hide()});
+  var cs=document.getElementById("ck-set");
+  if(cs)cs.addEventListener("click",function(){show()});
+  addEventListener("resize",function(){if(!bar.hidden)b.style.setProperty("--ckh",bar.offsetHeight+"px")});
 })();
 </script>
 </body></html>
