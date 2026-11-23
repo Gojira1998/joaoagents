@@ -272,6 +272,7 @@ footer .marca{font:800 15px "Archivo";color:var(--cream)}
       <a class="lk" href="#servicos">Serviços</a>
       <a class="lk" href="#trabalhos">Trabalhos</a>
       <a class="lk" href="#materiais">Materiais grátis</a>
+      <a class="lk" href="#renda-youtube">YouTube com IA</a>
       <a class="esp" href="#lista-espera">Lista<span class="mais"> de espera</span></a>
       <a class="en" style="font-size:12px;color:var(--warm)" href="en/" hreflang="en" lang="en">English</a>
       <a class="jga" href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">Site da JGA</a>
@@ -464,6 +465,90 @@ footer .marca{font:800 15px "Archivo";color:var(--cream)}
     </div>
   </div>
 </section>
+
+<!-- BONUS RENDA NO YOUTUBE: secao nova. Estilos proprios no <style> abaixo (prefixo .yt-). -->
+<style>
+.yt{background:var(--ink);border-top:1px solid var(--line2)}
+.yt .aviso-yt{margin-top:18px;padding:14px 18px;border-radius:16px;border:1px solid var(--line2);color:var(--warm);font-size:14.5px;background:rgba(0,0,0,.18)}
+.yt-dicas{display:grid;gap:12px;margin-top:30px;counter-reset:d}
+.yt-dica{display:flex;gap:16px;background:var(--ink2);border:1px solid var(--line2);border-radius:20px;padding:20px}
+.yt-dica::before{counter-increment:d;content:counter(d);flex:none;width:40px;height:40px;border-radius:12px;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font:900 18px "Archivo"}
+.yt-dica h3{font:800 19px/1.2 "Archivo";font-stretch:102%}
+.yt-dica p{color:var(--warm);font-size:15.5px;margin-top:6px}
+.yt-prompts{margin-top:44px}
+.yt-prompts>h3{font:800 13px/1.3 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.yt-prompts>p{color:var(--warm);font-size:15px;margin-bottom:12px}
+.yt-copiar{margin-top:12px;min-height:44px;font-size:13px}
+.yt-pilares{margin-top:48px;display:grid;gap:22px;padding:26px 22px;border-radius:28px;border:1.5px solid rgba(244,194,79,.55);background:radial-gradient(120% 90% at 100% 0,rgba(213,106,74,.26),transparent 60%),var(--ink2)}
+.yt-pilares h3{font-size:clamp(24px,6.4vw,34px);font-stretch:106%;text-transform:uppercase}
+.yt-cols{display:grid;gap:16px}
+.yt-col{background:rgba(0,0,0,.22);border:1px solid var(--line2);border-radius:20px;padding:18px}
+.yt-col h4{font:800 12px/1.2 "Archivo";font-stretch:112%;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.yt-col ul{list-style:none;display:grid;gap:9px}
+.yt-col li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;color:var(--cream)}
+.yt-col li::before{content:"";flex:none;width:10px;height:10px;margin-top:8px;border-radius:3px;background:var(--gold);box-shadow:0 0 0 3px rgba(244,194,79,.2)}
+.yt-compra{display:grid;gap:14px;align-items:center;padding:20px;border-radius:22px;border:1.5px solid var(--gold);background:var(--ink)}
+.yt-preco{font:900 clamp(40px,11vw,56px)/1 "Archivo";color:var(--gold);font-variant-numeric:tabular-nums}
+.yt-preco small{display:block;margin-bottom:6px;font:700 12px/1 "Archivo";letter-spacing:.14em;text-transform:uppercase;color:var(--warm)}
+.yt-compra .peq{color:var(--warm);font-size:13.5px}
+@media(min-width:760px){.yt-dicas{grid-template-columns:1fr 1fr}.yt-cols{grid-template-columns:repeat(3,1fr)}.yt-compra{grid-template-columns:auto 1fr auto;gap:28px}.yt-pilares{padding:44px 40px}}
+</style>
+<section class="yt" id="renda-youtube" aria-labelledby="h-yt">
+  <div class="cx">
+    <span class="kicker rv">Bônus: YouTube com IA</span>
+    <h2 class="h2 rv" id="h-yt">Como começar no YouTube e criar uma renda extra com IA</h2>
+    <p class="sub rv">Cinco dicas e quatro prompts pra você sair do zero com direção. O passo a passo completo está no PDF, logo depois.</p>
+    <p class="aviso-yt rv">Sem promessa de ganho. Canal que rende exige constância, teste e paciência, e o resultado muda de pessoa pra pessoa.</p>
+
+    <div class="yt-dicas">
+      <div class="yt-dica rv"><div><h3>Escolha o nicho por três filtros</h3><p>Tem gente que assiste, tem anunciante que paga bem naquele assunto e você aguenta produzir cinquenta vídeos sobre ele. Se falhar em um, procure outro.</p></div></div>
+      <div class="yt-dica rv" style="--d:60ms"><div><h3>Procure o canal pequeno com vídeo grande</h3><p>Um canal novo com um vídeo muito acima da média mostra um tema que o público quer. É ali que está a pista, não nos gigantes.</p></div></div>
+      <div class="yt-dica rv" style="--d:120ms"><div><h3>Pense no título antes do roteiro</h3><p>Se você não consegue escrever um título que dá vontade de clicar, a ideia ainda não está pronta. Resolva isso primeiro.</p></div></div>
+      <div class="yt-dica rv" style="--d:180ms"><div><h3>Os primeiros trinta segundos pagam a conta</h3><p>Diga logo o que a pessoa vai ter no fim do vídeo e comece a entregar. Enrolação no começo é a maior causa de gente saindo.</p></div></div>
+      <div class="yt-dica rv" style="--d:240ms"><div><h3>IA ajuda, mas não assina por você</h3><p>Use pra ganhar velocidade, não pra despejar vídeo igual em série. O canal precisa de um ponto de vista e de um jeito próprio de contar.</p></div></div>
+    </div>
+
+    <div class="yt-prompts rv">
+      <h3>Prompts prontos pra copiar</h3>
+      <p>Troque o que está entre colchetes e cole na IA que você usa. Toque num prompt pra abrir.</p>
+      <details open><summary>1. Achar um nicho com os três filtros</summary><div><p><code id="yt-p1">Quero abrir um canal no YouTube em português do Brasil. Meus interesses: [liste 3 a 5]. Tempo por semana: [horas]. Me proponha 8 nichos. Pra cada um, dê uma nota de 1 a 5 em: interesse do público, valor que anunciantes costumam pagar, e facilidade de eu produzir 50 vídeos. Diga o risco de cada nicho e qual você escolheria pra um iniciante, explicando por quê. Se não tiver certeza de algum dado, avise em vez de inventar.</code></p><button class="bt vaz yt-copiar" type="button" data-alvo="yt-p1">Copiar prompt</button></div></details>
+      <details><summary>2. Modelar um canal de sucesso sem copiar</summary><div><p><code id="yt-p2">Vou te colar os títulos e as descrições dos 15 vídeos de maior sucesso de um canal do meu nicho: [cole aqui]. Analise o que eles têm em comum: tipo de promessa, estrutura do título, tema, formato. Não copie nada. Me diga quais padrões se repetem e proponha 10 ideias de vídeo para o meu canal, com ângulo e título meus, que usem esses padrões sem imitar nenhum vídeo existente.</code></p><button class="bt vaz yt-copiar" type="button" data-alvo="yt-p2">Copiar prompt</button></div></details>
+      <details><summary>3. Roteiro com começo, meio e fim</summary><div><p><code id="yt-p3">Escreva o roteiro de um vídeo de [duração] minutos sobre [tema] para [público]. Comece com uma frase que prometa o resultado do vídeo. Divida em partes curtas, cada uma com um exemplo concreto. Use frases curtas, linguagem falada e nenhum termo difícil sem explicar. Termine com um único pedido ao espectador. Marque entre colchetes onde entra imagem ou tela.</code></p><button class="bt vaz yt-copiar" type="button" data-alvo="yt-p3">Copiar prompt</button></div></details>
+      <details><summary>4. Dez títulos pra escolher</summary><div><p><code id="yt-p4">O vídeo é sobre [tema] e a promessa é [o que a pessoa ganha]. Escreva 10 títulos com até 60 caracteres, sem exagero e sem prometer o que o vídeo não entrega. Misture curiosidade, número e resultado. Depois aponte os 3 mais fortes e diga por quê.</code></p><button class="bt vaz yt-copiar" type="button" data-alvo="yt-p4">Copiar prompt</button></div></details>
+    </div>
+
+    <div class="yt-pilares rv" id="pdf-youtube">
+      <div>
+        <span class="kicker">O PDF completo</span>
+        <h3>Do nicho ao canal monetizado, sem pular etapa</h3>
+        <p class="sub" style="margin-top:12px">Tudo o que as dicas acima não cabem em uma página: o método inteiro, escrito pra quem nunca publicou um vídeo.</p>
+      </div>
+      <div class="yt-cols">
+        <div class="yt-col"><h4>O que você ganha</h4><ul><li>Um caminho em ordem, da escolha do nicho à análise das métricas.</li><li>Clareza sobre o que a plataforma exige pra pagar um canal.</li><li>Segurança pra usar IA sem cair em direito autoral ou monetização negada.</li></ul></div>
+        <div class="yt-col"><h4>Pra quem é</h4><ul><li>Quem quer começar um canal e não sabe por onde.</li><li>Quem já postou e não vê o canal andar.</li><li>Quem quer usar IA no processo sem virar canal genérico.</li></ul></div>
+        <div class="yt-col"><h4>O que tem dentro</h4><ul><li>Escolha de nicho e modelagem de canais, passo a passo.</li><li>Roteiro, voz, edição com IA, título, thumbnail e SEO.</li><li>Propriedade intelectual, métricas, requisitos de monetização, rotina e erros comuns.</li></ul></div>
+      </div>
+      <div class="yt-compra">
+        <div class="yt-preco"><small>Pagamento único</small>R$ 14,90</div>
+        <p class="peq">PDF digital, acesso pela Kiwify logo após a compra. Não é promessa de ganho: é um método pra você aplicar e testar.</p>
+        <!-- TROCAR: link da Kiwify -->
+        <a class="bt" href="https://pay.kiwify.com.br/JAmk0LF" target="_blank" rel="noopener">Quero o PDF por R$ 14,90</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  [].forEach.call(document.querySelectorAll(".yt-copiar"),function(b){
+    b.addEventListener("click",function(){
+      var el=document.getElementById(b.getAttribute("data-alvo")),t=el.textContent;
+      function ok(){var o=b.textContent;b.textContent="Copiado";setTimeout(function(){b.textContent=o},1800)}
+      function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand("copy");ok()}catch(e){}}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,sel)}else{sel()}
+    });
+  });
+})();
+</script>
 
 <section class="mat" id="materiais" aria-labelledby="h-mat">
   <span id="lutadores" aria-hidden="true"></span>
