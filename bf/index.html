@@ -485,7 +485,7 @@ body.ck-on{padding-bottom:var(--ckh,64px)}
 <footer><div class="w">
   <span class="name">João Agents</span>
   <div class="links"><a href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener" data-buy="footer">AI Agent Office Kit on Gumroad</a><a href="../en/privacy/">Privacy Policy</a><button type="button" class="linkbtn" id="ck-set">Cookie settings</button></div>
-  <span class="fine">João Gabriel, JGA AI Services. Independent kit, not affiliated with Anthropic. Claude and Claude Code are trademarks of Anthropic. Black Friday price of $19 valid until Monday, Nov 30, 2026 at 11:59 PM Eastern Time. This page loads the Meta Pixel to measure ads only if you accept cookies, see the <a href="../en/privacy/">Privacy Policy</a>.</span>
+  <span class="fine">João Gabriel, JGA AI Services. Independent kit, not affiliated with Anthropic. Claude and Claude Code are trademarks of Anthropic. Black Friday price of $19 valid until Monday, Nov 30, 2026 at 11:59 PM Eastern Time. This page uses the Meta Pixel to measure ads; you can opt out in Cookie settings. See the <a href="../en/privacy/">Privacy Policy</a>.</span>
 </div></footer>
 
 <script>
@@ -559,8 +559,8 @@ body.ck-on{padding-bottom:var(--ckh,64px)}
 })();
 </script>
 <div class="ck" id="ck" role="region" aria-label="Cookie consent" hidden>
-  <p>We use the Meta Pixel to measure our ads, only if you accept. <a href="../en/privacy/">Privacy</a></p>
-  <div class="bs"><button type="button" id="ck-no">Decline</button><button type="button" id="ck-ok">Accept</button></div>
+  <p>We use the Meta Pixel to measure our ads. You can opt out anytime. <a href="../en/privacy/">Privacy</a></p>
+  <div class="bs"><button type="button" id="ck-no">Opt out</button><button type="button" id="ck-ok">OK</button></div>
 </div>
 <script>
 (function(){
@@ -570,9 +570,10 @@ body.ck-on{padding-bottom:var(--ckh,64px)}
   function show(){bar.hidden=false;b.classList.add("ck-on");b.style.setProperty("--ckh",bar.offsetHeight+"px")}
   function hide(){bar.hidden=true;b.classList.remove("ck-on")}
   var v=get();
-  if(v==="yes")window.jgaPixel();else if(v!=="no")show();
-  document.getElementById("ck-ok").addEventListener("click",function(){set("yes");hide();window.jgaPixel()});
-  document.getElementById("ck-no").addEventListener("click",function(){set("no");hide()});
+  if(v!=="no")window.jgaPixel();
+  if(v!=="yes"&&v!=="no")show();
+  document.getElementById("ck-ok").addEventListener("click",function(){set("yes");hide()});
+  document.getElementById("ck-no").addEventListener("click",function(){set("no");window.jgaPixelOff=1;try{if(window.fbq)fbq("consent","revoke")}catch(e){}hide()});
   var cs=document.getElementById("ck-set");
   if(cs)cs.addEventListener("click",function(){show()});
   addEventListener("resize",function(){if(!bar.hidden)b.style.setProperty("--ckh",bar.offsetHeight+"px")});
