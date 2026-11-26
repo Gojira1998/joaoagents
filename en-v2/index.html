@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Agent Office Kit: build your own team of AI agents with Claude Code</title>
+<meta name="description" content="One prompt turns Claude Code into 10 AI agents with their own jobs, a shared memory and a live 3D office. Step by step guide for beginners. $19, one time.">
+<!-- PREVIEW: remove the next line when this page replaces /en/ -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0d1020">
+<meta property="og:title" content="AI Agent Office Kit: your own team of AI agents in a 3D office">
+<meta property="og:description" content="10 agents, one dispatcher, a shared memory and a live 3D office for Claude Code. Step by step, for beginners. $19.">
+<meta property="og:image" content="assets/office-og.jpg">
+<link rel="icon" href="../assets/joao.jpg">
+<link rel="alternate" hreflang="pt-BR" href="../">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/office-m-800.webp" media="(max-width:759px)">
+<link rel="preload" as="image" href="assets/office-1600.webp" media="(min-width:760px)">
+<style>
+:root{
+  --bg:#0d1020; --bg2:#151a33; --bg3:#1d2346;
+  --ink:#eef0f8; --muted:#aab0cc;
+  --gold:#f4c24f; --gold2:#ffd36e;
+  --orange:#ff7a2e; --green:#45d98a; --idle:#7a7f96;
+  --code:#090b17;
+  --r:12px; --gut:16px; --max:1200px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 "Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.w{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3{font-weight:800;letter-spacing:-.03em;text-wrap:balance}
+h1{font-size:clamp(38px,6.4vw,84px);line-height:.98;letter-spacing:-.032em}
+h2{font-size:clamp(30px,4.4vw,56px);line-height:1.02}
+h3{font-size:clamp(21px,2vw,26px);line-height:1.15;letter-spacing:-.02em}
+p{max-width:62ch}
+.lead{font-size:clamp(18px,1.55vw,21px);line-height:1.5}
+.small{font-size:14px;color:var(--muted)}
+section{padding:96px 0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* buttons: status-pill shape from the office */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;background:var(--gold);color:#121526;font-weight:800;font-size:18px;letter-spacing:-.01em;text-decoration:none;border:0;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn .px{display:inline-block;padding:3px 10px;border-radius:999px;background:#121526;color:var(--gold);font-size:15px}
+.btn.dark{background:#121526;color:var(--gold)}
+.btn.dark:hover{background:#1f2440}
+.btn.dark .px{background:var(--gold);color:#121526}
+.lnk{color:var(--ink);font-weight:600;text-underline-offset:4px;text-decoration-thickness:2px;text-decoration-color:rgba(244,194,79,.6)}
+.lnk:hover{text-decoration-color:var(--gold)}
+
+/* status pill (the office's room tag) */
+.pill{display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 10px;border-radius:999px;background:var(--bg3);font-size:14px;font-weight:600;white-space:nowrap}
+.pill i{width:9px;height:9px;border-radius:50%;background:var(--s,var(--idle));flex:none}
+
+/* header */
+.top{padding:12px 0}
+.top .w{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:-.01em}
+.brand img{width:36px;height:36px;border-radius:50%;image-rendering:pixelated}
+.top nav{margin-left:auto;display:flex;align-items:center;gap:6px}
+.top nav a{text-decoration:none;font-size:15px;font-weight:600;padding:9px 12px;border-radius:999px}
+.top nav a.hide-m{display:none}
+.top nav a.pt{color:var(--muted)}
+.top nav a.buy{background:var(--bg3);color:var(--gold)}
+.top nav a:hover{background:var(--bg2)}
+
+/* hero */
+.hero{padding:4px 0 72px}
+.hero .w{display:grid;gap:22px}
+.shot{border-radius:var(--r);overflow:hidden;background:#0a0c18}
+.hero .shot{aspect-ratio:16/10}
+.hero .shot img{width:100%;height:100%;object-fit:cover;object-position:0 0}
+.hero h1{margin-top:4px}
+.hero .lead{margin-top:16px;color:var(--ink)}
+.hero .cta{margin-top:24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.hero .cta .btn{width:100%}
+.hero .note{font-size:14.5px;color:var(--muted);line-height:1.45}
+.hero .note b{color:var(--ink);font-weight:600}
+
+/* problem */
+.prob{background:var(--bg2)}
+.prob .w{display:grid;gap:40px}
+.prob h2{max-width:16ch}
+.prob .intro{margin-top:18px;color:var(--ink)}
+.vs{display:grid;gap:14px}
+.vs>div{border-radius:var(--r);padding:24px}
+.vs .old{background:var(--bg)}
+.vs .new{background:var(--bg3)}
+.vs h3{font-size:19px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.vs ul{list-style:none;display:grid;gap:12px}
+.vs li{display:grid;grid-template-columns:16px 1fr;gap:12px;font-size:16.5px}
+.vs li::before{content:"";width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--idle)}
+.vs .new li::before{background:var(--green)}
+
+/* demo */
+.demo .w{display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
+.demo .intro{margin-top:16px;color:var(--muted)}
+.jobs{display:grid;gap:10px;margin-top:26px}
+.job{display:flex;align-items:center;gap:12px;min-height:54px;padding:10px 18px;border-radius:999px;background:var(--bg2);border:0;text-align:left;font-size:16.5px;font-weight:600;cursor:pointer;transition:background .2s,transform .2s var(--ease)}
+.job:hover{background:var(--bg3)}
+.job:active{transform:scale(.985)}
+.job[aria-pressed="true"]{background:var(--gold);color:#121526}
+.job i{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.own{display:flex;gap:8px;margin-top:6px}
+.own input{flex:1;min-width:0;min-height:54px;padding:0 20px;border-radius:999px;border:2px solid var(--bg3);background:var(--bg);color:var(--ink);font:inherit;font-size:16.5px}
+.own input::placeholder{color:#8a90ad}
+.own input:focus{outline:none;border-color:var(--gold)}
+.own button{min-height:54px;padding:0 20px;border-radius:999px;border:0;background:var(--bg3);font-weight:700;cursor:pointer}
+.own button:hover{background:#28305c}
+.board{background:var(--code);border-radius:var(--r);padding:16px;align-self:start}
+.board .bar{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:2px 2px 14px;font-size:14px;color:var(--muted)}
+.board .bar b{color:var(--ink);font-size:14px;letter-spacing:.02em;margin-right:4px}
+.board .bar span{display:inline-flex;align-items:center;gap:6px}
+.board .bar span i{width:8px;height:8px;border-radius:50%}
+.rooms{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.room{position:relative;border-radius:10px;padding:12px 12px 12px 14px;background:color-mix(in srgb,var(--c) 22%,#151a33);min-height:64px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;transition:background .3s}
+.room::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:4px;border-radius:0 4px 4px 0;background:var(--c)}
+.room b{font-size:15px;font-weight:700}
+.room span{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:var(--muted)}
+.room span i{width:8px;height:8px;border-radius:50%;background:var(--idle)}
+.room[data-s="working"] span i{background:var(--gold)}
+.room[data-s="waiting"] span i{background:var(--orange)}
+.room[data-s="done"] span i{background:var(--green)}
+.room[data-s="working"],.room[data-s="waiting"],.room[data-s="done"]{background:color-mix(in srgb,var(--c) 40%,#151a33)}
+.room[data-s="working"] span,.room[data-s="waiting"] span,.room[data-s="done"] span{color:var(--ink)}
+.room[data-s="waiting"]{box-shadow:inset 0 0 0 2px var(--orange)} /* taste-skill-ignore: inset ring = status outline, not a shadow */
+.log{margin-top:12px;min-height:150px;border-radius:10px;background:var(--bg);padding:14px 16px;font-size:15px;line-height:1.5;display:grid;gap:6px;align-content:start}
+.log p{max-width:none}
+.log p b{font-weight:700}
+.log .you{color:var(--gold)}
+.log .ask{color:var(--orange);font-weight:600}
+.log .hint{color:var(--muted)}
+.log p.in{animation:in .35s var(--ease)}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* inside */
+.inside{background:var(--bg2)}
+.inside .head{display:grid;gap:16px;margin-bottom:56px}
+.inside .head p{color:var(--muted)}
+.item{display:grid;gap:22px;padding:40px 0}
+.item+.item{border-top:0}
+.item .tx p{margin-top:10px;color:var(--ink)}
+.item .tx .small{margin-top:12px}
+.pages{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pages img{border-radius:8px;background:#fff}
+pre{background:var(--code);border-radius:var(--r);padding:18px 18px 20px;overflow-x:auto;font:13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d9dcf0;white-space:pre-wrap;word-break:break-word}
+pre .c{color:var(--gold)}
+@media (max-width:599px){pre{font-size:12.5px;padding:16px}.agents li{grid-template-columns:12px 92px 1fr;gap:10px}}
+pre .m{color:#8a90ad}
+.agents{list-style:none;display:grid;gap:8px}
+.agents li{display:grid;grid-template-columns:14px 112px 1fr;gap:12px;align-items:baseline;padding:10px 14px;border-radius:10px;background:var(--bg);font-size:15.5px}
+.agents li::before{content:"";width:12px;height:12px;border-radius:3px;background:var(--c);transform:translateY(1px)}
+.agents b{font-weight:700}
+.agents span{color:var(--muted)}
+.skills{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.skills li{padding:8px 14px;border-radius:999px;background:var(--bg);font-size:15px;font-weight:600}
+.skills li.more{background:transparent;color:var(--muted);padding-left:4px}
+.mid-cta{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+
+/* steps */
+.steps .w{display:grid;gap:44px}
+.steps ol{list-style:none;counter-reset:s;display:grid;gap:12px}
+.steps ol>li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;padding:20px;border-radius:var(--r);background:var(--bg2)}
+.steps ol>li::before{content:counter(s);width:52px;height:52px;border-radius:50%;background:var(--gold);color:#121526;font-weight:800;font-size:24px;display:grid;place-items:center}
+.steps ol h3{font-size:21px}
+.steps ol p{margin-top:6px;color:var(--muted);font-size:16.5px}
+.first{display:grid;gap:18px;align-content:start}
+.first h3{font-size:24px}
+.first ul{list-style:none;display:grid;gap:10px}
+.first li{padding:16px 18px;border-radius:var(--r);background:var(--bg2);font-size:16px}
+.first li b{display:block;margin-bottom:4px}
+.first li span{color:var(--muted)}
+.first li em{font-style:normal;color:var(--gold);font-weight:700}
+
+/* control */
+.ctrl{background:var(--bg2)}
+.ctrl .w{display:grid;gap:36px}
+.ctrl .intro{margin-top:16px}
+.figs{display:grid;gap:22px}
+figure .shot{aspect-ratio:1100/598}
+figure .shot img{width:100%;height:100%;object-fit:cover}
+figcaption{margin-top:10px;font-size:15px;color:var(--muted)}
+@media (max-width:759px){.figs .shot{aspect-ratio:4/3}.figs .shot img{object-position:100% 0}}
+figcaption b{color:var(--ink);font-weight:600}
+
+/* video */
+.vid .w{display:grid;gap:32px;align-items:center}
+.vbox{position:relative;width:100%;max-width:360px;aspect-ratio:9/16;border-radius:var(--r);overflow:hidden;background:#000;border:0;padding:0;cursor:pointer;margin:0 auto}
+.vbox img,.vbox video{width:100%;height:100%;object-fit:cover}
+.vbox .play{position:absolute;left:50%;top:74%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--gold);display:grid;place-items:center;transition:transform .2s var(--ease)}
+.vbox:hover .play{transform:scale(1.07)}
+.vbox .play::before{content:"";margin-left:6px;border-left:22px solid #121526;border-block:14px solid transparent}
+.legend{list-style:none;display:grid;gap:10px;margin-top:22px}
+.legend li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;font-size:16px}
+.legend .pill{min-width:112px;justify-content:flex-start}
+
+/* fit */
+.fit .w{display:grid;gap:32px}
+.cols{display:grid;gap:14px}
+.cols>div{padding:26px;border-radius:var(--r);background:var(--bg2)}
+.cols h3{font-size:21px;margin-bottom:14px}
+.cols ul{list-style:none;display:grid;gap:12px}
+.cols li{display:grid;grid-template-columns:16px 1fr;gap:12px;font-size:16.5px}
+.cols li::before{content:"";width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--green)}
+.cols .no li::before{background:var(--idle)}
+
+/* price */
+.price{background:var(--gold);color:#121526}
+.price .w{display:grid;gap:30px}
+.price h2{max-width:14ch}
+.price .big{font-size:clamp(84px,14vw,168px);font-weight:800;letter-spacing:-.05em;line-height:.9}
+.price .big small{font-size:20px;letter-spacing:-.01em;font-weight:700;margin-left:10px}
+.price p{font-size:18px}
+.price ul{list-style:none;display:grid;gap:8px;margin-top:20px}
+.price li{display:grid;grid-template-columns:16px 1fr;gap:10px;font-size:17px;font-weight:600}
+.price li::before{content:"";width:10px;height:10px;border-radius:50%;background:#121526;margin-top:8px}
+.price .need{margin-top:20px;font-size:15.5px}
+.price .btn{width:100%;margin-top:26px}
+.price .after{margin-top:12px;font-size:15px}
+
+/* faq */
+.faq .w{display:grid;gap:30px}
+.qs{display:grid;gap:8px}
+details{border-radius:var(--r);background:var(--bg2)}
+summary{list-style:none;cursor:pointer;padding:18px 56px 18px 20px;font-weight:700;font-size:17px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:22px;top:50%;width:12px;height:12px;margin-top:-8px;border-right:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);transform:rotate(45deg);transition:transform .25s var(--ease)}
+details[open] summary::after{transform:rotate(225deg);margin-top:-2px}
+details>div{padding:0 20px 20px;color:var(--ink);font-size:16.5px}
+details>div p+p{margin-top:8px}
+details a{color:var(--gold)}
+
+/* waitlist (kept from the live page) */
+.espera{background:var(--bg2)}
+.espera .w{display:grid;gap:28px}
+.espera .sub{margin-top:14px;color:var(--ink)}
+.espera ul{list-style:none;display:grid;gap:10px;margin-top:20px}
+.espera li{display:grid;grid-template-columns:16px 1fr;gap:12px;font-size:16.5px}
+.espera li::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--gold);margin-top:8px}
+.espera .peq{margin-top:16px;color:var(--muted);font-size:14.5px}
+#form-espera{padding:22px 20px;border-radius:var(--r);background:var(--bg);display:grid;gap:14px}
+#form-espera>b{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.campo{display:grid;gap:6px;font-weight:600;font-size:14.5px;color:var(--muted)}
+.campo input{font:inherit;font-size:17px;min-height:50px;padding:0 14px;border-radius:10px;border:2px solid var(--bg3);background:var(--bg2);color:var(--ink)}
+.campo input:focus{outline:none;border-color:var(--gold)}
+#form-espera fieldset{border:0;display:grid;gap:8px}
+#form-espera legend{font-weight:600;font-size:14.5px;color:var(--muted);margin-bottom:6px}
+.opc{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border-radius:10px;background:var(--bg2);font-weight:600;font-size:16px;cursor:pointer;border:2px solid transparent}
+.opc input{width:20px;height:20px;accent-color:var(--gold);flex:none}
+.opc:has(input:checked){border-color:var(--gold)}
+.oculto{position:absolute;left:-9999px;opacity:0}
+.aceite{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);line-height:1.45}
+.aceite input{flex:none;width:22px;height:22px;margin-top:1px;accent-color:var(--gold)}
+.aceite a{color:var(--gold)}
+#msg-espera{color:#ff9a7e;font-size:14.5px}
+#msg-espera:empty{display:none}
+.ok-espera{display:none;padding:26px 22px;border-radius:var(--r);background:var(--bg)}
+.ok-espera h3{color:var(--gold);margin-bottom:10px}
+.espera.enviado #form-espera{display:none}
+.espera.enviado .ok-espera{display:block}
+#form-espera .btn{width:100%}
+
+/* final */
+.final{padding:110px 0 96px}
+.final .w{display:grid;gap:40px}
+.final .tx{display:grid;gap:22px;justify-items:start;align-content:center}
+.final .shot{display:none}
+.final h2{max-width:16ch}
+.final p{color:var(--muted)}
+
+footer{background:var(--bg2);padding:44px 0 56px;font-size:14.5px;color:var(--muted)}
+footer .w{display:grid;gap:16px}
+footer .name{font-size:clamp(34px,7vw,72px);font-weight:800;letter-spacing:-.04em;color:var(--ink);line-height:1}
+footer .links{display:flex;flex-wrap:wrap;gap:10px 22px}
+footer a,.linkbtn{color:var(--ink);text-underline-offset:3px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;text-decoration:underline;cursor:pointer}
+
+/* sticky buy bar */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg3);padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;transform:translateY(110%);transition:transform .3s var(--ease)}
+.sticky.on{transform:none}
+.sticky .t{flex:1;min-width:0;font-size:14.5px;line-height:1.3}
+.sticky .t b{display:block;font-size:15.5px}
+.sticky .t span{color:var(--muted)}
+.sticky .btn{min-height:48px;padding:0 20px;font-size:16px;flex:none}
+
+/* cookie notice: compact, never over the hero button */
+.ck{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#1f2547;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
+.ck[hidden]{display:none}
+.ck p{flex:1;min-width:0;font-size:13.5px;line-height:1.35;color:var(--ink);max-width:none}
+.ck a{color:var(--gold)}
+.ck .bs{display:flex;gap:8px;flex:none}
+.ck button{min-height:40px;padding:0 14px;border-radius:999px;border:0;font-weight:700;font-size:14px;cursor:pointer}
+.ck #ck-no{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px #59608a} /* taste-skill-ignore: inset ring as button outline */
+.ck #ck-ok{background:var(--gold);color:#121526}
+body.ck-on{padding-bottom:var(--ckh,64px)}
+
+/* entrances: content stays visible if script fails */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:var(--d,0ms)}
+.js .rv.v{opacity:1;transform:none}
+
+@media (min-width:600px) and (max-width:759px){.rooms{grid-template-columns:repeat(5,1fr)}}
+@media (min-width:1000px){.rooms{grid-template-columns:repeat(5,1fr)}}
+@media (min-width:600px){
+  .hero .cta .btn{width:auto}
+  .price .btn{width:auto}
+  .vs{grid-template-columns:1fr 1fr}
+  .cols{grid-template-columns:1fr 1fr}
+}
+@media (min-width:760px){
+  :root{--gut:32px}
+  body{font-size:18px}
+  section{padding:150px 0}
+  .top{padding:18px 0}
+  .top nav a.hide-m{display:block}
+  .hero{padding:24px 0 120px}
+  .hero .w{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"h h" "l s" "c s";grid-template-rows:auto auto 1fr;column-gap:56px;row-gap:0;align-items:start}
+  .hero .tx{display:contents}
+  .hero h1{grid-area:h;font-size:clamp(56px,5.5vw,92px);margin:8px 0 36px}
+  .hero .shot{grid-area:s;aspect-ratio:1600/888;align-self:start}
+  .hero .lead{grid-area:l;margin-top:0}
+  .hero .cta{grid-area:c;align-self:start}
+  .prob .w{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
+  .demo .w{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+  .item{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start;padding:56px 0}
+  .steps .w{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+  .first{padding-top:6px}
+  .ctrl .figs{grid-template-columns:1fr 1fr}
+  .vid .w{grid-template-columns:360px minmax(0,1fr);gap:72px}
+  .fit .w{gap:40px}
+  .price .w{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:end}
+  .faq .w{grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}
+  .espera .w{grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .final .w{grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:64px;align-items:center}
+  .final .shot{display:block;aspect-ratio:4/3}
+  .final .shot img{width:100%;height:100%;object-fit:cover}
+  .sticky{justify-content:center}
+  .sticky .t{flex:0 1 auto}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .log p.in{animation:none}
+  .sticky{transition:none}
+  .btn,.job{transition:none}
+}
+</style>
+<script>
+window.jgaPixel=function(){
+if(window.jgaPixelOn)return;window.jgaPixelOn=1;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1138422325458467');fbq('track','PageView');fbq('track','ViewContent',{content_name:'AI Agent Office Kit',content_type:'product',value:19,currency:'USD'});
+};
+document.documentElement.classList.add("js");
+</script>
+</head>
+<body>
+<header class="top"><div class="w">
+  <a class="brand" href="#top"><img src="../assets/joao.jpg" alt="" width="36" height="36">João Agents</a>
+  <nav aria-label="Main">
+    <a class="hide-m" href="#inside">What you get</a>
+    <a class="hide-m" href="#faq">FAQ</a>
+    <a class="pt" href="../" hreflang="pt-BR" lang="pt-BR">Português</a>
+    <a class="buy" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="header">Buy $19</a>
+  </nav>
+</div></header>
+
+<main id="top">
+<section class="hero" aria-labelledby="h1"><div class="w">
+  <div class="shot">
+    <picture>
+      <source media="(min-width:760px)" srcset="assets/office-900.webp 900w, assets/office-1600.webp 1600w" sizes="58vw">
+      <img src="assets/office-m-800.webp" width="800" height="600" alt="The 3D office from the kit: ten rooms, one per agent. The top bar reads 4 working, 1 need you, 2 done, 3 idle." fetchpriority="high">
+    </picture>
+  </div>
+  <div class="tx">
+    <h1 id="h1">Build your own AI agent office</h1>
+    <p class="lead">One prompt turns Claude Code into 10 AI agents, each with its own job. A live 3D office shows who is working and who needs your OK.</p>
+    <div class="cta">
+      <a class="btn" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="hero" id="hero-buy">Get the kit <span class="px">$19</span></a>
+      <p class="note"><b>One-time payment.</b> Instant download from Gumroad. Setup takes about 90 minutes, no coding.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="prob" aria-labelledby="h-prob"><div class="w">
+  <div class="rv">
+    <h2 id="h-prob">One chat can't do it all</h2>
+    <p class="lead intro">You explain your business to Claude, get a good answer, and the next day you explain it again. The same chat writes your posts, checks its own facts and drafts your sales messages. Nobody reviews any of it.</p>
+  </div>
+  <div class="vs rv" style="--d:90ms">
+    <div class="old">
+      <h3><span class="pill" style="--s:var(--idle)"><i></i>Today</span></h3>
+      <ul>
+        <li>You paste the same context into every new chat.</li>
+        <li>One assistant writes, researches and sells, and mixes up all three.</li>
+        <li>Numbers show up with no source.</li>
+        <li>You only find mistakes after a customer sees them.</li>
+      </ul>
+    </div>
+    <div class="new">
+      <h3><span class="pill" style="--s:var(--green)"><i></i>With the office</span></h3>
+      <ul>
+        <li>Four memory files hold your business, voice and rules. Every agent reads them first.</li>
+        <li>Marketing writes hooks, Research finds facts, Sales drafts outreach. One job each.</li>
+        <li>Agents write "no source" when they can't back a number.</li>
+        <li>Review checks the work, and you approve anything that goes out.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="demo" id="try" aria-labelledby="h-try"><div class="w">
+  <div class="rv">
+    <h2 id="h-try">Give the office a job</h2>
+    <p class="intro">Tap a job and watch the dispatcher hand it to the right room. A simplified preview of what happens in your terminal.</p>
+    <div class="jobs" role="group" aria-label="Sample jobs">
+      <button class="job" type="button" data-job="hooks" style="--c:#ff7a2e" aria-pressed="false"><i></i>Write 5 hooks for my next reel</button>
+      <button class="job" type="button" data-job="research" style="--c:#5ab8ff" aria-pressed="false"><i></i>Find 3 competitors and their prices</button>
+      <button class="job" type="button" data-job="sales" style="--c:#45d98a" aria-pressed="false"><i></i>Draft a message to 5 local shops</button>
+      <button class="job" type="button" data-job="plan" style="--c:#f2a65a" aria-pressed="false"><i></i>Plan next week's content</button>
+      <form class="own" id="own"><label class="oculto" for="own-in">Type your own job</label><input id="own-in" type="text" maxlength="80" placeholder="Or type your own job" autocomplete="off"><button type="submit">Send</button></form>
+    </div>
+  </div>
+  <div class="board rv" style="--d:90ms" data-ui aria-live="polite">
+    <div class="bar"><b>AI AGENT OFFICE</b><span><i style="background:var(--gold)"></i><em id="n-w" style="font-style:normal">0</em> working</span><span><i style="background:var(--orange)"></i><em id="n-a" style="font-style:normal">0</em> need you</span><span><i style="background:var(--green)"></i><em id="n-d" style="font-style:normal">0</em> done</span><span><i style="background:var(--idle)"></i><em id="n-i" style="font-style:normal">10</em> idle</span></div>
+    <div class="rooms" id="rooms"></div>
+    <div class="log" id="log"><p class="hint">Pick a job on the left. The rooms change color as the agents work.</p></div>
+  </div>
+</div></section>
+
+<section class="inside" id="inside" aria-labelledby="h-in"><div class="w">
+  <div class="head rv">
+    <h2 id="h-in">Everything in the download</h2>
+    <p class="lead">One ZIP with five parts. You can build the office by hand with the guide, or let the Office Prompt do it in one go.</p>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>The step by step guide</h3>
+      <p>A 20 page PDF with real screenshots. Install Claude Code, create your first agent, set up the dispatcher and the memory, then open the 3D office. Every part ends with a check so you know it worked, and the last page covers troubleshooting.</p>
+    </div>
+    <div class="pages rv" style="--d:90ms">
+      <img src="assets/guide-01.webp" width="640" height="906" loading="lazy" alt="Cover of the guide: Build your own 3D office of AI agents with Claude">
+      <img src="assets/guide-16.webp" width="640" height="906" loading="lazy" alt="Guide page: Your first day, 3 jobs to try">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>The Office Prompt</h3>
+      <p>Paste it into an empty folder. Claude asks you five questions, one at a time, then builds the folders, the memory files, the 10 agents and the 3D office from your answers.</p>
+      <p class="small">If something is unknown, the prompt writes "unknown" and lists it for you instead of making it up.</p>
+    </div>
+    <pre class="rv" style="--d:90ms" aria-label="The five questions from the Office Prompt"><span class="m">STEP 1. QUESTIONS. Ask me these 5 questions ONE AT A TIME and wait for each answer:</span>
+<span class="c">1.</span> What is my business or project, in one sentence?
+<span class="c">2.</span> Who is my audience or customer?
+<span class="c">3.</span> What do I sell or want to grow in the next 90 days?
+<span class="c">4.</span> What is my voice (3 words) and what do I never want in my texts?
+<span class="c">5.</span> Which 3 rooms matter most for me today?</pre>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>10 agent templates</h3>
+      <p>Each agent is a plain text file that says what it does, what it delivers and the rules it can't break. Edit them so they sound like you, or copy one to add a new room.</p>
+    </div>
+    <ul class="agents rv" style="--d:90ms">
+      <li style="--c:#ff7a2e"><b>Marketing</b><span>Hooks, offers, angles, ad copy</span></li>
+      <li style="--c:#5ab8ff"><b>Research</b><span>Competitors, trends, briefs with sources</span></li>
+      <li style="--c:#c78bff"><b>Content</b><span>Posts, carousels, scripts, newsletters</span></li>
+      <li style="--c:#45d98a"><b>Sales</b><span>Lead lists, outreach, proposals</span></li>
+      <li style="--c:#ffc23d"><b>Review</b><span>Facts, tone, links, risks</span></li>
+      <li style="--c:#ff6b9a"><b>Analytics</b><span>What worked, weekly reports</span></li>
+      <li style="--c:#4fd1c5"><b>Support</b><span>Replies to comments, emails, reviews</span></li>
+      <li style="--c:#9aa5ce"><b>Operations</b><span>Files, checklists, backups</span></li>
+      <li style="--c:#f2a65a"><b>Planner</b><span>Goals into weekly steps</span></li>
+      <li style="--c:#7c9cff"><b>Builder</b><span>Landing pages, small tools, scripts</span></li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>The 3D office</h3>
+      <p>One HTML file. Double click it and it opens in your browser, with no server and no account. Agents sit and type when they work, wave when they need you and hop when they finish. Click a room to see what its agent is doing.</p>
+    </div>
+    <figure class="rv" style="--d:90ms">
+      <div class="shot" style="aspect-ratio:1100/619"><img src="assets/marketing-1100.webp" width="1100" height="619" loading="lazy" alt="The Marketing room with its side panel open: working, drafting 5 hooks for the launch post, two jobs in the queue"></div><figcaption><b>Click a room</b> and the panel shows what the agent is doing and what is next in its queue.</figcaption>
+    </figure>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>The skills list</h3>
+      <p>19 skills and plugins for Claude Code. For each one: what it does, when to use it, the install command, the author's link and the license, plus a map of which skill helps which room.</p>
+    </div>
+    <ul class="skills rv" style="--d:90ms" aria-label="Some of the skills on the list">
+      <li>find-skills</li><li>humanizer</li><li>frontend-design</li><li>skill-creator</li><li>Context7</li><li>Playwright MCP</li><li>agent-browser</li><li>Claude Mem</li><li>Superpowers</li><li>Marketing Skills</li><li class="more">and 9 more</li>
+    </ul>
+  </div>
+
+  <div class="mid-cta rv">
+    <a class="btn" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="inside">Get all five for <span class="px">$19</span></a>
+    <span class="small">Paid once. The files are yours to keep and edit.</span>
+  </div>
+</div></section>
+
+<section class="steps" aria-labelledby="h-steps"><div class="w">
+  <div class="rv">
+    <h2 id="h-steps">From empty folder to working office</h2>
+    <ol style="margin-top:30px">
+      <li><div><h3>Paste the Office Prompt</h3><p>Open Claude Code in an empty folder and paste it in.</p></div></li>
+      <li><div><h3>Answer five questions</h3><p>Your business, your customer, what you sell, your voice, and the three rooms you need most.</p></div></li>
+      <li><div><h3>Open the office</h3><p>Double click index.html and give the team its first job.</p></div></li>
+    </ol>
+  </div>
+  <div class="first rv" style="--d:90ms">
+    <h3>Your first day, from the guide</h3>
+    <ul>
+      <li><b>A research brief <em>5 min</em></b><span>Research finds 5 questions your audience asks and 3 competitors. The room turns yellow, then green, and a file appears.</span></li>
+      <li><b>A post that is safe to publish <em>10 min</em></b><span>Marketing writes 5 hooks, Content writes the post, Review checks it. You copy the final text and post it yourself.</span></li>
+      <li><b>Outreach with you in the loop <em>10 min</em></b><span>Sales drafts short messages to 5 businesses. The room turns orange until you read and send them.</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="ctrl" aria-labelledby="h-ctrl"><div class="w">
+  <div class="rv">
+    <h2 id="h-ctrl">The agents prepare. You press the button.</h2>
+    <p class="lead intro">Every agent file ends with the same hard rules. They never post, send, pay or delete anything, and they never invent numbers, quotes or sources.</p>
+    <pre style="margin-top:24px" aria-label="Hard rules from the agent files"><span class="c">## Hard rules</span>
+- Never publish, post, send, pay, delete, or log in to anything. You prepare it, the human presses the button.
+- Never invent numbers, quotes, names, or sources. If you cannot find a source, write "no source".</pre>
+  </div>
+  <div class="figs">
+    <figure class="rv"><div class="shot"><img src="assets/sales-1100.webp" width="1100" height="598" loading="lazy" alt="The Sales room in orange, with the panel: Needs you, approve the message before it is sent"></div><figcaption><b>Sales waits for you.</b> The message is ready, and nothing goes out until you approve it.</figcaption></figure>
+    <figure class="rv" style="--d:90ms"><div class="shot"><img src="assets/review-1100.webp" width="1100" height="598" loading="lazy" alt="The Review agent at its desk, panel reads: Checking facts and tone on the carousel"></div><figcaption><b>Review checks first.</b> Facts, tone and links, before the work reaches you.</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="vid" id="video" aria-labelledby="h-vid"><div class="w">
+  <button class="vbox rv" type="button" id="vbtn" aria-label="Play the 21 second video of the office"><img src="assets/video-poster.webp" width="540" height="960" loading="lazy" alt="The Sales agent waving in its room, with an orange marker over its head"><span class="play"></span></button>
+  <div class="rv" style="--d:90ms">
+    <h2 id="h-vid">21 seconds inside the office</h2>
+    <p class="lead" style="margin-top:16px">Rooms change color as the agents move through their work, so one look tells you who needs you.</p>
+    <ul class="legend">
+      <li><span class="pill" style="--s:var(--gold)"><i></i>Working</span>The agent sits at its desk and types.</li>
+      <li><span class="pill" style="--s:var(--orange)"><i></i>Needs you</span>It stands up and waves until you answer.</li>
+      <li><span class="pill" style="--s:var(--green)"><i></i>Done</span>It hops. Your file is ready.</li>
+      <li><span class="pill" style="--s:var(--idle)"><i></i>Idle</span>It walks around the room.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="fit" aria-labelledby="h-fit"><div class="w">
+  <h2 id="h-fit" class="rv">Is this kit for you?</h2>
+  <div class="cols">
+    <div class="rv"><h3>Good fit if you</h3><ul>
+      <li>run a small business, freelance or create content, and use Claude or want to</li>
+      <li>can copy, paste and follow numbered steps</li>
+      <li>want work checked before a customer sees it</li>
+      <li>like to watch your agents work</li>
+    </ul></div>
+    <div class="no rv" style="--d:90ms"><h3>Skip it if you</h3><ul>
+      <li>don't have a Claude plan that includes Claude Code, and don't plan to get one</li>
+      <li>want a hosted app, or agents that post and send on their own</li>
+      <li>are looking for a promise of income</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<section class="price" id="buy" aria-labelledby="h-buy"><div class="w">
+  <div class="rv">
+    <h2 id="h-buy">The whole office kit</h2>
+    <div class="big" style="margin-top:18px">$19<small>one time</small></div>
+    <p style="margin-top:14px">No subscription. You keep the files and change them as much as you like.</p>
+  </div>
+  <div class="rv" style="--d:90ms">
+    <ul>
+      <li>The 20 page step by step guide</li>
+      <li>The Office Prompt</li>
+      <li>10 agent templates and 4 memory files</li>
+      <li>The live 3D office</li>
+      <li>The list of 19 skills and plugins</li>
+    </ul>
+    <p class="need">You need a Claude account that includes Claude Code (not included), Python 3, which is free, and a browser. Works on Windows, Mac and Linux.</p>
+    <a class="btn dark" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="price" id="price-buy">Get the kit <span class="px">$19</span></a>
+    <p class="after">Checkout on Gumroad. The download link shows up right after payment and arrives by email.</p>
+  </div>
+</div></section>
+
+<section class="faq" id="faq" aria-labelledby="h-faq"><div class="w">
+  <h2 id="h-faq" class="rv">Before you buy</h2>
+  <div class="qs rv" style="--d:90ms">
+    <details><summary>Do I need to know how to code?</summary><div><p>No. Every step in the guide is numbered, and the Office Prompt does the setup for you. If you can copy and paste into a terminal, you can build it.</p></div></details>
+    <details><summary>Which Claude plan do I need?</summary><div><p>Any Claude account that includes Claude Code. Claude is not part of the kit, so check Anthropic's site for the current plans.</p></div></details>
+    <details><summary>What happens after I pay?</summary><div><p>Gumroad shows the download right away and emails you the link. You get one ZIP with the guide, the prompt, the agents, the office and the skills list.</p></div></details>
+    <details><summary>Is it a subscription?</summary><div><p>No. You pay $19 once.</p></div></details>
+    <details><summary>Does the 3D office need a server or internet?</summary><div><p>No. It's a single HTML file that opens in your browser with a double click.</p></div></details>
+    <details><summary>Can the agents post or send things on their own?</summary><div><p>No, and that's on purpose. They prepare the work and ask you. You publish, send or pay yourself.</p></div></details>
+    <details><summary>Can I change the agents or add rooms?</summary><div><p>Yes. Agents are plain text files. The guide shows how to add a new room in about 3 minutes.</p></div></details>
+    <details><summary>Are the 19 skills included in the ZIP?</summary><div><p>The list links to each author's page with the install command and the license. Other people made them, so we link to them instead of reselling them.</p></div></details>
+    <details><summary>Does it work on Windows and Mac?</summary><div><p>Yes, and on Linux. The guide has the commands for each.</p></div></details>
+    <details><summary>Will this make me money?</summary><div><p>It organizes your work and stops you from repeating yourself to Claude. We don't promise income or results.</p></div></details>
+    <details><summary>What if I get stuck?</summary><div><p>The guide ends with a troubleshooting page, and you can message us on Gumroad.</p></div></details>
+  </div>
+</div></section>
+
+<span id="lista-espera" aria-hidden="true"></span>
+<section class="espera" id="waitlist" aria-labelledby="h-esp">
+  <div class="w">
+    <div class="rv">
+      <h2 id="h-esp">Want to learn this with me?</h2>
+      <p class="sub">I'm preparing a mentorship for people who want to create with AI from scratch. Join the waitlist and get the details before everyone else.</p>
+      <ul>
+        <li>AI animation: from script to finished video, no drawing skills needed.</li>
+        <li>AI agents: build your own team of agents that works for you.</li>
+        <li>Content and digital products: create consistently, in your own style.</li>
+      </ul>
+      <p class="peq">Seats and dates go to the waitlist first. Joining is free and commits you to nothing.</p>
+    </div>
+    <div class="rv" style="--d:90ms">
+      <form id="form-espera" novalidate>
+        <b>Join the waitlist</b>
+        <label class="campo">Your name<input name="nome" type="text" autocomplete="name" required></label>
+        <label class="campo">Email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+        <label class="campo">WhatsApp or phone, with country code (optional)<input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 555 123 4567"></label>
+        <fieldset>
+          <legend>What do you want to learn most?</legend>
+          <label class="opc"><input type="radio" name="quer" value="AI animation" required>AI animation</label>
+          <label class="opc"><input type="radio" name="quer" value="AI agents">AI agents</label>
+          <label class="opc"><input type="radio" name="quer" value="content and videos">Content and videos</label>
+          <label class="opc"><input type="radio" name="quer" value="selling digital products">Selling digital products</label>
+        </fieldset>
+        <input class="oculto" name="site_url" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="aceite"><input type="checkbox" name="consentimento" required><span>I agree to receive updates from JGA about the mentorship by email and WhatsApp, and I accept the <a href="../en/privacy/" target="_blank" rel="noopener">privacy policy</a>. I can unsubscribe anytime.</span></label>
+        <button class="btn" type="submit">Join the waitlist</button>
+        <p id="msg-espera" role="alert"></p>
+      </form>
+      <div class="ok-espera" id="ok-espera" role="status" tabindex="-1">
+        <h3>You're on the list</h3>
+        <p>Your name is in. When seats and dates are out, you hear first.</p>
+        <p style="margin-top:16px"><a class="lnk" href="#top">Back to the kit</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" aria-labelledby="h-final"><div class="w">
+  <div class="tx">
+    <h2 id="h-final" class="rv">Open your office this afternoon</h2>
+    <p class="lead rv">About 90 minutes from download to your first job.</p>
+    <a class="btn rv" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="final" id="final-buy">Get the kit <span class="px">$19</span></a>
+  </div>
+  <div class="shot rv" style="--d:90ms"><img src="assets/office-m-800.webp" width="800" height="600" loading="lazy" alt="Close view of the 3D office rooms: Marketing, Research, Content, Sales, Support and Operations"></div>
+</div></section>
+</main>
+
+<footer><div class="w">
+  <span class="name">João Agents</span>
+  <div class="links"><a href="../" hreflang="pt-BR" lang="pt-BR">Versão em português</a><a href="https://gojira1998.github.io/jga-site/" target="_blank" rel="noopener">JGA website</a><a href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener" data-buy="footer">AI Agent Office Kit on Gumroad</a><a href="../en/privacy/">Privacy Policy</a><button type="button" class="linkbtn" id="ck-set">Cookie settings</button></div>
+  <span>João Gabriel, JGA AI Services. Independent kit, not affiliated with Anthropic. Claude and Claude Code are trademarks of Anthropic. This page loads the Meta Pixel to measure ads only if you accept cookies, see the <a href="../en/privacy/">Privacy Policy</a>.</span>
+</div></footer>
+
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="t"><b>AI Agent Office Kit</b><span>10 agents and a live 3D office</span></div>
+  <a class="btn" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="sticky" tabindex="-1">Get it <span class="px">$19</span></a>
+</div>
+
+<script>
+(function(){
+  var calm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* entrances */
+  var rv=[].slice.call(document.querySelectorAll(".rv"));
+  if("IntersectionObserver" in window&&!calm){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("v");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -5% 0px"});
+    rv.forEach(function(a){io.observe(a)});
+  } else rv.forEach(function(a){a.classList.add("v")});
+
+  /* buy clicks: Meta Pixel event (only fires if the visitor accepted cookies) */
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a[data-buy]");
+    if(a&&window.fbq) fbq("track","InitiateCheckout",{content_name:"AI Agent Office Kit",content_category:a.getAttribute("data-buy"),value:19,currency:"USD"});
+  });
+
+  /* sticky buy bar: shows after the hero button scrolls away, hides near the other buttons */
+  var st=document.getElementById("sticky"), seen={};
+  var watch=["hero-buy","price-buy","final-buy"].map(function(id){return document.getElementById(id)});
+  function upd(){
+    var any=watch.some(function(el){return seen[el.id]});
+    var ck=document.body.classList.contains("ck-on");
+    var past=watch[0].getBoundingClientRect().bottom<0;
+    var on=past&&!any&&!ck;
+    st.classList.toggle("on",on); st.setAttribute("aria-hidden",on?"false":"true");
+    st.querySelector("a").tabIndex=on?0:-1;
+  }
+  if("IntersectionObserver" in window){
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){seen[e.target.id]=e.isIntersecting});upd()});
+    watch.forEach(function(el){io2.observe(el)});
+  }
+  addEventListener("scroll",upd,{passive:true});
+  window.__stickyUpd=upd;
+
+  /* video */
+  var vb=document.getElementById("vbtn");
+  vb.addEventListener("click",function(){var v=document.createElement("video");v.src="assets/office-video.mp4";v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute("playsinline","");v.poster="assets/video-poster.webp";vb.replaceWith(v);v.className="vbox";v.play&&v.play().catch(function(){})},{once:true});
+
+  /* the dispatcher demo */
+  var R=[["marketing","Marketing","#ff7a2e"],["research","Research","#5ab8ff"],["content","Content","#c78bff"],["sales","Sales","#45d98a"],["review","Review","#ffc23d"],["analytics","Analytics","#ff6b9a"],["support","Support","#4fd1c5"],["ops","Operations","#9aa5ce"],["planner","Planner","#f2a65a"],["builder","Builder","#7c9cff"]];
+  var NAME={};R.forEach(function(r){NAME[r[0]]=r[1]});
+  var LBL={idle:"Idle",working:"Working",waiting:"Needs you",done:"Done"};
+  var box=document.getElementById("rooms"), log=document.getElementById("log"), timers=[];
+  R.forEach(function(r){var d=document.createElement("div");d.className="room";d.id="rm-"+r[0];d.style.setProperty("--c",r[2]);d.setAttribute("data-s","idle");d.innerHTML="<b>"+r[1]+"</b><span><i></i>Idle</span>";box.appendChild(d)});
+  function setS(id,s){var d=document.getElementById("rm-"+id);d.setAttribute("data-s",s);d.querySelector("span").lastChild.nodeValue=LBL[s];count()}
+  function count(){var c={working:0,waiting:0,done:0,idle:0};[].forEach.call(box.children,function(d){c[d.getAttribute("data-s")]++});
+    document.getElementById("n-w").textContent=c.working;document.getElementById("n-a").textContent=c.waiting;document.getElementById("n-d").textContent=c.done;document.getElementById("n-i").textContent=c.idle}
+  function line(txt,cls){var p=document.createElement("p");p.className="in "+(cls||"");p.textContent=txt;log.appendChild(p);while(log.children.length>6)log.removeChild(log.firstChild)}
+  var J={
+    hooks:[[0,"marketing","working","Dispatcher: Marketing writes, then Review checks."],[1500,"marketing","done","Marketing: 5 hooks saved in deliverables/marketing/."],[1600,"review","working","Review: checking facts and tone."],[3100,"review","done","Review: APPROVED WITH FIXES. Two hooks shortened."],[3200,"marketing","waiting","Needs you: pick a hook and post it yourself.","ask"]],
+    research:[[0,"research","working","Dispatcher: this is a Research job."],[1900,"research","done","Research: brief saved in deliverables/research/. Every price has a source link, or says \"no source\"."]],
+    sales:[[0,"sales","working","Dispatcher: Sales drafts, then Review checks."],[1500,"sales","done","Sales: 5 short drafts, one real detail about each shop."],[1600,"review","working","Review: checking tone and claims."],[3000,"review","done","Review: APPROVED."],[3100,"sales","waiting","Needs you: approve the messages. Sales sends nothing.","ask"]],
+    support:[[0,"support","working","Dispatcher: Support drafts, then Review checks."],[1500,"support","done","Support: reply drafted from your FAQ."],[1600,"review","working","Review: checking it against your rules in memory."],[3000,"review","done","Review: APPROVED WITH FIXES. Softer first line."],[3100,"support","waiting","Needs you: read the reply and send it from your inbox.","ask"]],
+    plan:[[0,"planner","working","Dispatcher: Planner first, then Content."],[1500,"planner","done","Planner: 5 posts mapped to the week in tasks.md."],[1600,"content","working","Content: writing Monday and Tuesday."],[3200,"content","done","Content: 2 drafts ready. Review is next in line."]]
+  };
+  function simple(id,what){return [[0,id,"working","Dispatcher: this goes to "+NAME[id]+"."],[1800,id,"done",NAME[id]+": "+what]]}
+  function route(t){t=t.toLowerCase();
+    if(/hook|post|reel|caption|ad\b|ads|copy|headline|slogan|tiktok|instagram/.test(t))return J.hooks;
+    if(/competitor|research|find|trend|price|market|source/.test(t))return J.research;
+    if(/email|message|lead|outreach|proposal|client|quote|sell|sales/.test(t))return J.sales;
+    if(/reply|customer|refund|support|comment|review|complain|dm\b/.test(t))return J.support;
+    if(/plan|week|schedule|calendar|goal|todo|to do/.test(t))return J.plan;
+    if(/site|page|landing|script|tool|code|app|automation/.test(t))return simple("builder","first version saved in deliverables/builder/. It asks before big changes.");
+    if(/report|number|metric|analytics|stats|views|sales numbers/.test(t))return simple("analytics","report saved in deliverables/analytics/.");
+    if(/file|folder|backup|organi|clean|checklist/.test(t))return simple("ops","checklist saved in checklists/.");
+    if(/blog|newsletter|carousel|article|write/.test(t))return simple("content","draft saved in deliverables/content/. Review is next in line.");
+    return J.plan;
+  }
+  function run(steps,label){
+    timers.forEach(clearTimeout);timers=[];
+    R.forEach(function(r){setS(r[0],"idle")});
+    log.innerHTML="";line("You: "+label,"you");
+    steps.forEach(function(s){timers.push(setTimeout(function(){setS(s[1],s[2]);line(s[3],s[4])},s[0]+(calm?0:250)))});
+  }
+  var btns=[].slice.call(document.querySelectorAll(".job"));
+  btns.forEach(function(b){b.addEventListener("click",function(){btns.forEach(function(x){x.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed","true");run(J[b.getAttribute("data-job")],b.textContent.trim())})});
+  document.getElementById("own").addEventListener("submit",function(e){e.preventDefault();var i=document.getElementById("own-in"),t=i.value.trim();if(t.length<3){i.focus();return}btns.forEach(function(x){x.setAttribute("aria-pressed","false")});run(route(t),t);i.value=""});
+})();
+</script>
+<script src="../leads-config.js"></script>
+<script>
+(function(){
+  var fe=document.getElementById("form-espera"); if(!fe) return;
+  var me=document.getElementById("msg-espera"), be=fe.querySelector("button"), ini=Date.now(), p=new URLSearchParams(location.search);
+  var sec=document.getElementById("waitlist");
+  if(location.hash==="#lista-espera") setTimeout(function(){sec.scrollIntoView()},50);
+  window.addEventListener("hashchange",function(){if(location.hash==="#lista-espera")sec.scrollIntoView()});
+  fe.addEventListener("submit",function(ev){
+    ev.preventDefault(); me.textContent="";
+    var f=new FormData(fe); if(f.get("site_url")) return;
+    var nome=(f.get("nome")||"").trim(), email=(f.get("email")||"").trim().toLowerCase(), wa=(f.get("whatsapp")||"").replace(/\D/g,""), quer=f.get("quer");
+    if(Date.now()-ini<3000){me.textContent="Wait a second and send again.";return}
+    if(nome.length<2){me.textContent="Enter your name.";return}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)){me.textContent="Check your email.";return}
+    if(wa&&(wa.length<10||wa.length>13)){me.textContent="Check the phone number (10 to 13 digits, with country code), or leave it blank.";return}
+    if(!quer){me.textContent="Pick what you want to learn most.";return}
+    if(!f.get("consentimento")){me.textContent="Tick the box to join.";return}
+    var cfg=window.JGA_LEADS||{};
+    if(!cfg.url||!cfg.anonKey){me.textContent="The list is being set up. Try again later.";return}
+    var ref="direct"; try{if(document.referrer)ref=new URL(document.referrer).hostname}catch(e){}
+    be.disabled=true; be.textContent="Sending...";
+    fetch(cfg.url.replace(/\/$/,"")+"/rest/v1/"+(cfg.tabela||"leads"),{
+      method:"POST",
+      headers:{"Content-Type":"application/json","apikey":cfg.anonKey,"Authorization":"Bearer "+cfg.anonKey,"Prefer":"return=minimal"},
+      body:JSON.stringify({nome:nome,whatsapp:wa||"0000000000",email:email,post_slug:"waitlist-mentorship-en",mentoria:true,consentimento:true,origem:("quer: "+quer+" | "+(p.get("utm_source")||ref)).slice(0,120)})
+    }).then(function(r){
+      if(!r.ok&&r.status!==409) throw new Error("status "+r.status);
+      sec.classList.add("enviado"); document.getElementById("ok-espera").focus({preventScroll:true});
+      if(window.fbq) fbq("track","Lead",{content_name:"waitlist-mentorship-en"});
+    }).catch(function(){me.textContent="Could not send right now. Please try again in a moment.";be.disabled=false;be.textContent="Join the waitlist"});
+  });
+})();
+</script>
+<div class="ck" id="ck" role="region" aria-label="Cookie consent" hidden>
+  <p>We use the Meta Pixel to measure our ads, only if you accept. <a href="../en/privacy/">Privacy</a></p>
+  <div class="bs"><button type="button" id="ck-no">Decline</button><button type="button" id="ck-ok">Accept</button></div>
+</div>
+<script>
+(function(){
+  var K="jga_cookie_consent",bar=document.getElementById("ck"),b=document.body;
+  function get(){try{return localStorage.getItem(K)}catch(e){return null}}
+  function set(v){try{localStorage.setItem(K,v)}catch(e){}}
+  function show(){bar.hidden=false;b.classList.add("ck-on");b.style.setProperty("--ckh",bar.offsetHeight+"px");if(window.__stickyUpd)window.__stickyUpd()}
+  function hide(){bar.hidden=true;b.classList.remove("ck-on");if(window.__stickyUpd)window.__stickyUpd()}
+  var v=get();
+  if(v==="yes")window.jgaPixel();else if(v!=="no")show();
+  document.getElementById("ck-ok").addEventListener("click",function(){set("yes");hide();window.jgaPixel()});
+  document.getElementById("ck-no").addEventListener("click",function(){set("no");hide()});
+  var cs=document.getElementById("ck-set");
+  if(cs)cs.addEventListener("click",function(){show()});
+  addEventListener("resize",function(){if(!bar.hidden)b.style.setProperty("--ckh",bar.offsetHeight+"px")});
+})();
+</script>
+</body></html>

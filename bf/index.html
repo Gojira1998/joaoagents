@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Agent Office Kit: Black Friday, $19 until Monday</title>
+<meta name="description" content="One prompt turns Claude Code into 10 AI agents with their own jobs, a shared memory and a live 3D office. Black Friday price $19 until Monday, Nov 30 at 11:59 PM ET. Then $29.">
+<meta name="theme-color" content="#0d1020">
+<meta property="og:title" content="AI Agent Office Kit: $19 for Black Friday">
+<meta property="og:description" content="10 agents, one dispatcher, a shared memory and a live 3D office for Claude Code. $19 until Monday, Nov 30, 11:59 PM ET. Then $29.">
+<meta property="og:image" content="https://gojira1998.github.io/joaoagents/bf/assets/office-og.jpg">
+<meta property="og:url" content="https://gojira1998.github.io/joaoagents/bf/">
+<link rel="icon" href="assets/joao.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/office-poster-800.webp" media="(max-width:759px)">
+<link rel="preload" as="image" href="assets/office-poster-1280.webp" media="(min-width:760px)">
+<script>
+/* Black Friday clock. Ends Monday, Nov 30, 2026 at 11:59:59 PM in New York (EST, UTC-5),
+   which is 2026-12-01 05:00:00 UTC. From that moment the page shows $29.
+   Test the after state with ?preview_now=2026-12-01T06:00:00Z */
+(function(){
+  var END=Date.UTC(2026,11,1,5,0,0), skew=0;
+  try{var q=new URLSearchParams(location.search).get("preview_now");if(q){var t=Date.parse(q);if(!isNaN(t))skew=t-Date.now()}}catch(e){}
+  window.BF={END:END,now:function(){return Date.now()+skew},live:function(){return Date.now()+skew<END}};
+  var d=document.documentElement;d.classList.add("js");d.setAttribute("data-phase",window.BF.live()?"bf":"after");
+})();
+window.jgaPixel=function(){
+if(window.jgaPixelOn)return;window.jgaPixelOn=1;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1138422325458467');fbq('track','PageView');fbq('track','ViewContent',{content_name:'AI Agent Office Kit',content_type:'product',value:window.BF&&window.BF.live()?19:29,currency:'USD'});
+};
+</script>
+<style>
+:root{
+  --bg:#0d1020; --bg2:#151a33; --bg3:#1d2346; --deep:#121526;
+  --ink:#eef0f8; --muted:#aab0cc;
+  --gold:#f4c24f; --gold2:#ffd36e;
+  --orange:#ff7a2e; --green:#45d98a; --idle:#7a7f96;
+  --code:#090b17;
+  --r:12px; --gut:16px; --max:1200px; --barh:58px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--barh) + 12px)}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 "Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-top:var(--barh)}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.w{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3{font-weight:800;letter-spacing:-.03em;text-wrap:balance}
+h1{font-size:clamp(36px,6.2vw,84px);line-height:1;letter-spacing:-.034em}
+h2{font-size:clamp(30px,4.4vw,56px);line-height:1.03}
+h3{font-size:clamp(20px,2vw,25px);line-height:1.15;letter-spacing:-.02em}
+p{max-width:62ch}
+.lead{font-size:clamp(18px,1.55vw,21px);line-height:1.5}
+.small{font-size:14.5px;color:var(--muted)}
+section{padding:88px 0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.num{font-variant-numeric:tabular-nums}
+
+/* phase switch: html[data-phase] is set before paint */
+html[data-phase="after"] .only-bf{display:none!important}
+html:not([data-phase="after"]) .only-after{display:none!important}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 28px;border-radius:999px;background:var(--gold);color:var(--deep);font-weight:800;font-size:18px;letter-spacing:-.01em;text-decoration:none;border:0;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn .px{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--deep);color:var(--gold);font-size:16px}
+.btn.dark{background:var(--deep);color:var(--gold)}
+.btn.dark:hover{background:#1f2440}
+.btn.dark .px{background:var(--gold);color:var(--deep)}
+.buyrow{margin-top:36px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.buyrow .small b{color:var(--ink);font-weight:600}
+
+/* Black Friday bar: built like the top bar of the 3D office */
+.bf{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--barh);background:var(--code);display:flex;align-items:center}
+.bf .w{display:flex;align-items:center;gap:12px}
+.bf .t{flex:1;min-width:0;display:grid;gap:1px;line-height:1.25}
+.bf .t b{font-size:15px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.bf .t b i{width:9px;height:9px;border-radius:50%;background:var(--orange);flex:none;animation:blink 1.2s steps(2,start) infinite}
+.bf .t span{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bf .t span em{font-style:normal;color:var(--ink);font-weight:600}
+.bf .long{display:none}
+.bf .go{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 16px;border-radius:999px;background:var(--gold);color:var(--deep);font-weight:800;font-size:15px;text-decoration:none;transition:background .2s,transform .2s var(--ease)}
+.bf .go:hover{background:var(--gold2)}
+.bf .go:active{transform:scale(.97)}
+html[data-phase="after"] .bf .t b i{background:var(--idle);animation:none}
+@keyframes blink{to{visibility:hidden}}
+
+/* header */
+.top{padding:10px 0 6px}
+.top .w{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:-.01em}
+.brand img{width:34px;height:34px;border-radius:50%}
+.top nav{margin-left:auto;display:flex;align-items:center;gap:4px}
+.top nav a{text-decoration:none;font-size:15px;font-weight:600;padding:9px 12px;border-radius:999px;color:var(--muted)}
+.top nav a:hover{background:var(--bg2);color:var(--ink)}
+.top nav a.hide-m{display:none}
+
+/* hero */
+.hero{padding:6px 0 64px}
+.hero .w{display:grid;gap:20px}
+.hero h1{margin-top:6px}
+.hero .lead{margin-top:14px}
+.deal{margin-top:20px;padding:14px 16px;border-radius:var(--r);background:var(--bg3);display:grid;gap:10px}
+.deal p{font-size:15.5px;line-height:1.4;max-width:none}
+.deal p b{font-weight:700}
+.clock{display:flex;gap:6px;align-items:stretch}
+.clock div{flex:1;min-width:0;background:var(--bg);border-radius:8px;padding:6px 4px 5px;text-align:center}
+.clock strong{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--gold)}
+.clock small{display:block;font-size:12.5px;color:var(--muted)}
+.hero .cta{margin-top:16px;display:grid;gap:10px;justify-items:start}
+.hero .cta .btn{width:100%}
+.hero .note{font-size:14.5px;color:var(--muted);line-height:1.45}
+.hero .note b{color:var(--ink);font-weight:600}
+.media{position:relative;border-radius:var(--r);overflow:hidden;background:var(--code);aspect-ratio:16/10}
+.media video,.media img{width:100%;height:100%;object-fit:cover}
+.media figcaption{position:absolute;left:10px;bottom:10px;padding:5px 11px;border-radius:999px;background:rgba(9,11,23,.88);font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
+.media figcaption i{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+/* pains and fixes */
+.prob{background:var(--bg2)}
+.prob .head{display:grid;gap:14px;margin-bottom:36px}
+.pairs{display:grid;gap:14px}
+.pair{display:grid;gap:2px;border-radius:var(--r);overflow:hidden}
+.pair>div{padding:18px 20px}
+.pair .was{background:var(--bg)}
+.pair .now{background:var(--bg3)}
+.pair .was p{color:var(--muted);font-size:16px;display:grid;grid-template-columns:18px 1fr;gap:10px}
+.pair .was p::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--idle);margin-top:7px}
+.pair .now p{font-size:16.5px;display:grid;grid-template-columns:18px 1fr;gap:10px}
+.pair .now p::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--green);margin-top:7px}
+.pair .now b{font-weight:700}
+
+/* tour */
+.tour .w{display:grid;gap:28px}
+.tour .media{aspect-ratio:16/9}
+.legend{list-style:none;display:grid;gap:10px;margin-top:22px}
+.legend li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;font-size:16px}
+.tag{display:inline-flex;align-items:center;gap:8px;min-width:112px;padding:5px 12px 5px 10px;border-radius:999px;background:var(--bg3);font-size:14px;font-weight:600;white-space:nowrap}
+.tag i{width:9px;height:9px;border-radius:50%;background:var(--s,var(--idle));flex:none}
+
+/* dispatcher demo */
+.demo{background:var(--bg2)}
+.demo .w{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.demo .intro{margin-top:14px;color:var(--muted)}
+.jobs{display:grid;gap:10px;margin-top:24px}
+.job{display:flex;align-items:center;gap:12px;min-height:54px;padding:10px 18px;border-radius:999px;background:var(--bg);border:0;text-align:left;font-size:16.5px;font-weight:600;cursor:pointer;transition:background .2s,transform .2s var(--ease)}
+.job:hover{background:var(--bg3)}
+.job:active{transform:scale(.985)}
+.job[aria-pressed="true"]{background:var(--gold);color:var(--deep)}
+.job i{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.own{display:flex;gap:8px;margin-top:4px}
+.own input{flex:1;min-width:0;min-height:54px;padding:0 20px;border-radius:999px;border:2px solid var(--bg3);background:var(--bg);color:var(--ink);font:inherit;font-size:16.5px}
+.own input::placeholder{color:#8a90ad}
+.own input:focus{outline:none;border-color:var(--gold)}
+.own button{min-height:54px;padding:0 20px;border-radius:999px;border:0;background:var(--bg3);font-weight:700;cursor:pointer}
+.own button:hover{background:#28305c}
+.board{background:var(--code);border-radius:var(--r);padding:16px;align-self:start}
+.board .bar{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:2px 2px 14px;font-size:14px;color:var(--muted)}
+.board .bar b{color:var(--ink);font-size:14px;margin-right:4px}
+.board .bar span{display:inline-flex;align-items:center;gap:6px}
+.board .bar span i{width:8px;height:8px;border-radius:50%}
+.board .bar em{font-style:normal}
+.rooms{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.room{position:relative;border-radius:10px;padding:12px 12px 12px 14px;background:color-mix(in srgb,var(--c) 22%,#151a33);min-height:64px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;transition:background .3s}
+.room::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:4px;border-radius:0 4px 4px 0;background:var(--c)}
+.room b{font-size:15px;font-weight:700}
+.room span{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:var(--muted)}
+.room span i{width:8px;height:8px;border-radius:50%;background:var(--idle)}
+.room[data-s="working"] span i{background:var(--gold)}
+.room[data-s="waiting"] span i{background:var(--orange)}
+.room[data-s="done"] span i{background:var(--green)}
+.room[data-s="working"],.room[data-s="waiting"],.room[data-s="done"]{background:color-mix(in srgb,var(--c) 40%,#151a33)}
+.room[data-s="working"] span,.room[data-s="waiting"] span,.room[data-s="done"] span{color:var(--ink)}
+.room[data-s="waiting"]{box-shadow:inset 0 0 0 2px var(--orange)} /* taste-skill-ignore: inset ring = status outline, not a shadow */
+.log{margin-top:12px;min-height:150px;border-radius:10px;background:var(--bg);padding:14px 16px;font-size:15px;line-height:1.5;display:grid;gap:6px;align-content:start}
+.log p{max-width:none}
+.log .you{color:var(--gold)}
+.log .ask{color:var(--orange);font-weight:600}
+.log .hint{color:var(--muted)}
+.log p.in{animation:in .35s var(--ease)}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.oculto{position:absolute;left:-9999px;opacity:0}
+
+/* inside */
+.inside .head{display:grid;gap:14px;margin-bottom:24px}
+.inside .head p{color:var(--muted)}
+.item{display:grid;gap:20px;padding:36px 0}
+.item .tx p{margin-top:10px}
+.item .tx .small{margin-top:12px}
+.pages{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pages img{border-radius:8px;background:#fff}
+pre{background:var(--code);border-radius:var(--r);padding:18px 18px 20px;overflow-x:auto;font:13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d9dcf0;white-space:pre-wrap;word-break:break-word}
+pre .c{color:var(--gold)}
+pre .m{color:#8a90ad}
+.agents{list-style:none;display:grid;gap:8px}
+.agents li{display:grid;grid-template-columns:14px 112px 1fr;gap:12px;align-items:baseline;padding:10px 14px;border-radius:10px;background:var(--bg2);font-size:15.5px}
+.agents li::before{content:"";width:12px;height:12px;border-radius:3px;background:var(--c);transform:translateY(1px)}
+.agents b{font-weight:700}
+.agents span{color:var(--muted)}
+.shot{border-radius:var(--r);overflow:hidden;background:var(--code)}
+.shot img{width:100%;height:100%;object-fit:cover}
+figcaption.cap{margin-top:10px;font-size:15px;color:var(--muted)}
+figcaption.cap b{color:var(--ink);font-weight:600}
+.skills{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.skills li{padding:8px 14px;border-radius:999px;background:var(--bg2);font-size:15px;font-weight:600}
+.skills li.more{background:transparent;color:var(--muted);padding-left:4px}
+
+/* fit */
+.fit{background:var(--bg2)}
+.fit .w{display:grid;gap:30px}
+.cols{display:grid;gap:14px}
+.cols>div{padding:24px;border-radius:var(--r);background:var(--bg)}
+.cols h3{font-size:21px;margin-bottom:14px}
+.cols ul{list-style:none;display:grid;gap:12px}
+.cols li{display:grid;grid-template-columns:16px 1fr;gap:12px;font-size:16.5px}
+.cols li::before{content:"";width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--green)}
+.cols .no li::before{background:var(--idle)}
+.fit .buyrow{margin-top:8px}
+
+/* price and value stack */
+.price{background:var(--gold);color:var(--deep)}
+.price .w{display:grid;gap:28px}
+.price .stack{order:1}
+.price .pbuy{order:2}
+.price h2{max-width:13ch}
+.price .intro{margin-top:16px;font-size:17px}
+.stack{background:var(--deep);color:var(--ink);border-radius:var(--r);padding:8px}
+.stack ul{list-style:none;display:grid;gap:4px}
+.stack li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 14px;border-radius:9px;background:var(--bg2)}
+.stack li b{font-size:16.5px;font-weight:700}
+.stack li span{grid-column:1;font-size:14.5px;color:var(--muted);line-height:1.4}
+.stack li em{grid-row:1;grid-column:2;font-style:normal;font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
+.stack .total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 14px 10px;font-size:17px;font-weight:700}
+.stack .total em{font-style:normal;font-variant-numeric:tabular-nums;font-size:20px}
+.stack .total small{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+.stack .now{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 14px;border-radius:9px;background:var(--gold);color:var(--deep)}
+.stack .now b{font-size:17px;line-height:1.25}
+.stack .now b small{display:block;font-weight:600;font-size:14px}
+.stack .now strong{font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stack .then{padding:12px 14px 8px;font-size:15px;color:var(--muted)}
+.stack .then b{color:var(--ink)}
+.price .big{font-size:clamp(84px,14vw,170px);font-weight:800;letter-spacing:-.05em;line-height:.9;margin-top:18px;font-variant-numeric:tabular-nums}
+.price .big small{font-size:20px;letter-spacing:-.01em;font-weight:700;margin-left:10px}
+.price .ends{margin-top:12px;font-size:17px;font-weight:600}
+.price .btn{width:100%;margin-top:24px}
+.price .after{margin-top:12px;font-size:15px}
+.price .need{margin-top:14px;font-size:15px}
+
+/* guarantee */
+.guar .w{display:grid;gap:26px;align-items:center}
+.seal{display:grid;place-items:center;aspect-ratio:1;max-width:260px;width:62%;border-radius:50%;background:var(--bg3);text-align:center}
+.seal strong{display:block;font-size:clamp(84px,11vw,132px);font-weight:800;line-height:.85;letter-spacing:-.05em;color:var(--gold)}
+.seal span{display:block;font-size:18px;font-weight:700;margin-top:6px}
+.guar p+p{margin-top:12px}
+.guar .lead{margin-top:16px}
+.facts{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.facts li{padding:8px 14px;border-radius:999px;background:var(--bg2);font-size:15px;font-weight:600}
+
+/* faq */
+.faq{background:var(--bg2)}
+.faq .w{display:grid;gap:28px}
+.qs{display:grid;gap:8px}
+details{border-radius:var(--r);background:var(--bg)}
+summary{list-style:none;cursor:pointer;padding:18px 56px 18px 20px;font-weight:700;font-size:17px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:22px;top:50%;width:12px;height:12px;margin-top:-8px;border-right:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);transform:rotate(45deg);transition:transform .25s var(--ease)}
+details[open] summary::after{transform:rotate(225deg);margin-top:-2px}
+details>div{padding:0 20px 20px;font-size:16.5px}
+details a{color:var(--gold)}
+
+/* final */
+.final{padding:100px 0 92px}
+.final .w{display:grid;gap:36px}
+.final .tx{display:grid;gap:20px;justify-items:start;align-content:center}
+.final p{color:var(--muted)}
+.final .media{display:none}
+
+footer{background:var(--bg2);padding:44px 0 56px;font-size:14.5px;color:var(--muted)}
+footer .w{display:grid;gap:16px}
+footer .name{font-size:clamp(34px,7vw,72px);font-weight:800;letter-spacing:-.04em;color:var(--ink);line-height:1}
+footer .fine{max-width:75ch}
+footer .links{display:flex;flex-wrap:wrap;gap:10px 22px}
+footer a,.linkbtn{color:var(--ink);text-underline-offset:3px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;text-decoration:underline;cursor:pointer}
+
+/* cookie notice */
+.ck{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#1f2547;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
+.ck[hidden]{display:none}
+.ck p{flex:1;min-width:0;font-size:13.5px;line-height:1.35;max-width:none}
+.ck a{color:var(--gold)}
+.ck .bs{display:flex;gap:8px;flex:none}
+.ck button{min-height:40px;padding:0 14px;border-radius:999px;border:0;font-weight:700;font-size:14px;cursor:pointer}
+.ck #ck-no{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px #59608a} /* taste-skill-ignore: inset ring as button outline */
+.ck #ck-ok{background:var(--gold);color:var(--deep)}
+body.ck-on{padding-bottom:var(--ckh,64px)}
+
+/* entrances: content stays visible if script fails */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:var(--d,0ms)}
+.js .rv.v{opacity:1;transform:none}
+
+@media (max-width:374px){.bf .t span{font-size:12.5px}.bf .go{padding:0 12px}.clock strong{font-size:22px}}
+@media (max-width:599px){pre{font-size:12.5px;padding:16px}.agents li{grid-template-columns:12px 92px 1fr;gap:10px}}
+@media (min-width:600px) and (max-width:759px){.rooms{grid-template-columns:repeat(5,1fr)}}
+@media (min-width:1000px){.rooms{grid-template-columns:repeat(5,1fr)}}
+@media (min-width:600px){
+  .hero .cta .btn,.price .btn{width:auto}
+  .cols{grid-template-columns:1fr 1fr}
+  .pair{grid-template-columns:1fr 1fr}
+}
+@media (min-width:760px){
+  :root{--gut:32px;--barh:56px}
+  body{font-size:18px}
+  section{padding:140px 0}
+  .bf .long{display:inline}
+  .bf .short{display:none}
+  .bf .t{display:flex;align-items:center;gap:16px}
+  .bf .t b{font-size:16px}
+  .bf .t span{font-size:15px}
+  .bf .go{min-height:40px;font-size:15px}
+  .top{padding:18px 0 8px}
+  .top nav a.hide-m{display:block}
+  .hero{padding:24px 0 110px}
+  .hero .w{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"h h" "l s" "c s";grid-template-rows:auto auto 1fr;column-gap:56px;row-gap:0;align-items:start}
+  .hero .tx{display:contents}
+  .hero h1{grid-area:h;font-size:clamp(56px,5.6vw,88px);margin:6px 0 34px}
+  .hero .lead{grid-area:l;margin-top:0}
+  .hero .tail{grid-area:c}
+  .hero .media{grid-area:s;align-self:start}
+  .prob .head{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:end;margin-bottom:48px}
+  .tour .w{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:center}
+  .demo .w{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+  .item{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start;padding:48px 0}
+  .price .w{grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-areas:"ph st" "pb st";grid-template-rows:auto 1fr;column-gap:64px;row-gap:8px;align-items:start}
+  .price .phead{grid-area:ph}
+  .price .pbuy{grid-area:pb}
+  .price .stack{grid-area:st}
+  .hero .note{max-width:52ch}
+  .stack{padding:10px}
+  .guar .w{grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px}
+  .seal{width:100%}
+  .faq .w{grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}
+  .final .w{grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:64px;align-items:center}
+  .final .media{display:block}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .log p.in{animation:none}
+  .bf .t b i{animation:none}
+  .btn,.job,.bf .go{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="bf" id="bf" role="region" aria-label="Black Friday offer"><div class="w">
+  <div class="t only-bf">
+    <b><i></i>Black Friday: $19 <span class="long" style="color:var(--muted);font-weight:500">until Monday, Nov 30, 11:59 PM ET. Then $29.</span></b>
+    <span><span class="short">Then $29. Ends in </span><span class="long">Ends in </span><em class="num" data-cd="bar">4d 12h 00m 00s</em></span>
+  </div>
+  <div class="t only-after">
+    <b><i></i>Black Friday has ended</b>
+    <span>The kit is <em>$29</em> now.</span>
+  </div>
+  <a class="go" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="bar">Get it <span data-price>$19</span></a>
+</div></div>
+
+<header class="top"><div class="w">
+  <a class="brand" href="#top"><img src="assets/joao.jpg" alt="" width="34" height="34">João Agents</a>
+  <nav aria-label="Main">
+    <a class="hide-m" href="#inside">What you get</a>
+    <a class="hide-m" href="#buy">Price</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</div></header>
+
+<main id="top">
+<section class="hero" aria-labelledby="h1"><div class="w">
+  <div class="tx">
+    <h1 id="h1">Your own AI agent office for <span data-price>$19</span></h1>
+    <p class="lead">One prompt turns Claude Code into 10 AI agents, each with its own job and a shared memory. A live 3D office shows who is working and who needs your OK.</p>
+    <div class="tail">
+      <div class="deal only-bf">
+        <p><b>Black Friday price until Monday, Nov 30 at 11:59 PM ET.</b> On Tuesday it goes to $29.</p>
+        <div class="clock" aria-label="Time left at $19" data-clock>
+          <div><strong data-u="d">4</strong><small>days</small></div>
+          <div><strong data-u="h">12</strong><small>hours</small></div>
+          <div><strong data-u="m">00</strong><small>min</small></div>
+          <div><strong data-u="s">00</strong><small>sec</small></div>
+        </div>
+      </div>
+      <div class="cta">
+        <a class="btn" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="hero" id="hero-buy">Get the kit for <span class="px" data-price>$19</span></a>
+        <p class="note"><b>One-time payment.</b> Instant download from Gumroad. 7-day refund.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="media">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/office-poster-800.webp" aria-label="The 3D office from the kit: ten rooms, agents typing at their desks, the top bar counting who is working, who needs you and who is done" data-src-desk="assets/office-loop-1280.mp4" data-poster-desk="assets/office-poster-1280.webp">
+      <source src="assets/office-loop-800.mp4" type="video/mp4">
+    </video>
+    <figcaption><i></i>The real 3D office from the kit</figcaption>
+  </figure>
+</div></section>
+
+<section class="prob" aria-labelledby="h-prob"><div class="w">
+  <div class="head rv">
+    <h2 id="h-prob">Four problems, four fixes</h2>
+    <p class="lead">If you use Claude for your work, you've probably hit at least one of these. Each one has a part of the kit built for it.</p>
+  </div>
+  <div class="pairs">
+    <div class="pair rv">
+      <div class="was"><p>Claude forgets your rules, so you explain your business again every day.</p></div>
+      <div class="now"><p><span><b>Four memory files</b> hold your business, your voice and your rules. Every agent reads them before it starts.</span></p></div>
+    </div>
+    <div class="pair rv" style="--d:70ms">
+      <div class="was"><p>You're nervous it will send, pay for or delete something.</p></div>
+      <div class="now"><p><span><b>Agents prepare, you press the button.</b> Every agent file has the same hard rule: never publish, send, pay or delete.</span></p></div>
+    </div>
+    <div class="pair rv" style="--d:140ms">
+      <div class="was"><p>You installed Claude Code and don't know what to do with it.</p></div>
+      <div class="now"><p><span><b>One paste builds the office.</b> Answer five questions and it's running in about 90 minutes.</span></p></div>
+    </div>
+    <div class="pair rv" style="--d:210ms">
+      <div class="was"><p>One chat writes, researches and sells, and mixes all three up.</p></div>
+      <div class="now"><p><span><b>10 agents with one job each.</b> A dispatcher sends every task to the right room, and Review checks it before you see it.</span></p></div>
+    </div>
+  </div>
+  <div class="buyrow rv">
+    <a class="btn" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="problems">Get the kit for <span class="px" data-price>$19</span></a>
+    <span class="small only-bf"><b>$19 until Monday night.</b> Then $29.</span>
+    <span class="small only-after"><b>Paid once.</b> 7-day refund.</span>
+  </div>
+</div></section>
+
+<section class="tour" id="tour" aria-labelledby="h-tour"><div class="w">
+  <figure class="media rv">
+    <video muted loop playsinline preload="none" poster="assets/tour-poster.webp" aria-label="30 second tour of the kit: the office, the 10 agent files, the memory, the review checklist, the send button only you can press, the five questions and what is inside" data-lazy="assets/tour-960.mp4"></video>
+  </figure>
+  <div class="rv" style="--d:90ms">
+    <h2 id="h-tour">30 seconds inside the kit</h2>
+    <p class="lead" style="margin-top:16px">The memory, the reviewer, the button only you can press, and the rooms changing color as the agents work. One look tells you who needs you.</p>
+    <ul class="legend">
+      <li><span class="tag" style="--s:var(--gold)"><i></i>Working</span>The agent sits at its desk and types.</li>
+      <li><span class="tag" style="--s:var(--orange)"><i></i>Needs you</span>It stands up and waves until you answer.</li>
+      <li><span class="tag" style="--s:var(--green)"><i></i>Done</span>It hops. Your file is ready.</li>
+      <li><span class="tag" style="--s:var(--idle)"><i></i>Idle</span>It walks around the room.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="demo" id="try" aria-labelledby="h-try"><div class="w">
+  <div class="rv">
+    <h2 id="h-try">Give the office a job</h2>
+    <p class="intro">Tap a job and watch the dispatcher hand it to the right room. A simplified preview of what happens in your terminal.</p>
+    <div class="jobs" role="group" aria-label="Sample jobs">
+      <button class="job" type="button" data-job="hooks" style="--c:#ff7a2e" aria-pressed="false"><i></i>Write 5 hooks for my next reel</button>
+      <button class="job" type="button" data-job="research" style="--c:#5ab8ff" aria-pressed="false"><i></i>Find 3 competitors and their prices</button>
+      <button class="job" type="button" data-job="sales" style="--c:#45d98a" aria-pressed="false"><i></i>Draft a message to 5 local shops</button>
+      <button class="job" type="button" data-job="plan" style="--c:#f2a65a" aria-pressed="false"><i></i>Plan next week's content</button>
+      <form class="own" id="own"><label class="oculto" for="own-in">Type your own job</label><input id="own-in" type="text" maxlength="80" placeholder="Or type your own job" autocomplete="off"><button type="submit">Send</button></form>
+    </div>
+  </div>
+  <div class="board rv" style="--d:90ms" data-ui aria-live="polite">
+    <div class="bar"><b>AI AGENT OFFICE</b><span><i style="background:var(--gold)"></i><em id="n-w">0</em> working</span><span><i style="background:var(--orange)"></i><em id="n-a">0</em> need you</span><span><i style="background:var(--green)"></i><em id="n-d">0</em> done</span><span><i style="background:var(--idle)"></i><em id="n-i">10</em> idle</span></div>
+    <div class="rooms" id="rooms"></div>
+    <div class="log" id="log"><p class="hint">Pick a job. The rooms change color as the agents work.</p></div>
+  </div>
+</div></section>
+
+<section class="inside" id="inside" aria-labelledby="h-in"><div class="w">
+  <div class="head rv">
+    <h2 id="h-in">Five parts in one download</h2>
+    <p class="lead">One ZIP. Build the office by hand with the guide, or let the Office Prompt do it in one go.</p>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>The step by step guide</h3>
+      <p>A 20 page PDF with real screenshots. Install Claude Code, create your first agent, set up the dispatcher and the memory, then open the 3D office. Every part ends with a check so you know it worked, and the last page covers troubleshooting.</p>
+    </div>
+    <div class="pages rv" style="--d:90ms">
+      <img src="assets/guide-01.webp" width="640" height="906" loading="lazy" alt="Cover of the guide: Build your own 3D office of AI agents with Claude">
+      <img src="assets/guide-16.webp" width="640" height="906" loading="lazy" alt="Guide page: Your first day, 3 jobs to try">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>The Office Prompt</h3>
+      <p>Paste it into an empty folder. Claude asks you five questions, one at a time, then builds the folders, the memory files, the 10 agents and the 3D office from your answers.</p>
+      <p class="small">If something is unknown, the prompt writes "unknown" and lists it for you instead of making it up.</p>
+    </div>
+    <pre class="rv" style="--d:90ms" aria-label="The five questions from the Office Prompt"><span class="m">STEP 1. QUESTIONS. Ask me these 5 questions ONE AT A TIME and wait for each answer:</span>
+<span class="c">1.</span> What is my business or project, in one sentence?
+<span class="c">2.</span> Who is my audience or customer?
+<span class="c">3.</span> What do I sell or want to grow in the next 90 days?
+<span class="c">4.</span> What is my voice (3 words) and what do I never want in my texts?
+<span class="c">5.</span> Which 3 rooms matter most for me today?</pre>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>10 agent templates</h3>
+      <p>Each agent is a plain text file that says what it does, what it delivers and the rules it can't break. Edit them so they sound like you, or copy one to add a new room.</p>
+    </div>
+    <ul class="agents rv" style="--d:90ms">
+      <li style="--c:#ff7a2e"><b>Marketing</b><span>Hooks, offers, angles, ad copy</span></li>
+      <li style="--c:#5ab8ff"><b>Research</b><span>Competitors, trends, briefs with sources</span></li>
+      <li style="--c:#c78bff"><b>Content</b><span>Posts, carousels, scripts, newsletters</span></li>
+      <li style="--c:#45d98a"><b>Sales</b><span>Lead lists, outreach, proposals</span></li>
+      <li style="--c:#ffc23d"><b>Review</b><span>Facts, tone, links, risks</span></li>
+      <li style="--c:#ff6b9a"><b>Analytics</b><span>What worked, weekly reports</span></li>
+      <li style="--c:#4fd1c5"><b>Support</b><span>Replies to comments, emails, reviews</span></li>
+      <li style="--c:#9aa5ce"><b>Operations</b><span>Files, checklists, backups</span></li>
+      <li style="--c:#f2a65a"><b>Planner</b><span>Goals into weekly steps</span></li>
+      <li style="--c:#7c9cff"><b>Builder</b><span>Landing pages, small tools, scripts</span></li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>The 3D office</h3>
+      <p>One HTML file. Double click it and it opens in your browser, with no server and no account. Agents sit and type when they work, wave when they need you and hop when they finish. Click a room to see what its agent is doing.</p>
+    </div>
+    <figure class="rv" style="--d:90ms">
+      <div class="shot" style="aspect-ratio:1100/619"><img src="assets/marketing-1100.webp" width="1100" height="619" loading="lazy" alt="The Marketing room with its side panel open: working, drafting 5 hooks for the launch post, two jobs in the queue"></div>
+      <figcaption class="cap"><b>Click a room</b> and the panel shows what the agent is doing and what's next in its queue.</figcaption>
+    </figure>
+  </div>
+
+  <div class="item">
+    <div class="tx rv">
+      <h3>The skills list</h3>
+      <p>19 skills and plugins for Claude Code. For each one: what it does, when to use it, the install command, the author's link and the license, plus a map of which skill helps which room.</p>
+    </div>
+    <ul class="skills rv" style="--d:90ms" aria-label="Some of the skills on the list">
+      <li>find-skills</li><li>humanizer</li><li>frontend-design</li><li>skill-creator</li><li>Context7</li><li>Playwright MCP</li><li>agent-browser</li><li>Claude Mem</li><li>Superpowers</li><li>Marketing Skills</li><li class="more">and 9 more</li>
+    </ul>
+  </div>
+
+  <div class="buyrow rv">
+    <a class="btn" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="inside">Get all five for <span class="px" data-price>$19</span></a>
+    <span class="small"><b>Paid once.</b> The files are yours to keep and edit.</span>
+  </div>
+</div></section>
+
+<section class="fit" aria-labelledby="h-fit"><div class="w">
+  <h2 id="h-fit" class="rv">Is this kit for you?</h2>
+  <div class="cols">
+    <div class="rv"><h3>Good fit if you</h3><ul>
+      <li>run a small business, freelance or make content, and use Claude or want to</li>
+      <li>can copy, paste and follow numbered steps</li>
+      <li>want work checked before a customer sees it</li>
+      <li>like seeing what your agents are doing</li>
+    </ul></div>
+    <div class="no rv" style="--d:90ms"><h3>Skip it if you</h3><ul>
+      <li>don't have a Claude plan that includes Claude Code, and don't plan to get one</li>
+      <li>want a hosted app, or agents that post and send on their own</li>
+      <li>want a promise of income. We don't make one.</li>
+    </ul></div>
+  </div>
+  <div class="buyrow rv">
+    <a class="btn" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="fit">Sounds like me, get the kit <span class="px" data-price>$19</span></a>
+  </div>
+</div></section>
+
+<section class="price" id="buy" aria-labelledby="h-buy"><div class="w">
+  <div class="phead rv">
+    <h2 id="h-buy">The whole office, one price</h2>
+    <p class="intro">Here's what each part would cost if we sold it on its own.</p>
+  </div>
+  <div class="pbuy rv">
+    <div class="big"><span data-price>$19</span><small>one time</small></div>
+    <p class="ends only-bf">Black Friday price until Monday, Nov 30 at 11:59 PM ET. Ends in <span class="num" data-cd="price">4d 12h 00m</span>.</p>
+    <p class="ends only-after">Black Friday ended on Nov 30. This is the regular price.</p>
+    <a class="btn dark" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="price" id="price-buy">Get the kit for <span class="px" data-price>$19</span></a>
+    <p class="after">Checkout on Gumroad. The download shows up right after payment and arrives by email. No subscription.</p>
+    <p class="need">You need a Claude account that includes Claude Code (not included), Python 3, which is free, and a browser. Windows, Mac or Linux.</p>
+  </div>
+  <div class="stack rv" style="--d:90ms">
+    <ul>
+      <li><b>The step by step guide</b><em>$29</em><span>20 pages, real screenshots, a check at the end of every part</span></li>
+      <li><b>The Office Prompt</b><em>$19</em><span>Five questions, then Claude builds the whole office for you</span></li>
+      <li><b>10 agent templates and 4 memory files</b><em>$35</em><span>Roles, delivery formats and hard safety rules, ready to edit</span></li>
+      <li><b>The live 3D office</b><em>$29</em><span>One HTML file that shows who is working, waiting or done</span></li>
+      <li><b>The skills list</b><em>$13</em><span>19 skills and plugins with install commands, links and licenses</span></li>
+    </ul>
+    <div class="total"><span>Total if sold separately<small>Our estimate for each part sold on its own. The kit is only sold as one bundle.</small></span><em>$125</em></div>
+    <div class="now"><b><span class="only-bf">Black Friday price</span><span class="only-after">Your price</span><small>All five parts, paid once</small></b><strong data-price>$19</strong></div>
+    <p class="then only-bf">From <b>Tuesday, Dec 1</b> the kit is <b>$29</b>.</p>
+  </div>
+</div></section>
+
+<section class="guar" aria-labelledby="h-guar"><div class="w">
+  <div class="seal rv" aria-hidden="true"><div><strong>7</strong><span>day refund</span></div></div>
+  <div class="rv" style="--d:90ms">
+    <h2 id="h-guar">7 days to change your mind</h2>
+    <p class="lead">Download the kit, read the guide, build the office. If it isn't for you, message us on Gumroad within 7 days of your purchase and we refund the full price. You don't have to explain why.</p>
+    <ul class="facts">
+      <li>Instant download</li><li>Paid once, no subscription</li><li>Files are yours to edit</li>
+    </ul>
+    <div class="buyrow">
+      <a class="btn" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="guarantee">Try it for 7 days <span class="px" data-price>$19</span></a>
+    </div>
+  </div>
+</div></section>
+
+<section class="faq" id="faq" aria-labelledby="h-faq"><div class="w">
+  <h2 id="h-faq" class="rv">Before you buy</h2>
+  <div class="qs rv" style="--d:90ms">
+    <details class="only-bf" open><summary>Will the price really go up on Tuesday?</summary><div><p>Yes. The Black Friday price ends Monday, Nov 30 at 11:59 PM ET. On Tuesday, Dec 1, the kit goes to $29.</p></div></details>
+    <details class="only-after"><summary>Can I still get the Black Friday price?</summary><div><p>No. It ended Monday, Nov 30 at 11:59 PM ET. The kit is $29 now.</p></div></details>
+    <details><summary>Do I need to know how to code?</summary><div><p>No. Every step in the guide is numbered, and the Office Prompt does the setup for you. If you can copy and paste into a terminal, you can build it.</p></div></details>
+    <details><summary>Which Claude plan do I need?</summary><div><p>Any Claude account that includes Claude Code. Claude is not part of the kit, so check Anthropic's site for the current plans.</p></div></details>
+    <details><summary>What happens after I pay?</summary><div><p>Gumroad shows the download right away and emails you the link. You get one ZIP with the guide, the prompt, the agents, the office and the skills list.</p></div></details>
+    <details><summary>Can the agents post or send things on their own?</summary><div><p>No, and that's on purpose. They prepare the work and ask you. You publish, send or pay yourself.</p></div></details>
+    <details><summary>Are the 19 skills included in the ZIP?</summary><div><p>The list links to each author's page with the install command and the license. Other people made them, so we link to them instead of reselling them.</p></div></details>
+    <details><summary>Will this make me money?</summary><div><p>It organizes your work and stops you from repeating yourself to Claude. We don't promise income or results.</p></div></details>
+    <details><summary>What if I get stuck?</summary><div><p>The guide ends with a troubleshooting page, and you can message us on Gumroad. If it still isn't for you, ask for the 7-day refund.</p></div></details>
+  </div>
+</div></section>
+
+<section class="final" aria-labelledby="h-final"><div class="w">
+  <div class="tx">
+    <h2 id="h-final" class="rv"><span class="only-bf">Open your office this weekend</span><span class="only-after">Open your office this afternoon</span></h2>
+    <p class="lead rv">About 90 minutes from download to your first job.<span class="only-bf"> $19 until Monday, Nov 30 at 11:59 PM ET.</span></p>
+    <a class="btn rv" href="https://lendasgringo.gumroad.com/l/myeirv?wanted=true" target="_blank" rel="noopener" data-buy="final" id="final-buy">Get the kit for <span class="px" data-price>$19</span></a>
+  </div>
+  <figure class="media rv" style="--d:90ms"><img src="assets/sales-1100.webp" width="1100" height="598" loading="lazy" alt="The Sales room in orange, with the panel: Needs you, approve the message before it is sent"></figure>
+</div></section>
+</main>
+
+<footer><div class="w">
+  <span class="name">João Agents</span>
+  <div class="links"><a href="https://lendasgringo.gumroad.com/l/myeirv" target="_blank" rel="noopener" data-buy="footer">AI Agent Office Kit on Gumroad</a><a href="../en/privacy/">Privacy Policy</a><button type="button" class="linkbtn" id="ck-set">Cookie settings</button></div>
+  <span class="fine">João Gabriel, JGA AI Services. Independent kit, not affiliated with Anthropic. Claude and Claude Code are trademarks of Anthropic. Black Friday price of $19 valid until Monday, Nov 30, 2026 at 11:59 PM Eastern Time. This page loads the Meta Pixel to measure ads only if you accept cookies, see the <a href="../en/privacy/">Privacy Policy</a>.</span>
+</div></footer>
+
+<script>
+(function(){
+  var calm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var root=document.documentElement;
+
+  /* ---------- Black Friday clock and price ---------- */
+  function pad(n){return (n<10?"0":"")+n}
+  function setPhase(){
+    var live=BF.live();
+    root.setAttribute("data-phase",live?"bf":"after");
+    var price=live?"$19":"$29";
+    [].forEach.call(document.querySelectorAll("[data-price]"),function(el){if(el.textContent!==price)el.textContent=price});
+    if(live)document.title="AI Agent Office Kit: Black Friday, $19 until Monday";
+    else document.title="AI Agent Office Kit: your own team of AI agents, $29";
+    return live;
+  }
+  function tick(){
+    var live=setPhase();
+    if(!live)return false;
+    var left=Math.max(0,BF.END-BF.now()), s=Math.floor(left/1000);
+    var d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), x=s%60;
+    var bar=(d?d+"d ":"")+pad(h)+"h "+pad(m)+"m "+pad(x)+"s";
+    [].forEach.call(document.querySelectorAll('[data-cd="bar"]'),function(el){el.textContent=bar});
+    [].forEach.call(document.querySelectorAll('[data-cd="price"]'),function(el){el.textContent=(d?d+"d ":"")+pad(h)+"h "+pad(m)+"m"});
+    [].forEach.call(document.querySelectorAll("[data-clock]"),function(c){
+      c.querySelector('[data-u="d"]').textContent=d;c.querySelector('[data-u="h"]').textContent=pad(h);
+      c.querySelector('[data-u="m"]').textContent=pad(m);c.querySelector('[data-u="s"]').textContent=pad(x);
+    });
+    return true;
+  }
+  if(tick()){var iv=setInterval(function(){if(!tick())clearInterval(iv)},1000)}
+
+  /* ---------- buy clicks: Meta Pixel (only fires if the visitor accepted cookies) ---------- */
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a[data-buy]");
+    if(a&&window.fbq) fbq("track","InitiateCheckout",{content_name:"AI Agent Office Kit",content_category:a.getAttribute("data-buy"),value:BF.live()?19:29,currency:"USD"});
+  });
+
+  /* ---------- entrances ---------- */
+  var rv=[].slice.call(document.querySelectorAll(".rv"));
+  if("IntersectionObserver" in window&&!calm){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("v");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -5% 0px"});
+    rv.forEach(function(a){io.observe(a)});
+  } else rv.forEach(function(a){a.classList.add("v")});
+  /* fast jumps (anchor links, flick scrolls) can skip the observer: reveal anything above the fold line */
+  function catchUp(){var lim=innerHeight;rv.forEach(function(a){if(!a.classList.contains("v")&&a.getBoundingClientRect().top<lim)a.classList.add("v")})}
+  addEventListener("scroll",function(){requestAnimationFrame(catchUp)},{passive:true});
+  addEventListener("hashchange",catchUp);addEventListener("resize",catchUp);
+
+  /* ---------- videos ---------- */
+  var hv=document.querySelector(".hero video");
+  if(hv&&matchMedia("(min-width:760px)").matches){hv.poster=hv.getAttribute("data-poster-desk");hv.src=hv.getAttribute("data-src-desk");}
+  if(hv&&calm){hv.removeAttribute("autoplay");hv.pause&&hv.pause()}
+  var tv=document.querySelector("video[data-lazy]");
+  if(tv){
+    var load=function(){if(!tv.src){tv.src=tv.getAttribute("data-lazy")}if(!calm){var p=tv.play();p&&p.catch&&p.catch(function(){})}};
+    if("IntersectionObserver" in window){
+      new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)load();else if(tv.src)tv.pause()})},{rootMargin:"200px 0px"}).observe(tv);
+    } else load();
+    if(calm){tv.controls=true}
+  }
+
+  /* ---------- the dispatcher demo ---------- */
+  var R=[["marketing","Marketing","#ff7a2e"],["research","Research","#5ab8ff"],["content","Content","#c78bff"],["sales","Sales","#45d98a"],["review","Review","#ffc23d"],["analytics","Analytics","#ff6b9a"],["support","Support","#4fd1c5"],["ops","Operations","#9aa5ce"],["planner","Planner","#f2a65a"],["builder","Builder","#7c9cff"]];
+  var NAME={};R.forEach(function(r){NAME[r[0]]=r[1]});
+  var LBL={idle:"Idle",working:"Working",waiting:"Needs you",done:"Done"};
+  var box=document.getElementById("rooms"), log=document.getElementById("log"), timers=[];
+  R.forEach(function(r){var d=document.createElement("div");d.className="room";d.id="rm-"+r[0];d.style.setProperty("--c",r[2]);d.setAttribute("data-s","idle");d.innerHTML="<b>"+r[1]+"</b><span><i></i>Idle</span>";box.appendChild(d)});
+  function setS(id,s){var d=document.getElementById("rm-"+id);d.setAttribute("data-s",s);d.querySelector("span").lastChild.nodeValue=LBL[s];count()}
+  function count(){var c={working:0,waiting:0,done:0,idle:0};[].forEach.call(box.children,function(d){c[d.getAttribute("data-s")]++});
+    document.getElementById("n-w").textContent=c.working;document.getElementById("n-a").textContent=c.waiting;document.getElementById("n-d").textContent=c.done;document.getElementById("n-i").textContent=c.idle}
+  function line(txt,cls){var p=document.createElement("p");p.className="in "+(cls||"");p.textContent=txt;log.appendChild(p);while(log.children.length>6)log.removeChild(log.firstChild)}
+  var J={
+    hooks:[[0,"marketing","working","Dispatcher: Marketing writes, then Review checks."],[1500,"marketing","done","Marketing: 5 hooks saved in deliverables/marketing/."],[1600,"review","working","Review: checking facts and tone."],[3100,"review","done","Review: APPROVED WITH FIXES. Two hooks shortened."],[3200,"marketing","waiting","Needs you: pick a hook and post it yourself.","ask"]],
+    research:[[0,"research","working","Dispatcher: this is a Research job."],[1900,"research","done","Research: brief saved in deliverables/research/. Every price has a source link, or says \"no source\"."]],
+    sales:[[0,"sales","working","Dispatcher: Sales drafts, then Review checks."],[1500,"sales","done","Sales: 5 short drafts, one real detail about each shop."],[1600,"review","working","Review: checking tone and claims."],[3000,"review","done","Review: APPROVED."],[3100,"sales","waiting","Needs you: approve the messages. Sales sends nothing.","ask"]],
+    support:[[0,"support","working","Dispatcher: Support drafts, then Review checks."],[1500,"support","done","Support: reply drafted from your FAQ."],[1600,"review","working","Review: checking it against your rules in memory."],[3000,"review","done","Review: APPROVED WITH FIXES. Softer first line."],[3100,"support","waiting","Needs you: read the reply and send it from your inbox.","ask"]],
+    plan:[[0,"planner","working","Dispatcher: Planner first, then Content."],[1500,"planner","done","Planner: 5 posts mapped to the week in tasks.md."],[1600,"content","working","Content: writing Monday and Tuesday."],[3200,"content","done","Content: 2 drafts ready. Review is next in line."]]
+  };
+  function simple(id,what){return [[0,id,"working","Dispatcher: this goes to "+NAME[id]+"."],[1800,id,"done",NAME[id]+": "+what]]}
+  function route(t){t=t.toLowerCase();
+    if(/hook|post|reel|caption|ad\b|ads|copy|headline|slogan|tiktok|instagram/.test(t))return J.hooks;
+    if(/competitor|research|find|trend|price|market|source/.test(t))return J.research;
+    if(/email|message|lead|outreach|proposal|client|quote|sell|sales/.test(t))return J.sales;
+    if(/reply|customer|refund|support|comment|review|complain|dm\b/.test(t))return J.support;
+    if(/plan|week|schedule|calendar|goal|todo|to do/.test(t))return J.plan;
+    if(/site|page|landing|script|tool|code|app|automation/.test(t))return simple("builder","first version saved in deliverables/builder/. It asks before big changes.");
+    if(/report|number|metric|analytics|stats|views/.test(t))return simple("analytics","report saved in deliverables/analytics/.");
+    if(/file|folder|backup|organi|clean|checklist/.test(t))return simple("ops","checklist saved in checklists/.");
+    if(/blog|newsletter|carousel|article|write/.test(t))return simple("content","draft saved in deliverables/content/. Review is next in line.");
+    return J.plan;
+  }
+  function run(steps,label){
+    timers.forEach(clearTimeout);timers=[];
+    R.forEach(function(r){setS(r[0],"idle")});
+    log.innerHTML="";line("You: "+label,"you");
+    steps.forEach(function(s){timers.push(setTimeout(function(){setS(s[1],s[2]);line(s[3],s[4])},s[0]+(calm?0:250)))});
+  }
+  var btns=[].slice.call(document.querySelectorAll(".job"));
+  btns.forEach(function(b){b.addEventListener("click",function(){btns.forEach(function(x){x.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed","true");run(J[b.getAttribute("data-job")],b.textContent.trim())})});
+  document.getElementById("own").addEventListener("submit",function(e){e.preventDefault();var i=document.getElementById("own-in"),t=i.value.trim();if(t.length<3){i.focus();return}btns.forEach(function(x){x.setAttribute("aria-pressed","false")});run(route(t),t);i.value=""});
+})();
+</script>
+<div class="ck" id="ck" role="region" aria-label="Cookie consent" hidden>
+  <p>We use the Meta Pixel to measure our ads, only if you accept. <a href="../en/privacy/">Privacy</a></p>
+  <div class="bs"><button type="button" id="ck-no">Decline</button><button type="button" id="ck-ok">Accept</button></div>
+</div>
+<script>
+(function(){
+  var K="jga_cookie_consent",bar=document.getElementById("ck"),b=document.body;
+  function get(){try{return localStorage.getItem(K)}catch(e){return null}}
+  function set(v){try{localStorage.setItem(K,v)}catch(e){}}
+  function show(){bar.hidden=false;b.classList.add("ck-on");b.style.setProperty("--ckh",bar.offsetHeight+"px")}
+  function hide(){bar.hidden=true;b.classList.remove("ck-on")}
+  var v=get();
+  if(v==="yes")window.jgaPixel();else if(v!=="no")show();
+  document.getElementById("ck-ok").addEventListener("click",function(){set("yes");hide();window.jgaPixel()});
+  document.getElementById("ck-no").addEventListener("click",function(){set("no");hide()});
+  var cs=document.getElementById("ck-set");
+  if(cs)cs.addEventListener("click",function(){show()});
+  addEventListener("resize",function(){if(!bar.hidden)b.style.setProperty("--ckh",bar.offsetHeight+"px")});
+})();
+</script>
+</body></html>
